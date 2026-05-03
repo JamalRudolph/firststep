@@ -1,0 +1,2139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FirstStep — You Know What To Do</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --dawn:    #1a1035;
+  --dusk:    #2d1b69;
+  --amber:   #f59e3f;
+  --amber2:  #fbbf6a;
+  --cream:   #fdf8f0;
+  --cream2:  #f5ede0;
+  --warm:    #e8d5bc;
+  --brown:   #8b6f47;
+  --text:    #2c1810;
+  --text2:   #5c3d2e;
+  --muted:   #9a7c6a;
+  --green:   #2d6a4f;
+  --green2:  #40916c;
+  --blue:    #1d4e89;
+  --rose:    #8b2635;
+  --serif:   'Lora', Georgia, serif;
+  --sans:    'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--cream);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--cream2); }
+::-webkit-scrollbar-thumb { background: var(--amber); border-radius: 2px; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.8); }
+}
+@keyframes bounceDown {
+  0%, 100% { transform: rotate(45deg) translateY(0); }
+  50%       { transform: rotate(45deg) translateY(6px); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-d1 { transition-delay: 0.08s; }
+.reveal-d2 { transition-delay: 0.16s; }
+.reveal-d3 { transition-delay: 0.24s; }
+.reveal-d4 { transition-delay: 0.32s; }
+
+/* ── HERO — MOMENT OF RECOGNITION ── */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(160deg, var(--dawn) 0%, var(--dusk) 40%, #4a2080 65%, #c17f3a 100%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px 80px;
+  text-align: center;
+}
+
+/* Sunrise glow */
+.hero::before {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: 50%;
+  transform: translateX(-50%);
+  width: 900px; height: 400px;
+  background: radial-gradient(ellipse, rgba(245,158,63,0.35) 0%, rgba(245,158,63,0.08) 45%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Stars */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 20% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 8%,  rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 80% 20%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 35% 25%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 75% 12%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(2px 2px at 10% 30%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 35%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 50% 5%,  rgba(255,255,255,0.5) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 780px;
+}
+
+/* The scene-setter — small text above title */
+.hero-pre {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 28px;
+  animation: fadeUp 0.7s ease both;
+}
+
+/* Big question headline */
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(40px, 7.5vw, 76px);
+  font-weight: 700;
+  color: white;
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  margin-bottom: 32px;
+  animation: fadeUp 0.7s ease 0.1s both;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--amber);
+}
+
+/* The three moments — the gut punch */
+.hero-moments {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0 auto 44px;
+  max-width: 560px;
+  animation: fadeUp 0.7s ease 0.2s both;
+}
+
+.moment {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-align: left;
+}
+
+.moment-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.moment-text {
+  font-family: var(--serif);
+  font-size: clamp(15px, 2.5vw, 18px);
+  color: rgba(255,255,255,0.85);
+  line-height: 1.4;
+  font-style: italic;
+}
+
+.moment-text strong {
+  color: var(--amber2);
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Hero CTA link */
+.hero-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--amber);
+  color: var(--dawn);
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 16px 36px;
+  border-radius: 100px;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: all 0.2s;
+  margin-bottom: 52px;
+  animation: fadeUp 0.7s ease 0.3s both;
+}
+.hero-link:hover {
+  background: var(--amber2);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(245,158,63,0.3);
+}
+
+/* Scroll nudge — centered column, arrow below text */
+.hero-nudge {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  animation: fadeUp 0.7s ease 0.4s both;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.scroll-arrow {
+  width: 16px; height: 16px;
+  border-right: 1.5px solid rgba(255,255,255,0.25);
+  border-bottom: 1.5px solid rgba(255,255,255,0.25);
+  transform: rotate(45deg);
+  animation: bounceDown 2s ease-in-out infinite;
+}
+
+/* ── RECOGNITION STRIP ── */
+.recognition {
+  background: var(--amber);
+  padding: 22px 24px;
+  text-align: center;
+}
+
+.recognition p {
+  font-family: var(--serif);
+  font-size: clamp(16px, 2.5vw, 20px);
+  font-weight: 600;
+  color: var(--dawn);
+  font-style: italic;
+}
+
+/* ── SITUATIONS — THE CENTERPIECE ── */
+.situations {
+  padding: 90px 24px 100px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-label::before {
+  content: '';
+  width: 20px; height: 2px;
+  background: var(--amber);
+}
+
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+}
+.section-title em { font-style: italic; color: var(--brown); }
+
+.section-sub {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 580px;
+  margin-bottom: 56px;
+  font-weight: 400;
+}
+
+/* Situation cards */
+.sit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+.sit-card {
+  background: white;
+  border: 1.5px solid var(--cream2);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+  position: relative;
+  overflow: hidden;
+  display: block;
+  user-select: none;
+}
+
+.sit-card-top { padding: 32px 28px 26px; }
+
+.sit-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+
+.sit-card:hover { border-color: rgba(44,24,16,0.08); box-shadow: 0 6px 30px rgba(44,24,16,0.07); }
+.sit-card.open { border-color: transparent; box-shadow: 0 12px 50px rgba(44,24,16,0.13); }
+.sit-card.open::before, .sit-card:hover::before { transform: scaleX(1); }
+
+.sit-card.green::before  { background: var(--green); }
+.sit-card.blue::before   { background: var(--blue); }
+.sit-card.amber::before  { background: var(--amber); }
+.sit-card.rose::before   { background: var(--rose); }
+.sit-card.brown::before  { background: var(--brown); }
+.sit-card.dusk::before   { background: var(--dusk); }
+
+.sit-icon { font-size: 36px; margin-bottom: 16px; display: block; }
+
+.sit-tag {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 100px;
+}
+
+.sit-card.green .sit-tag  { background: #d8f3dc; color: var(--green); }
+.sit-card.blue  .sit-tag  { background: #dbeafe; color: var(--blue); }
+.sit-card.amber .sit-tag  { background: #fef3c7; color: #92400e; }
+.sit-card.rose  .sit-tag  { background: #ffe4e6; color: var(--rose); }
+.sit-card.brown .sit-tag  { background: #f5e6d3; color: var(--brown); }
+.sit-card.dusk  .sit-tag  { background: #ede9fe; color: var(--dusk); }
+
+.sit-title {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.sit-desc {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+
+.sit-toggle {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sit-toggle-arrow {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--cream2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px;
+  transition: transform 0.3s ease, background 0.2s;
+}
+.sit-card.open .sit-toggle-arrow { transform: rotate(180deg); }
+
+/* Expand panel */
+.sit-expand {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.38s cubic-bezier(0.4,0,0.2,1);
+}
+.sit-card.open .sit-expand { grid-template-rows: 1fr; }
+.sit-expand-inner { overflow: hidden; }
+
+.sit-preview {
+  margin: 0 18px 20px;
+  background: var(--cream);
+  border-radius: 16px;
+  padding: 22px 20px 18px;
+  border: 1px solid var(--cream2);
+}
+
+/* The human truth — reframe how they see the moment */
+.sit-truth {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-style: italic;
+  color: var(--text);
+  line-height: 1.6;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--cream2);
+}
+
+/* The consequence — what happens if they get it wrong */
+.sit-consequence {
+  background: #fff8f0;
+  border-left: 3px solid var(--amber);
+  border-radius: 0 10px 10px 0;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+}
+.sit-consequence-label {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #92400e;
+  margin-bottom: 4px;
+}
+.sit-consequence-text {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: #78350f;
+  line-height: 1.55;
+}
+
+/* The move */
+.sit-move-label {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.sit-preview-script {
+  background: white;
+  border-left: 2px solid var(--green2);
+  padding: 12px 16px;
+  border-radius: 0 12px 12px 0;
+  font-family: var(--serif);
+  font-size: 14px;
+  color: var(--green);
+  font-style: italic;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+.sit-card.blue  .sit-preview-script { border-color: var(--blue);  color: var(--blue); }
+.sit-card.amber .sit-preview-script { border-color: var(--brown); color: var(--brown); }
+.sit-card.rose  .sit-preview-script { border-color: var(--rose);  color: var(--rose); }
+.sit-card.brown .sit-preview-script { border-color: var(--brown); color: var(--brown); }
+.sit-card.dusk  .sit-preview-script { border-color: var(--dusk);  color: var(--dusk); }
+
+.sit-preview-more {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--muted);
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.sit-card-btn {
+  display: block;
+  text-align: center;
+  background: var(--dawn);
+  color: var(--amber);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 14px 20px;
+  border-radius: 12px;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: all 0.2s;
+}
+.sit-card-btn:hover {
+  background: #0f0820;
+  transform: translateY(-1px);
+}
+
+/* ── FLOATING BUTTON ── */
+.float-btn {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--amber);
+  color: var(--dawn);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 15px 36px;
+  border-radius: 100px;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  box-shadow: 0 8px 32px rgba(245,158,63,0.45), 0 2px 8px rgba(0,0,0,0.15);
+  transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s, background 0.2s;
+  z-index: 100;
+  white-space: nowrap;
+}
+.float-btn.visible {
+  transform: translateX(-50%) translateY(0);
+}
+.float-btn:hover {
+  background: var(--amber2);
+  box-shadow: 0 12px 40px rgba(245,158,63,0.55), 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* ── LIVE PREVIEW ── */
+.preview {
+  padding: 100px 24px;
+  background: var(--dawn);
+  position: relative;
+  overflow: hidden;
+}
+
+.preview::before {
+  content: '';
+  position: absolute;
+  bottom: -200px; left: 50%;
+  transform: translateX(-50%);
+  width: 700px; height: 400px;
+  background: radial-gradient(ellipse, rgba(245,158,63,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.preview-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.preview .section-label { color: var(--amber); }
+.preview .section-label::before { background: var(--amber); }
+.preview .section-title { color: white; }
+.preview .section-sub { color: rgba(255,255,255,0.5); }
+
+.preview-window {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 32px 100px rgba(0,0,0,0.4);
+  overflow: hidden;
+  margin-top: 52px;
+  border: 1.5px solid rgba(255,255,255,0.06);
+}
+
+.preview-topbar {
+  background: var(--text);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot.r { background: #ff5f57; }
+.dot.y { background: #febc2e; }
+.dot.g { background: #28c840; }
+
+.preview-url {
+  background: rgba(255,255,255,0.08);
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-family: var(--sans);
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  margin-left: 8px;
+}
+
+.preview-body {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 400px;
+}
+
+.preview-sidebar {
+  background: var(--cream);
+  border-right: 1.5px solid var(--cream2);
+  padding: 24px 16px;
+}
+
+.preview-search {
+  background: white;
+  border: 1.5px solid var(--cream2);
+  border-radius: 100px;
+  padding: 10px 16px;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.preview-sit-label {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+  padding: 0 4px;
+}
+
+.preview-sit-item {
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--text2);
+  font-weight: 500;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.preview-sit-item.active {
+  background: var(--dawn);
+  color: white;
+}
+
+.preview-main { padding: 28px 32px; }
+
+.preview-case {
+  background: linear-gradient(135deg, var(--dawn), var(--dusk));
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  display: flex;
+  gap: 20px;
+}
+
+.preview-case-item { flex: 1; }
+.pci-label {
+  font-family: var(--sans);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 4px;
+}
+.pci-value {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--amber2);
+}
+
+.preview-step {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 16px;
+  align-items: flex-start;
+}
+
+.ps-num {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--green);
+  color: white;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ps-content { flex: 1; }
+.ps-label {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+.ps-detail {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.ps-script {
+  background: #f0f9f4;
+  border-left: 2px solid var(--green2);
+  padding: 8px 12px;
+  border-radius: 0 8px 8px 0;
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--green);
+  font-style: italic;
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+/* ── HOW IT WORKS ── */
+.how {
+  padding: 100px 24px;
+  background: var(--cream2);
+}
+
+.how-inner { max-width: 1100px; margin: 0 auto; }
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2px;
+  margin-top: 56px;
+}
+
+.step-card {
+  background: white;
+  border: 1px solid var(--cream2);
+  padding: 40px 32px;
+  transition: background 0.2s;
+}
+.step-card:hover { background: var(--cream); }
+
+.step-num {
+  font-family: var(--serif);
+  font-size: 64px;
+  font-weight: 700;
+  color: rgba(139,111,71,0.15);
+  line-height: 1;
+  margin-bottom: 20px;
+  letter-spacing: -0.04em;
+  transition: color 0.2s;
+}
+.step-card:hover .step-num { color: rgba(139,111,71,0.3); }
+
+.step-title {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.step-desc {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* ── WHO IT'S FOR ── */
+.who {
+  padding: 100px 24px;
+  background: white;
+}
+
+.who-inner { max-width: 1100px; margin: 0 auto; }
+
+.who-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 56px;
+}
+
+.who-card {
+  background: var(--cream);
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  transition: all 0.25s;
+  border: 1.5px solid var(--cream2);
+}
+.who-card:hover {
+  box-shadow: 0 8px 32px rgba(44,24,16,0.08);
+  transform: translateY(-3px);
+  background: white;
+}
+
+.who-emoji { font-size: 40px; margin-bottom: 16px; display: block; }
+
+.who-name {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.who-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* ── TRUTH QUOTE ── */
+.truth {
+  padding: 100px 24px;
+  background: var(--dawn);
+  position: relative;
+  overflow: hidden;
+}
+
+.truth::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 100%, rgba(245,158,63,0.1) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.truth-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.truth-quote {
+  font-family: var(--serif);
+  font-size: clamp(26px, 4.5vw, 46px);
+  font-weight: 600;
+  color: white;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  font-style: italic;
+  margin-bottom: 28px;
+}
+
+.truth-mark {
+  font-size: clamp(80px, 12vw, 120px);
+  color: rgba(245,158,63,0.15);
+  font-family: var(--serif);
+  line-height: 0.6;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.truth-attr {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ── CTA — EARNED ── */
+.cta {
+  padding: 120px 24px;
+  background: linear-gradient(170deg, #1a1035 0%, #2d1b69 50%, #4a2080 75%, #c17f3a 100%);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.cta::before {
+  content: '';
+  position: absolute;
+  bottom: -60px; left: 50%;
+  transform: translateX(-50%);
+  width: 800px; height: 350px;
+  background: radial-gradient(ellipse, rgba(245,158,63,0.3) 0%, rgba(245,158,63,0.05) 50%, transparent 70%);
+  pointer-events: none;
+}
+
+.cta-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.cta-pre {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 24px;
+}
+
+.cta-title {
+  font-family: var(--serif);
+  font-size: clamp(36px, 6vw, 60px);
+  font-weight: 700;
+  color: white;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  margin-bottom: 20px;
+}
+.cta-title em { font-style: italic; color: var(--amber); }
+
+.cta-sub {
+  font-family: var(--sans);
+  font-size: 16px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.7;
+  margin-bottom: 44px;
+  font-weight: 300;
+}
+
+.cta-btn {
+  display: inline-block;
+  background: var(--amber);
+  color: var(--dawn);
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 18px 48px;
+  border-radius: 100px;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: all 0.2s;
+  margin-bottom: 20px;
+}
+.cta-btn:hover {
+  background: var(--amber2);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(245,158,63,0.35);
+}
+
+.cta-secondary {
+  display: block;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: rgba(255,255,255,0.35);
+  font-weight: 400;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--text);
+  padding: 40px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-brand {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+}
+.footer-brand span { color: var(--amber); font-style: italic; }
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+.footer-links a {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.4);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  transition: color 0.15s;
+}
+.footer-links a:hover { color: var(--amber); }
+
+.footer-copy {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: rgba(255,255,255,0.2);
+  width: 100%;
+}
+
+/* ── FOR ORGANIZATIONS ── */
+.orgs {
+  padding: 100px 24px;
+  background: var(--dawn);
+}
+
+.orgs-inner { max-width: 1100px; margin: 0 auto; }
+
+.orgs .section-label { color: var(--amber); }
+.orgs .section-label::before { background: var(--amber); }
+.orgs .section-title { color: white; }
+.orgs .section-sub { color: rgba(255,255,255,0.55); }
+
+.org-teaser {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  margin-top: 56px;
+  padding-top: 48px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.org-teaser-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 20px;
+  font-family: var(--sans);
+  font-size: 15px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.5;
+}
+
+.org-teaser-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--amber);
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+
+.org-teaser-right {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 32px 28px;
+}
+
+.org-teaser-cta-text {
+  font-family: var(--serif);
+  font-size: clamp(16px, 2vw, 20px);
+  color: white;
+  font-style: italic;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+/* Contact form */
+.contact-form { display: flex; flex-direction: column; gap: 10px; }
+
+.cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+.cf-input {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: white;
+  outline: none;
+  transition: border-color 0.15s;
+  width: 100%;
+}
+.cf-input::placeholder { color: rgba(255,255,255,0.35); }
+.cf-input:focus { border-color: var(--amber); }
+.cf-full { width: 100%; }
+
+.cf-select {
+  appearance: none;
+  cursor: pointer;
+  color: white;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.4)' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+.cf-select option { background: #1a1035; color: white; }
+
+.cf-textarea {
+  min-height: 90px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.cf-btn {
+  background: var(--amber);
+  color: var(--dawn);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 13px 24px;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: all 0.2s;
+  text-align: center;
+}
+.cf-btn:hover { background: var(--amber2); transform: translateY(-1px); }
+.cf-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+.cf-msg {
+  font-family: var(--sans);
+  font-size: 12px;
+  text-align: center;
+  padding: 8px;
+  border-radius: 8px;
+  display: none;
+}
+.cf-msg.success { background: rgba(34,197,94,0.15); color: #86efac; border: 1px solid rgba(34,197,94,0.2); display: block; }
+.cf-msg.error { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); display: block; }
+
+/* ── ANCHOR SCENARIOS ── */
+.anchors {
+  padding: 90px 24px 80px;
+  background: var(--cream);
+}
+.anchors-inner { max-width: 860px; margin: 0 auto; }
+
+.anchor-card {
+  background: white;
+  border: 1.5px solid var(--cream2);
+  border-radius: 24px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.anchor-card:hover { box-shadow: 0 8px 40px rgba(44,24,16,0.08); }
+.anchor-card.open {
+  border-color: transparent;
+  box-shadow: 0 16px 60px rgba(44,24,16,0.12);
+}
+
+.anchor-top {
+  padding: 28px 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  user-select: none;
+}
+
+.anchor-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  flex: 1;
+}
+
+.anchor-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.anchor-moment {
+  font-family: var(--serif);
+  font-size: clamp(18px, 3vw, 22px);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.25;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.anchor-sub {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.anchor-action {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.anchor-action-text {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--brown);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.anchor-arrow {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--cream2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px;
+  color: var(--text2);
+  transition: transform 0.35s ease, background 0.2s;
+}
+.anchor-card.open .anchor-arrow { transform: rotate(180deg); background: var(--cream); }
+
+/* Expand */
+.anchor-expand {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s cubic-bezier(0.4,0,0.2,1);
+}
+.anchor-card.open .anchor-expand { grid-template-rows: 1fr; }
+.anchor-expand-inner { overflow: hidden; }
+
+.anchor-lived {
+  padding: 0 32px 32px;
+  border-top: 1px solid var(--cream2);
+  margin-top: 0;
+  padding-top: 28px;
+}
+
+.al-truth {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--text2);
+  line-height: 1.7;
+  margin-bottom: 28px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--cream2);
+}
+
+.al-steps { margin-bottom: 24px; }
+
+.al-step-label {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 16px;
+}
+
+.al-step {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+  align-items: flex-start;
+}
+
+.al-step-num {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--dawn);
+  color: var(--amber);
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.al-step-body { flex: 1; }
+
+.al-step-title {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.al-step-detail {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 8px;
+}
+
+.al-script {
+  background: var(--cream);
+  border-left: 3px solid var(--green2);
+  padding: 12px 16px;
+  border-radius: 0 12px 12px 0;
+  font-family: var(--serif);
+  font-size: 14px;
+  color: var(--green);
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.al-consequence {
+  background: #fff8f0;
+  border: 1px solid rgba(245,158,63,0.25);
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+.al-consequence-label {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #92400e;
+  margin-bottom: 6px;
+}
+.al-consequence-text {
+  font-size: 13px;
+  color: #78350f;
+  line-height: 1.6;
+}
+
+.al-guide-cta {
+  background: var(--dawn);
+  border-radius: 16px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.al-guide-text {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.5;
+  font-weight: 300;
+  flex: 1;
+}
+.al-guide-btn {
+  display: inline-block;
+  background: var(--amber);
+  color: var(--dawn);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 100px;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: all 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.al-guide-btn:hover { background: var(--amber2); transform: translateY(-1px); }
+
+.anchor-footer {
+  text-align: center;
+  padding: 28px 0 0;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--muted);
+}
+.anchor-footer a {
+  color: var(--text2);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.15s;
+}
+.anchor-footer a:hover { color: var(--text); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .anchor-top { padding: 22px 20px; gap: 16px; }
+  .anchor-left { gap: 14px; }
+  .anchor-icon { font-size: 26px; }
+  .anchor-action-text { display: none; }
+  .anchor-lived { padding: 24px 20px; }
+  .al-guide-cta { flex-direction: column; }
+  .hero-moments { gap: 8px; }
+  .moment { padding: 14px 18px; }
+  .sit-grid { grid-template-columns: 1fr; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .who-grid { grid-template-columns: repeat(2, 1fr); }
+  .org-teaser { grid-template-columns: 1fr; gap: 32px; }
+  footer { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<a href="guide.html" class="float-btn" id="floatBtn">Open FirstStep Free →</a>
+<section class="hero">
+  <div class="hero-content">
+
+    <div class="hero-pre">Everybody hits a moment like this</div>
+
+    <h1 class="hero-title">
+      When life puts you<br>
+      in a spot you've <em>never been before.</em>
+    </h1>
+
+    <div class="hero-moments">
+      <div class="moment">
+        <span class="moment-icon">📋</span>
+        <span class="moment-text">The landlord is at the door and you don't know <strong>what your rights are.</strong></span>
+      </div>
+      <div class="moment">
+        <span class="moment-icon">😤</span>
+        <span class="moment-text">Someone is in your face and you don't know <strong>what to say next.</strong></span>
+      </div>
+      <div class="moment">
+        <span class="moment-icon">🏥</span>
+        <span class="moment-text">You're sitting in an office and they're talking but you don't <strong>understand what it means.</strong></span>
+      </div>
+      <div class="moment">
+        <span class="moment-icon">😬</span>
+        <span class="moment-text">You made a mistake and you don't know <strong>how to make it right.</strong></span>
+      </div>
+    </div>
+
+    <div class="hero-nudge">
+      <span>See what FirstStep covers</span>
+      <div class="scroll-arrow"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── RECOGNITION STRIP ── -->
+<div class="recognition">
+  <p>Nobody taught you what to do in these moments. That ends here.</p>
+</div>
+
+<!-- ── ANCHOR SCENARIOS — THE CENTERPIECE ── -->
+<section class="anchors" id="situations">
+  <div class="anchors-inner">
+
+    <div class="section-label reveal">Which one is yours right now?</div>
+    <h2 class="section-title reveal">Pick your moment.<br><em>Get the exact path through it.</em></h2>
+    <p class="section-sub reveal">Not advice. Not inspiration. The specific steps and the specific words — for the exact situation you are in right now.</p>
+
+    <!-- ANCHOR 1: AUTHORITY MOMENT -->
+    <div class="anchor-card reveal" id="anchor-letter">
+      <div class="anchor-top" onclick="toggleAnchor('anchor-letter')">
+        <div class="anchor-left">
+          <div class="anchor-icon">📋</div>
+          <div class="anchor-content">
+            <div class="anchor-moment">Someone in authority is demanding something — and you don't know your rights.</div>
+            <div class="anchor-sub">The landlord at the door. The letter you don't understand. The office where they're talking and you're nodding but lost. Someone with power over something you need.</div>
+          </div>
+        </div>
+        <div class="anchor-action">
+          <span class="anchor-action-text">This is my moment</span>
+          <div class="anchor-arrow">▾</div>
+        </div>
+      </div>
+
+      <div class="anchor-expand">
+        <div class="anchor-expand-inner">
+          <div class="anchor-lived">
+
+            <div class="al-truth">
+              You have been in that room before. Someone with a title, a clipboard, a lease, a badge — talking at you like you already understand what they mean. And you nod. Because nodding feels safer than admitting you don't know. Because you learned a long time ago that not knowing puts you at a disadvantage. Because nobody ever sat you down and said — you have rights here. You are allowed to ask questions. You do not have to sign anything today. You do not have to decide right now. That is what nobody told you. That ends here.
+            </div>
+
+            <div class="al-steps">
+              <div class="al-step-label">DO THIS — RIGHT NOW</div>
+
+              <div class="al-step">
+                <div class="al-step-num">1</div>
+                <div class="al-step-body">
+                  <div class="al-step-title">Do not agree to anything in the moment.</div>
+                  <div class="al-step-detail">The pressure to respond immediately is real — but you are never required to decide on the spot. Slow down. You have the right to understand before you commit to anything.</div>
+                  <div class="al-script">"I want to make sure I understand this fully before I respond. Can you give me that in writing?"</div>
+                </div>
+              </div>
+
+              <div class="al-step">
+                <div class="al-step-num">2</div>
+                <div class="al-step-body">
+                  <div class="al-step-title">Write down everything — names, dates, exact words.</div>
+                  <div class="al-step-detail">Your memory of what was said matters less than your written record of it. Right after the interaction, write down exactly what happened. This is your protection if anything escalates.</div>
+                </div>
+              </div>
+
+              <div class="al-step">
+                <div class="al-step-num">3</div>
+                <div class="al-step-body">
+                  <div class="al-step-title">Ask the one question that shifts the power.</div>
+                  <div class="al-step-detail">Most people in authority have never been asked this. It is calm, it is direct, and it signals that you know you have rights:</div>
+                  <div class="al-script">"Can you show me where that is written — the policy, the law, or the document that says I have to do this?"</div>
+                </div>
+              </div>
+
+              <div class="al-step">
+                <div class="al-step-num">4</div>
+                <div class="al-step-body">
+                  <div class="al-step-title">If you got a letter — read it for one thing only first.</div>
+                  <div class="al-step-detail">Ignore everything you don't understand. Find the deadline date. That is all that matters right now. Then call the number on the letter and say:</div>
+                  <div class="al-script">"I received a letter dated [date]. I want to understand what this means and what I need to do. Can you walk me through it?"</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="al-consequence">
+              <div class="al-consequence-label">If you stay silent and go along with it</div>
+              <div class="al-consequence-text">Decisions get made without your voice. Deadlines pass. Situations escalate into things that were completely avoidable. Most of these moments have a resolution path — but only if you engage before the window closes.</div>
+            </div>
+
+            <div class="al-guide-cta">
+              <div class="al-guide-text">The full guide has housing rights, workplace rights, navigating offices, and 11 more situations.</div>
+              <a href="guide.html" class="al-guide-btn">Open the full guide — free →</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ANCHOR 2: SOMEONE COMING AT YOU -->
+    <div class="anchor-card reveal" id="anchor-confrontation">
+      <div class="anchor-top" onclick="toggleAnchor('anchor-confrontation')">
+        <div class="anchor-left">
+          <div class="anchor-icon">😤</div>
+          <div class="anchor-content">
+            <div class="anchor-moment">Someone is coming at you — and you don't know what to say.</div>
+            <div class="anchor-sub">A customer. A landlord. A family member. A coworker. A stranger. Anyone whose anger or volume or power made your mind go blank and your words disappear.</div>
+          </div>
+        </div>
+        <div class="anchor-action">
+          <span class="anchor-action-text">This is my moment</span>
+          <div class="anchor-arrow">▾</div>
+        </div>
+      </div>
+
+      <div class="anchor-expand">
+        <div class="anchor-expand-inner">
+          <div class="anchor-lived">
+
+            <div class="al-truth">
+              You know that feeling. Someone comes at you — loud, angry, dismissive, threatening — and everything inside you either shuts down or fires up. The words you needed did not come. Or the wrong words came too fast. And afterward you replayed it for hours — what you should have said, what you wish you had done differently. That feeling is not weakness. That is what happens to every human being who was never taught what to do in that moment. You were not broken in that moment. You were unprepared. There is a difference. And now you have what you needed then.
+            </div>
+
+            <div class="al-steps">
+              <div class="al-step-label">DO THIS — RIGHT NOW</div>
+
+              <div class="al-step">
+                <div class="al-step-num">1</div>
+                <div class="al-step-body">
+                  <div class="al-step-title">Let them finish completely. Do not say a word until they stop.</div>
+                  <div class="al-step-detail">Even if they are wrong. Even if it is unfair. The moment you interrupt, the confrontation doubles. Your silence right now is not weakness — it is the most powerful move you have.</div>
+                </div>
+              </div>
+
+              <div class="al-step">
+                <div class="al-step-num">2</div>
+                <div class="al-step-body">
+                  <div class="al-step-title">Take one breath. Then say this — nothing more.</div>
+                  <div class="al-step-detail">Not a full response. Not a defense. One sentence that acknowledges them without surrendering anything:</div>
+                  <div class="al-script">"I hear you. I am not going anywhere — talk to me."</div>
+                </div>
+              </div>
+
+              <div class="al-step">
+                <div class="al-step-num">3</div>
+                <div class="al-step-body">
+                  <div class="al-step-title">Ask one direct question. Not to win — to understand.</div>
+                  <div class="al-step-detail">This moves the situation from heat to something you can actually work with. It shows you are still there and still trying:</div>
+                  <div class="al-script">"Tell me what you need from me right now."</div>
+                </div>
+              </div>
+
+              <div class="al-step">
+                <div class="al-step-num">4</div>
+                <div class="al-step-body">
+                  <div class="al-step-title">If it becomes abusive — you are allowed to stop it.</div>
+                  <div class="al-step-detail">Staying calm does not mean absorbing everything. You have the right to pause any conversation that crosses a line. Say this and mean it:</div>
+                  <div class="al-script">"I want to work through this with you. I need us to do it without this. I am going to give you a moment and come back."</div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="al-consequence">
+              <div class="al-consequence-label">If you react instead of respond</div>
+              <div class="al-consequence-text">The situation stops being about the problem and becomes about the argument. Even when you are completely right, you end up looking wrong — and the original issue never gets solved.</div>
+            </div>
+
+            <div class="al-guide-cta">
+              <div class="al-guide-text">The full guide has situations for conflict, workplace moments, rights, confidence, and 11 more.</div>
+              <a href="guide.html" class="al-guide-btn">Open the full guide — free →</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ANCHOR 3: YOU MADE A MISTAKE -->
+    <div class="anchor-card reveal" id="anchor-mistake">
+      <div class="anchor-top" onclick="toggleAnchor('anchor-mistake')">
+        <div class="anchor-left">
+          <div class="anchor-icon">😬</div>
+          <div class="anchor-content">
+            <div class="anchor-moment">You made a mistake and now you have to face it.</div>
+            <div class="anchor-sub">At work. At home. With someone who trusted you. You know you have to address it — but you don't know how to walk back in.</div>
+          </div>
+        </div>
+        <div class="anchor-action">
+          <span class="anchor-action-text">This is my moment</span>
+          <div class="anchor-arrow">▾</div>
+        </div>
+      </div>
+
+      <div class="anchor-expand">
+        <div class="anchor-expand-inner">
+          <div class="anchor-lived">
+
+            <div class="al-truth">
+              You know what it feels like to carry a mistake. The weight of it in your chest. Replaying it. Avoiding the person. Dreading the conversation. Telling yourself you will deal with it tomorrow — but tomorrow comes and you still are not ready. Maybe you have been carrying something like this for a long time. Maybe it is from today. Either way — the longer you wait, the heavier it gets and the harder the walk back in becomes. The steps below are the walk back in.
+            </div>
+
+            <div class="al-steps">
+              <div class="al-step-label">DO THIS — RIGHT NOW</div>
+
+              <div class="al-step">
+                <div class="al-step-num">1</div>
+                <div class="al-step-body">
+                  <div class="al-step-title">Do not wait. Every hour makes it harder.</div>
+                  <div class="al-step-detail">The longer you avoid it, the more the other person builds a story about what happened — and you are not in it to explain yourself. Go before they find out another way.</div>
+                </div>
+              </div>
+
+              <div class="al-step">
+                <div class="al-step-num">2</div>
+                <div class="al-step-body">
+                  <div class="al-step-title">Say it plainly. No excuses attached to the front.</div>
+                  <div class="al-step-detail">Own it in one clean sentence. No "but." No "because of." The explanation can come after — but only after the ownership lands fully:</div>
+                  <div class="al-script">"I made a mistake. I own that completely. Here is what I am doing right now to fix it."</div>
+                </div>
+              </div>
+
+              <div class="al-step">
+                <div class="al-step-num">3</div>
+                <div class="al-step-body">
+                  <div class="al-step-title">Walk in with the fix already in your hand.</div>
+                  <div class="al-step-detail">An apology without a next step is just discomfort. An apology with a specific plan is accountability. Know exactly what you are going to do and by when before you have the conversation.</div>
+                </div>
+              </div>
+
+              <div class="al-step">
+                <div class="al-step-num">4</div>
+                <div class="al-step-body">
+                  <div class="al-step-title">Follow through without being reminded.</div>
+                  <div class="al-step-detail">The conversation opens the door. What you do next is what actually rebuilds trust. Do exactly what you said, when you said it. That is the whole thing.</div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="al-consequence">
+              <div class="al-consequence-label">If you deflect or stay silent</div>
+              <div class="al-consequence-text">People do not lose trust because you made a mistake. They lose it because you could not own it. That reputation follows you far longer than any mistake would have.</div>
+            </div>
+
+            <div class="al-guide-cta">
+              <div class="al-guide-text">The full guide has situations for performance reviews, coworker conflict, first day nerves, and 11 more.</div>
+              <a href="guide.html" class="al-guide-btn">Open the full guide — free →</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="anchor-footer reveal">
+      <p>Don't see your situation? <a href="guide.html">Open the full guide</a> — 14 situations covering work, life, and everything in between.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── MORE SITUATIONS ── -->
+<section class="situations" id="more-situations">
+  <div class="section-label reveal">More situations</div>
+  <h2 class="section-title reveal">More of what life<br><em>actually looks like.</em></h2>
+  <p class="section-sub reveal">Work. People. Rights. Confidence. Pick what you need and get the exact steps.</p>
+
+  <div class="sit-grid">
+
+    <!-- CARD 1 -->
+    <div class="sit-card green reveal" onclick="toggleCard(this)">
+      <div class="sit-card-top">
+        <span class="sit-icon">😤</span>
+        <div class="sit-tag">Conflict</div>
+        <div class="sit-title">Someone Is Upset With You</div>
+        <div class="sit-desc">Customer, neighbor, coworker, family member — they are frustrated and escalating.</div>
+        <div class="sit-toggle">
+          <span>See what to do</span>
+          <span class="sit-toggle-arrow">▾</span>
+        </div>
+      </div>
+      <div class="sit-expand">
+        <div class="sit-expand-inner">
+          <div class="sit-preview">
+            <div class="sit-truth">That person is not just angry. They feel like nobody is listening to them. You are the first person who has a real chance to change that — and how you respond in the next ten seconds will determine everything.</div>
+            <div class="sit-consequence">
+              <div class="sit-consequence-label">If you react instead of respond</div>
+              <div class="sit-consequence-text">They escalate. The situation grows. You lose control of the moment — and it becomes about the argument, not the problem. The problem never gets solved.</div>
+            </div>
+            <div class="sit-move-label">What to do instead</div>
+            <div class="sit-preview-script">"I hear you. I'm not going anywhere — let me see what I can do for you right now."</div>
+            <div class="sit-preview-more">+ 4 more steps, scripts, and what not to say in the full guide</div>
+            <a href="guide.html" class="sit-card-btn">Get the full guide →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="sit-card blue reveal reveal-d1" onclick="toggleCard(this)">
+      <div class="sit-card-top">
+        <span class="sit-icon">👔</span>
+        <div class="sit-tag">Workplace</div>
+        <div class="sit-title">They Want a Manager</div>
+        <div class="sit-desc">Someone is demanding to speak to a supervisor or person in charge.</div>
+        <div class="sit-toggle">
+          <span>See what to do</span>
+          <span class="sit-toggle-arrow">▾</span>
+        </div>
+      </div>
+      <div class="sit-expand">
+        <div class="sit-expand-inner">
+          <div class="sit-preview">
+            <div class="sit-truth">When someone asks for a manager, they are not attacking you. They have hit a wall and they believe someone with more authority can move it. Your job is not to be that wall — it is to be the person who opens the door.</div>
+            <div class="sit-consequence">
+              <div class="sit-consequence-label">If you resist or stall</div>
+              <div class="sit-consequence-text">They get louder, they get angrier, and they feel dismissed — which is exactly what they were already afraid of. Now you have a bigger problem than you started with.</div>
+            </div>
+            <div class="sit-move-label">What to do instead</div>
+            <div class="sit-preview-script">"Absolutely. Let me get the right person on this — you deserve to have this handled properly."</div>
+            <div class="sit-preview-more">+ 4 more steps, scripts, and what not to say in the full guide</div>
+            <a href="guide.html" class="sit-card-btn">Get the full guide →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="sit-card amber reveal reveal-d2" onclick="toggleCard(this)">
+      <div class="sit-card-top">
+        <span class="sit-icon">💸</span>
+        <div class="sit-tag">Money</div>
+        <div class="sit-title">Asking for What You Are Owed</div>
+        <div class="sit-desc">A refund, your deposit back, an unpaid bill, money someone owes you.</div>
+        <div class="sit-toggle">
+          <span>See what to do</span>
+          <span class="sit-toggle-arrow">▾</span>
+        </div>
+      </div>
+      <div class="sit-expand">
+        <div class="sit-expand-inner">
+          <div class="sit-preview">
+            <div class="sit-truth">Asking for what you are owed feels uncomfortable because we are taught not to make things awkward. But letting it go does not make things better — it makes you smaller. You earned it. You are allowed to say so.</div>
+            <div class="sit-consequence">
+              <div class="sit-consequence-label">If you stay quiet or soften it</div>
+              <div class="sit-consequence-text">The other person reads your hesitation as uncertainty. They push back. You feel worse. The longer it sits, the harder it becomes to bring up at all.</div>
+            </div>
+            <div class="sit-move-label">What to do instead</div>
+            <div class="sit-preview-script">"I am following up on the [amount] owed from [date]. I need us to resolve this today — what does that look like on your end?"</div>
+            <div class="sit-preview-more">+ 4 more steps, scripts, and escalation paths in the full guide</div>
+            <a href="guide.html" class="sit-card-btn">Get the full guide →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="sit-card rose reveal" onclick="toggleCard(this)">
+      <div class="sit-card-top">
+        <span class="sit-icon">🤷</span>
+        <div class="sit-tag">Don't know</div>
+        <div class="sit-title">You Don't Know the Answer</div>
+        <div class="sit-desc">Someone asks you something and you have no idea — at work, at home, in an office.</div>
+        <div class="sit-toggle">
+          <span>See what to do</span>
+          <span class="sit-toggle-arrow">▾</span>
+        </div>
+      </div>
+      <div class="sit-expand">
+        <div class="sit-expand-inner">
+          <div class="sit-preview">
+            <div class="sit-truth">Not knowing the answer is not the problem. The problem is what people do next — they guess, they panic, they freeze, or they bluff. All four of those are worse than just saying you don't know and owning what happens next.</div>
+            <div class="sit-consequence">
+              <div class="sit-consequence-label">If you guess or bluff</div>
+              <div class="sit-consequence-text">You might be wrong. And when you are wrong, you do not just lose the answer — you lose the trust. That is much harder to get back than a moment of honesty.</div>
+            </div>
+            <div class="sit-move-label">What to do instead</div>
+            <div class="sit-preview-script">"I want to make sure I give you the right answer, not just a fast one. Let me find out and get back to you by [specific time]."</div>
+            <div class="sit-preview-more">+ 3 more steps and scripts in the full guide</div>
+            <a href="guide.html" class="sit-card-btn">Get the full guide →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 5 -->
+    <div class="sit-card brown reveal reveal-d1" onclick="toggleCard(this)">
+      <div class="sit-card-top">
+        <span class="sit-icon">😬</span>
+        <div class="sit-tag">Mistakes</div>
+        <div class="sit-title">You Made an Error</div>
+        <div class="sit-desc">Something went wrong and it was your fault — at work or in life.</div>
+        <div class="sit-toggle">
+          <span>See what to do</span>
+          <span class="sit-toggle-arrow">▾</span>
+        </div>
+      </div>
+      <div class="sit-expand">
+        <div class="sit-expand-inner">
+          <div class="sit-preview">
+            <div class="sit-truth">How you handle a mistake says more about who you are than the mistake itself. Everyone watching is not judging the error — they are watching to see what you do next. That is the moment that actually defines you.</div>
+            <div class="sit-consequence">
+              <div class="sit-consequence-label">If you deflect or minimize it</div>
+              <div class="sit-consequence-text">People stop trusting you — not because you made a mistake, but because you could not own it. That reputation follows you far longer than the mistake would have.</div>
+            </div>
+            <div class="sit-move-label">What to do instead</div>
+            <div class="sit-preview-script">"I made a mistake. I own that. Here is what I am doing right now to fix it."</div>
+            <div class="sit-preview-more">+ 4 more steps, scripts, and how to rebuild trust in the full guide</div>
+            <a href="guide.html" class="sit-card-btn">Get the full guide →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 6 -->
+    <div class="sit-card dusk reveal reveal-d2" onclick="toggleCard(this)">
+      <div class="sit-card-top">
+        <span class="sit-icon">📋</span>
+        <div class="sit-tag">Your rights</div>
+        <div class="sit-title">You Don't Know Your Rights</div>
+        <div class="sit-desc">A landlord, an employer, an institution. Something feels wrong but you don't know what you can do.</div>
+        <div class="sit-toggle">
+          <span>See what to do</span>
+          <span class="sit-toggle-arrow">▾</span>
+        </div>
+      </div>
+      <div class="sit-expand">
+        <div class="sit-expand-inner">
+          <div class="sit-preview">
+            <div class="sit-truth">Systems and institutions count on people not knowing their rights. Not out of cruelty — but because when people do not push back, things stay the way they are. Knowing what you are entitled to changes the entire conversation.</div>
+            <div class="sit-consequence">
+              <div class="sit-consequence-label">If you leave without saying anything</div>
+              <div class="sit-consequence-text">The moment passes. The decision gets made without your voice. And the next time it happens — and it will happen — you will feel just as powerless as you do right now.</div>
+            </div>
+            <div class="sit-move-label">What to do instead</div>
+            <div class="sit-preview-script">"I want to make sure I understand what my options are. Can you walk me through that — and can I get that in writing?"</div>
+            <div class="sit-preview-more">+ 4 more steps, what to document, and when to escalate in the full guide</div>
+            <a href="guide.html" class="sit-card-btn">Get the full guide →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- ── WHO IT'S FOR — RECOGNITION FIRST ── -->
+<section class="who">
+  <div class="who-inner">
+    <div class="section-label reveal">Who uses FirstStep</div>
+    <h2 class="section-title reveal">If life has ever put you<br><em>in a spot you weren't ready for.</em></h2>
+    <p class="section-sub reveal">It does not matter where you are coming from. What matters is that you had to figure something out — and now you have somewhere to turn.</p>
+
+    <div class="who-grid">
+      <div class="who-card reveal">
+        <span class="who-emoji">🎓</span>
+        <div class="who-name">First Job</div>
+        <div class="who-desc">Just starting out and figuring it all out for the first time.</div>
+      </div>
+      <div class="who-card reveal reveal-d1">
+        <span class="who-emoji">🔄</span>
+        <div class="who-name">Starting Over</div>
+        <div class="who-desc">New city, new chapter, new set of rules to learn.</div>
+      </div>
+      <div class="who-card reveal reveal-d2">
+        <span class="who-emoji">🏠</span>
+        <div class="who-name">Returning to Work</div>
+        <div class="who-desc">Coming back after time away — family, health, or life happened.</div>
+      </div>
+      <div class="who-card reveal reveal-d3">
+        <span class="who-emoji">🔑</span>
+        <div class="who-name">Second Chance</div>
+        <div class="who-desc">Starting fresh and proving what you are capable of every single day.</div>
+      </div>
+      <div class="who-card reveal">
+        <span class="who-emoji">🌍</span>
+        <div class="who-name">New to the Country</div>
+        <div class="who-desc">Navigating a new culture, a new system, a new way of doing things.</div>
+      </div>
+      <div class="who-card reveal reveal-d1">
+        <span class="who-emoji">👨‍👩‍👧</span>
+        <div class="who-name">Figuring It Out</div>
+        <div class="who-desc">Parent, caregiver, neighbor — someone who just needs to know what to do next.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ── -->
+<section class="how">
+  <div class="how-inner">
+    <div class="section-label reveal">Simple by design</div>
+    <h2 class="section-title reveal">How it works.<br><em>That is all.</em></h2>
+    <p class="section-sub reveal">No training required. If you can read it, you can use it.</p>
+
+    <div class="steps-grid">
+      <div class="step-card reveal">
+        <div class="step-num">01</div>
+        <div class="step-title">Pick your situation</div>
+        <div class="step-desc">Type what is happening or pick from the list. Angry customer. Refund request. You made a mistake. Whatever it is — it is in there.</div>
+      </div>
+      <div class="step-card reveal reveal-d1">
+        <div class="step-num">02</div>
+        <div class="step-title">Follow the steps</div>
+        <div class="step-desc">Every situation has clear numbered steps. What to do. What to think about. What to say. In plain language — no jargon, no guesswork.</div>
+      </div>
+      <div class="step-card reveal reveal-d2">
+        <div class="step-num">03</div>
+        <div class="step-title">Handle it with confidence</div>
+        <div class="step-desc">You know what to do. You know what to say. The moment is handled and you come out of it better than before.</div>
+      </div>
+      <div class="step-card reveal reveal-d3">
+        <div class="step-num">04</div>
+        <div class="step-title">No app. No login. No wait.</div>
+        <div class="step-desc">Open it in any browser on any device. Bookmark it on your phone. Share it with someone who needs it. It is yours — free and always there.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOR ORGANIZATIONS ── -->
+<section class="orgs">
+  <div class="orgs-inner">
+    <div class="section-label reveal">For organizations</div>
+    <h2 class="section-title reveal">The people you serve face<br><em>these moments every day.</em></h2>
+    <p class="section-sub reveal">Workforce programs. Reentry organizations. Community colleges. Employer partners. If your mission is helping people navigate hard situations — FirstStep was built for the people in your programs. We partner with organizations ready to go deeper.</p>
+
+    <div class="org-teaser reveal">
+      <div class="org-teaser-left">
+        <div class="org-teaser-item">
+          <span class="org-teaser-dot"></span>
+          <span>Custom-built situations specific to your population</span>
+        </div>
+        <div class="org-teaser-item">
+          <span class="org-teaser-dot"></span>
+          <span>Branded, facilitator-ready, curriculum-integrated</span>
+        </div>
+        <div class="org-teaser-item">
+          <span class="org-teaser-dot"></span>
+          <span>Built for WIOA-funded programs and grant reporting</span>
+        </div>
+        <div class="org-teaser-item">
+          <span class="org-teaser-dot"></span>
+          <span>Free tool stays free — partnerships go further</span>
+        </div>
+      </div>
+      <div class="org-teaser-right">
+        <p class="org-teaser-cta-text">Ready to bring FirstStep to the people you serve?</p>
+        <form class="contact-form" id="org-form" onsubmit="submitForm(event, 'org-form', 'org-msg')">
+          <div class="cf-row">
+            <input type="text" name="name" placeholder="Your name" required class="cf-input">
+            <input type="text" name="organization" placeholder="Organization" required class="cf-input">
+          </div>
+          <input type="email" name="email" placeholder="Your email address" required class="cf-input cf-full">
+          <select name="type" required class="cf-input cf-full cf-select">
+            <option value="" disabled selected>What type of organization?</option>
+            <option>Workforce Development Board</option>
+            <option>Reentry Program</option>
+            <option>Community College</option>
+            <option>Employer / HR</option>
+            <option>Social Services</option>
+            <option>School / Youth Program</option>
+            <option>Government Agency</option>
+            <option>Other</option>
+          </select>
+          <textarea name="message" placeholder="Tell us about the people you serve and what you need..." required class="cf-input cf-full cf-textarea"></textarea>
+          <input type="hidden" name="source" value="Landing Page — Org Section">
+          <button type="submit" class="cf-btn" id="org-btn">Send message →</button>
+          <div class="cf-msg" id="org-msg"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUTH ── -->
+<section class="truth">
+  <div class="truth-inner reveal">
+    <span class="truth-mark">"</span>
+    <div class="truth-quote">
+      The difference between getting through something and falling apart is usually knowing what to do in one difficult moment.
+    </div>
+    <div class="truth-attr">The FirstStep philosophy</div>
+  </div>
+</section>
+
+<!-- ── CTA — EARNED ── -->
+<section class="cta">
+  <div class="cta-inner">
+    <div class="cta-pre reveal">You have seen what it does</div>
+    <h2 class="cta-title reveal">Whatever the moment —<br><em>you don't have to face it alone.</em></h2>
+    <p class="cta-sub reveal">Free to use. No signup. No download. Open it right now and have it ready before life puts you in that spot again.</p>
+    <a href="guide.html" class="cta-btn reveal">Open FirstStep Free →</a>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-brand">First<span>Step</span></div>
+  <ul class="footer-links">
+    <li><a href="partners.html">About</a></li>
+    <li><a href="partners.html">For Organizations</a></li>
+    <li><a href="partners.html">Contact</a></li>
+    <li><a href="https://rudolphcx.com">Rudolph CX</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 Rudolph CX LLC · getfirststep.org · Built in Durham, NC</div>
+</footer>
+
+<script>
+function toggleAnchor(id) {
+  var card = document.getElementById(id);
+  var isOpen = card.classList.contains('open');
+  document.querySelectorAll('.anchor-card.open').forEach(function(c) { c.classList.remove('open'); });
+  if (!isOpen) {
+    card.classList.add('open');
+    setTimeout(function() {
+      var rect = card.getBoundingClientRect();
+      if (rect.bottom > window.innerHeight) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }, 460);
+  }
+}
+
+var reveals = document.querySelectorAll('.reveal');
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(function(el) { observer.observe(el); });
+
+// Floating button — appears after hero, hides near CTA
+var floatBtn = document.getElementById('floatBtn');
+var hero = document.querySelector('.hero');
+var cta = document.querySelector('.cta');
+
+window.addEventListener('scroll', function() {
+  var heroBottom = hero.getBoundingClientRect().bottom;
+  var ctaTop = cta.getBoundingClientRect().top;
+  if (heroBottom < 0 && ctaTop > window.innerHeight) {
+    floatBtn.classList.add('visible');
+  } else {
+    floatBtn.classList.remove('visible');
+  }
+}, { passive: true });
+
+function toggleCard(card) {
+  var isOpen = card.classList.contains('open');
+  // Close all open cards
+  document.querySelectorAll('.sit-card.open').forEach(function(c) {
+    c.classList.remove('open');
+  });
+  // If it wasn't open, open it
+  if (!isOpen) {
+    card.classList.add('open');
+    // Scroll card into view smoothly if needed
+    setTimeout(function() {
+      var rect = card.getBoundingClientRect();
+      if (rect.bottom > window.innerHeight) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }, 400);
+  }
+}
+</script>
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+// ── EMAILJS SETUP ──
+// STEP 1: Replace YOUR_PUBLIC_KEY with your EmailJS public key
+// STEP 2: Replace YOUR_SERVICE_ID with your EmailJS service ID
+// STEP 3: Replace YOUR_TEMPLATE_ID with your EmailJS template ID
+const EMAILJS_PUBLIC_KEY   = 'Jfp77vZSmSOgvthIG';
+const EMAILJS_SERVICE_ID   = 'service_u94nvbm';
+const EMAILJS_TEMPLATE_ID  = 'template_ljiv1ei';
+
+emailjs.init(EMAILJS_PUBLIC_KEY);
+
+function submitForm(e, formId, msgId) {
+  e.preventDefault();
+  const form = document.getElementById(formId);
+  const msg  = document.getElementById(msgId);
+  const btn  = form.querySelector('button[type="submit"]');
+
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  msg.className = 'cf-msg';
+  msg.textContent = '';
+
+  const data = {};
+  new FormData(form).forEach((v, k) => data[k] = v);
+
+  emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+    from_name:    data.name         || 'Not provided',
+    from_email:   data.email        || 'Not provided',
+    organization: data.organization || 'Not provided',
+    org_type:     data.type         || 'Not provided',
+    source:       data.source       || 'FirstStep Landing Page',
+    message:      data.message      || 'Not provided',
+    reply_to:     data.email        || 'info@getfirststep.org',
+    email:        data.email        || 'info@getfirststep.org'
+  }).then(() => {
+    msg.textContent = '✓ Message received — we will be in touch within 48 hours.';
+    msg.className = 'cf-msg success';
+    form.reset();
+    btn.textContent = 'Send message →';
+    btn.disabled = false;
+  }).catch(() => {
+    msg.textContent = 'Something went wrong. Email us directly at info@getfirststep.org';
+    msg.className = 'cf-msg error';
+    btn.textContent = 'Send message →';
+    btn.disabled = false;
+  });
+}
+</script>
+</body>
+</html>
