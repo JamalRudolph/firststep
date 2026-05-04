@@ -530,40 +530,76 @@ body {
   box-shadow: 0 12px 40px rgba(245,158,63,0.55), 0 2px 8px rgba(0,0,0,0.15);
 }
 
-/* ── BACK TO TOP BUTTON ── */
-.top-btn {
+/* ── RETURN TO HOME BUTTON — persistent, top-right, universal escape hatch ── */
+.home-btn {
   position: fixed;
-  bottom: 28px;
+  top: 20px;
   right: 24px;
-  width: 48px;
-  height: 48px;
-  background: var(--ink, #2c1810);
-  color: var(--cream, #fdfbf6);
-  border: none;
-  border-radius: 50%;
-  font-size: 20px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--ink, #2c1810);
+  border: 1px solid rgba(44, 24, 16, 0.12);
+  padding: 10px 18px 10px 14px;
+  border-radius: 100px;
+  font-family: var(--sans);
+  font-size: 13px;
   font-weight: 600;
+  letter-spacing: 0.01em;
   cursor: pointer;
   opacity: 0;
-  transform: translateY(80px);
-  transition: opacity 0.3s, transform 0.4s cubic-bezier(0.34,1.56,0.64,1), background 0.2s;
+  transform: translateY(-20px);
+  transition: opacity 0.3s, transform 0.3s, background 0.2s, color 0.2s;
   z-index: 99;
-  box-shadow: 0 6px 24px rgba(0,0,0,0.18), 0 2px 6px rgba(0,0,0,0.1);
-  display: flex;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.06);
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  line-height: 1;
+  gap: 8px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
-.top-btn.visible {
+.home-btn.visible {
   opacity: 1;
   transform: translateY(0);
 }
-.top-btn:hover {
-  background: var(--ink2, #1a0e08);
-  box-shadow: 0 10px 32px rgba(0,0,0,0.25);
+.home-btn:hover {
+  background: var(--ink, #2c1810);
+  color: var(--cream, #fdfbf6);
+  border-color: var(--ink, #2c1810);
 }
+.home-btn-arrow {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  transition: transform 0.2s;
+}
+.home-btn:hover .home-btn-arrow { transform: translateX(-2px); }
+
+/* In org-mode, the home button gets a slightly different treatment — clearer "exit" feel */
+body.org-mode .home-btn {
+  background: rgba(245, 184, 92, 0.95);
+  color: var(--dawn, #1a0e08);
+  border-color: rgba(245, 184, 92, 0.3);
+}
+body.org-mode .home-btn:hover {
+  background: var(--dawn, #1a0e08);
+  color: var(--amber, #f5b85c);
+  border-color: var(--dawn, #1a0e08);
+}
+
 @media (max-width: 768px) {
-  .top-btn { right: 16px; bottom: 90px; width: 44px; height: 44px; font-size: 18px; }
+  .home-btn {
+    top: 14px;
+    right: 14px;
+    padding: 8px 14px 8px 10px;
+    font-size: 12px;
+  }
+  .home-btn-text {
+    display: inline;
+  }
+}
+@media (max-width: 380px) {
+  .home-btn-text { display: none; }
+  .home-btn { padding: 8px 12px; }
+  .home-btn-arrow { font-size: 16px; }
 }
 
 /* ── LIVE PREVIEW ── */
@@ -1846,7 +1882,10 @@ body.org-mode .org-post-anchors { display: block; }
 </div>
 
 <a href="guide.html" class="float-btn" id="floatBtn">Open FirstStep Free →</a>
-<button type="button" class="top-btn" id="topBtn" aria-label="Back to top">↑</button>
+<button type="button" class="home-btn" id="homeBtn" aria-label="Return to Home">
+  <span class="home-btn-arrow">←</span>
+  <span class="home-btn-text">Return to Home</span>
+</button>
 <section class="hero">
   <div class="hero-content">
 
@@ -2543,7 +2582,23 @@ body.org-mode .org-post-anchors { display: block; }
   var ctaBtn = document.getElementById('orgBannerCta');
   if (!banner || !closeBtn) return;
 
-  // If user already dismissed in this session, hide banner but keep org-mode if previously set
+  // ─── FRESH PAGE LOAD DETECTION ───
+  // If user came from outside (Google, bookmark, direct URL, social media) — clear org-mode.
+  // Org-mode only persists during active in-site navigation (guide.html, partners.html, internal links).
+  // This prevents the "closed tab and came back, still trapped in org-mode" problem.
+  var referrer = document.referrer || '';
+  var currentHost = window.location.host;
+  var isInternalNav = referrer && referrer.indexOf(currentHost) !== -1;
+
+  if (!isInternalNav) {
+    // Fresh visit — wipe any leftover org-mode session state
+    try {
+      sessionStorage.removeItem('orgMode');
+      sessionStorage.removeItem('orgBannerDismissed');
+    } catch (e) { /* ignore */ }
+  }
+
+  // Now apply session state (will be empty on fresh visits per above)
   try {
     if (sessionStorage.getItem('orgBannerDismissed') === '1') {
       banner.classList.add('hidden');
@@ -2624,7 +2679,7 @@ reveals.forEach(function(el) { observer.observe(el); });
 
 // Floating button — appears after hero, hides near CTA
 var floatBtn = document.getElementById('floatBtn');
-var topBtn = document.getElementById('topBtn');
+var homeBtn = document.getElementById('homeBtn');
 var hero = document.querySelector('.hero');
 var cta = document.querySelector('.cta');
 
@@ -2636,19 +2691,42 @@ window.addEventListener('scroll', function() {
   } else {
     floatBtn.classList.remove('visible');
   }
-  // Top button — show after scrolling 600px down, regardless of org/individual mode
-  if (topBtn) {
-    if (window.scrollY > 600) {
-      topBtn.classList.add('visible');
+  // Home button — show after scrolling past hero, regardless of mode
+  if (homeBtn) {
+    if (window.scrollY > 400) {
+      homeBtn.classList.add('visible');
     } else {
-      topBtn.classList.remove('visible');
+      homeBtn.classList.remove('visible');
     }
   }
 }, { passive: true });
 
-// Top button click — smooth scroll to top
-if (topBtn) {
-  topBtn.addEventListener('click', function() {
+// Home button click — universal "return to default state":
+// - Always: smooth scroll to top
+// - In org-mode: clear org-mode, close anchors, restore banner
+if (homeBtn) {
+  homeBtn.addEventListener('click', function() {
+    var wasOrgMode = document.body.classList.contains('org-mode');
+
+    if (wasOrgMode) {
+      // Clear org-mode state
+      document.body.classList.remove('org-mode');
+      try {
+        sessionStorage.removeItem('orgMode');
+        sessionStorage.removeItem('orgBannerDismissed');
+      } catch (err) { /* ignore */ }
+
+      // Close any auto-opened anchor cards
+      document.querySelectorAll('.anchor-card.open').forEach(function(c) {
+        c.classList.remove('open');
+      });
+
+      // Restore banner so user can re-enter org-mode if they want
+      var banner = document.getElementById('orgBanner');
+      if (banner) banner.classList.remove('hidden');
+    }
+
+    // Always scroll to top — same behavior in both modes
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
