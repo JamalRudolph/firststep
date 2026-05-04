@@ -1049,6 +1049,156 @@ footer {
   margin-bottom: 20px;
 }
 
+/* ── ORG BANNER — top of page, helps orgs find the right path immediately ── */
+.org-banner {
+  background: linear-gradient(135deg, rgba(43, 17, 89, 0.97), rgba(26, 16, 53, 0.97));
+  border-bottom: 1px solid rgba(245, 184, 92, 0.25);
+  padding: 12px 20px;
+  position: relative;
+  z-index: 50;
+  animation: orgBannerSlideIn 0.5s ease-out;
+}
+.org-banner.hidden {
+  display: none;
+}
+@keyframes orgBannerSlideIn {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+.org-banner-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.org-banner-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: white;
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.4;
+}
+.org-banner-text strong {
+  font-weight: 600;
+  letter-spacing: 0.005em;
+}
+.org-banner-sub {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.02em;
+}
+.org-banner-cta {
+  background: var(--amber);
+  color: var(--dawn);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 9px 18px;
+  border-radius: 100px;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.org-banner-cta span {
+  transition: transform 0.2s;
+}
+.org-banner-cta:hover {
+  background: var(--amber2);
+  transform: translateY(-1px);
+}
+.org-banner-cta:hover span {
+  transform: translateX(3px);
+}
+.org-banner-close {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 10px;
+  font-weight: 300;
+  transition: color 0.15s;
+  margin-left: -8px;
+}
+.org-banner-close:hover {
+  color: white;
+}
+
+@media (max-width: 640px) {
+  .org-banner { padding: 10px 14px; }
+  .org-banner-inner {
+    gap: 12px;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+  .org-banner-text { font-size: 13px; flex: 1; min-width: 0; }
+  .org-banner-sub { display: none; }
+  .org-banner-cta { font-size: 12px; padding: 8px 14px; }
+}
+
+/* Primary CTA — sends orgs to the deeper partners page */
+.org-primary-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--amber);
+  color: var(--dawn);
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 16px 22px;
+  border-radius: 100px;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: all 0.2s;
+  text-align: left;
+}
+.org-primary-cta:hover {
+  background: var(--amber2);
+  transform: translateY(-1px);
+}
+.org-primary-cta-arrow {
+  font-weight: 700;
+  font-size: 18px;
+  transition: transform 0.2s;
+}
+.org-primary-cta:hover .org-primary-cta-arrow {
+  transform: translateX(4px);
+}
+
+/* Divider between the two CTAs */
+.org-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 22px 0 18px;
+}
+.org-divider-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.12);
+}
+.org-divider-text {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  font-weight: 500;
+}
+
 /* Contact form */
 .contact-form { display: flex; flex-direction: column; gap: 10px; }
 
@@ -1085,6 +1235,24 @@ footer {
   min-height: 90px;
   resize: vertical;
   line-height: 1.5;
+}
+
+.cf-vision {
+  min-height: 70px;
+  background: rgba(245, 184, 92, 0.05);
+  border: 1px dashed rgba(245, 184, 92, 0.3);
+  font-style: italic;
+}
+.cf-vision::placeholder {
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+.cf-vision:focus {
+  border-style: solid;
+  border-color: var(--amber);
+  background: rgba(245, 184, 92, 0.08);
 }
 
 .cf-btn {
@@ -1300,6 +1468,231 @@ footer {
   padding: 16px 20px;
   margin-bottom: 24px;
 }
+
+/* Org-only CTA — appears inside the first anchor scenario when org came from banner */
+.al-org-cta {
+  display: none;
+  margin-top: 24px;
+  padding: 28px 26px;
+  background: linear-gradient(135deg, rgba(43, 17, 89, 0.97), rgba(26, 16, 53, 0.97));
+  border-radius: 18px;
+  border: 1px solid rgba(245, 184, 92, 0.25);
+  color: white;
+}
+body.org-mode .al-org-cta { display: block; }
+
+/* ── ORG-MODE STRICT GATE: hide all guide CTAs except the one inside the post-anchor pitch ── */
+body.org-mode .float-btn { display: none !important; }
+body.org-mode .al-guide-cta { display: none; }
+body.org-mode .anchor-footer { display: none; }
+body.org-mode section.cta { display: none; }
+
+/* ── ORG-MODE: auto-open all anchor cards so org sees full demonstration arc ── */
+body.org-mode .anchor-card .anchor-expand { grid-template-rows: 1fr; }
+body.org-mode .anchor-card .anchor-arrow { transform: rotate(180deg); background: var(--cream); }
+body.org-mode .anchor-card { box-shadow: 0 8px 40px rgba(44,24,16,0.06); }
+
+/* ── ORG-ONLY POST-ANCHORS PITCH ── */
+.org-post-anchors {
+  display: none;
+  background: linear-gradient(135deg, var(--dawn) 0%, #2b1159 100%);
+  color: white;
+  padding: 90px 40px;
+  position: relative;
+  overflow: hidden;
+}
+body.org-mode .org-post-anchors { display: block; }
+
+.org-post-anchors::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  right: -200px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(245,184,92,0.08), transparent 60%);
+  pointer-events: none;
+}
+.opa-inner {
+  max-width: 920px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.opa-pre {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 18px;
+}
+.opa-title {
+  font-family: var(--serif);
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+  color: white;
+}
+.opa-title em {
+  font-style: italic;
+  color: var(--amber);
+}
+.opa-body {
+  font-family: var(--sans);
+  font-size: clamp(15px, 1.6vw, 17px);
+  line-height: 1.7;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 48px;
+  max-width: 720px;
+}
+.opa-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 48px;
+}
+.opa-stat {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 24px 22px;
+}
+.opa-stat-num {
+  font-family: var(--serif);
+  font-size: 44px;
+  font-weight: 600;
+  color: var(--amber);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.opa-stat-num span {
+  font-size: 28px;
+}
+.opa-stat-text {
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.78);
+}
+.opa-cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.opa-cta-btn {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 16px 28px;
+  border-radius: 100px;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.opa-cta-btn.primary {
+  background: var(--amber);
+  color: var(--dawn);
+}
+.opa-cta-btn.primary:hover {
+  background: var(--amber2);
+  transform: translateY(-1px);
+}
+.opa-cta-btn.primary span {
+  transition: transform 0.2s;
+}
+.opa-cta-btn.primary:hover span {
+  transform: translateX(4px);
+}
+.opa-cta-btn.secondary {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+}
+.opa-cta-btn.secondary:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.55);
+}
+.opa-fineprint {
+  margin-top: 18px;
+  max-width: 580px;
+}
+.opa-fineprint-text {
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.55);
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .org-post-anchors { padding: 60px 20px; }
+  .opa-stats { grid-template-columns: 1fr; gap: 14px; }
+  .opa-stat { padding: 20px 18px; }
+  .opa-stat-num { font-size: 36px; }
+  .opa-cta-buttons { flex-direction: column; align-items: stretch; }
+  .opa-cta-btn { justify-content: center; }
+}
+.al-org-cta-pre {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 12px;
+}
+.al-org-cta-text {
+  font-family: var(--serif);
+  font-size: clamp(17px, 2.2vw, 21px);
+  font-style: italic;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.92);
+  margin-bottom: 22px;
+}
+.al-org-cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+.al-org-cta-btn {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 13px 22px;
+  border-radius: 100px;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+}
+.al-org-cta-btn.primary {
+  background: var(--amber);
+  color: var(--dawn);
+}
+.al-org-cta-btn.primary:hover {
+  background: var(--amber2);
+  transform: translateY(-1px);
+}
+.al-org-cta-btn.secondary {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.25);
+  color: white;
+}
+.al-org-cta-btn.secondary:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.5);
+}
 .al-consequence-label {
   font-family: var(--sans);
   font-size: 9px;
@@ -1385,6 +1778,18 @@ footer {
 </style>
 </head>
 <body>
+
+<!-- ── ORG BANNER — Option B: routes orgs into the experience first ── -->
+<div class="org-banner" id="orgBanner">
+  <div class="org-banner-inner">
+    <span class="org-banner-text">
+      <strong>Representing an organization?</strong>
+      <span class="org-banner-sub">See what your participants face every day</span>
+    </span>
+    <a href="#situations" class="org-banner-cta" id="orgBannerCta">See it through their eyes <span>→</span></a>
+    <button class="org-banner-close" id="orgBannerClose" aria-label="Close">×</button>
+  </div>
+</div>
 
 <a href="guide.html" class="float-btn" id="floatBtn">Open FirstStep Free →</a>
 <section class="hero">
@@ -1506,8 +1911,8 @@ footer {
             </div>
 
             <div class="al-guide-cta">
-              <div class="al-guide-text">The full guide has housing rights, workplace rights, navigating offices, and 11 more situations.</div>
-              <a href="guide.html" class="al-guide-btn">Open the full guide — free →</a>
+              <div class="al-guide-text">The guide goes deeper on housing rights, workplace rights, and navigating offices — part of a live, growing collection of the moments that catch people off-guard.</div>
+              <a href="guide.html" class="al-guide-btn">Open the guide — free →</a>
             </div>
 
           </div>
@@ -1585,8 +1990,8 @@ footer {
             </div>
 
             <div class="al-guide-cta">
-              <div class="al-guide-text">The full guide has situations for conflict, workplace moments, rights, confidence, and 11 more.</div>
-              <a href="guide.html" class="al-guide-btn">Open the full guide — free →</a>
+              <div class="al-guide-text">The guide goes deeper on workplace conflict, family tension, and standing your ground — part of a live, growing collection of the moments that catch people off-guard.</div>
+              <a href="guide.html" class="al-guide-btn">Open the guide — free →</a>
             </div>
 
           </div>
@@ -1662,8 +2067,8 @@ footer {
             </div>
 
             <div class="al-guide-cta">
-              <div class="al-guide-text">The full guide has situations for performance reviews, coworker conflict, first day nerves, and 11 more.</div>
-              <a href="guide.html" class="al-guide-btn">Open the full guide — free →</a>
+              <div class="al-guide-text">The guide goes deeper on performance reviews, repairing trust, and showing up after you've fallen short — part of a live, growing collection of the moments that catch people off-guard.</div>
+              <a href="guide.html" class="al-guide-btn">Open the guide — free →</a>
             </div>
 
           </div>
@@ -1672,9 +2077,40 @@ footer {
     </div>
 
     <div class="anchor-footer reveal">
-      <p>Don't see your situation? <a href="guide.html">Open the full guide</a> — 14 situations covering work, life, and everything in between.</p>
+      <p>Don't see your situation? <a href="guide.html">Open the guide</a> — a live, growing collection of the moments that catch people off-guard.</p>
     </div>
 
+  </div>
+</section>
+
+<!-- ── ORG-ONLY POST-ANCHORS PITCH — visible only after org banner click ── -->
+<section class="org-post-anchors" id="orgPostAnchors">
+  <div class="opa-inner">
+    <div class="opa-pre">If your participants face moments like these every day —</div>
+    <h2 class="opa-title">This is what we'd build<br><em>for the people you serve.</em></h2>
+    <p class="opa-body">You just walked through three of the moments your participants face. The guide is a live, growing collection of the moments that catch people off-guard — across work, life, and the moments in our own heads. A partnership goes deeper: situations built specifically for your population, your scripts, your branding, your funding alignment.</p>
+    <div class="opa-stats">
+      <div class="opa-stat">
+        <div class="opa-stat-num">90<span>%</span></div>
+        <div class="opa-stat-text">of job failures in the first year are interpersonal — not technical.</div>
+      </div>
+      <div class="opa-stat">
+        <div class="opa-stat-num">3</div>
+        <div class="opa-stat-text">tracks: Work · Life · Mind. Every moment lives in one of them — and the collection grows.</div>
+      </div>
+      <div class="opa-stat">
+        <div class="opa-stat-num">1</div>
+        <div class="opa-stat-text">moment handled right can change a participant's trajectory permanently.</div>
+      </div>
+    </div>
+    <div class="opa-cta-buttons">
+      <a href="partners.html" class="opa-cta-btn primary">See how a partnership works <span>→</span></a>
+      <a href="#orgs" class="opa-cta-btn secondary">Or send a message now</a>
+      <a href="guide.html" class="opa-cta-btn secondary">Or open the free guide →</a>
+    </div>
+    <div class="opa-fineprint">
+      <p class="opa-fineprint-text">Want to feel the methodology before deciding? Open the guide. You'll probably find moments you face yourself — and ideas for who else needs this.</p>
+    </div>
   </div>
 </section>
 
@@ -1708,8 +2144,8 @@ footer {
             </div>
             <div class="sit-move-label">What to do instead</div>
             <div class="sit-preview-script">"I hear you. I'm not going anywhere — let me see what I can do for you right now."</div>
-            <div class="sit-preview-more">+ 4 more steps, scripts, and what not to say in the full guide</div>
-            <a href="guide.html" class="sit-card-btn">Get the full guide →</a>
+            <div class="sit-preview-more">+ 4 more steps, scripts, and what not to say — continued in the guide. Live and growing.</div>
+            <a href="guide.html" class="sit-card-btn">Open the guide →</a>
           </div>
         </div>
       </div>
@@ -1737,8 +2173,8 @@ footer {
             </div>
             <div class="sit-move-label">What to do instead</div>
             <div class="sit-preview-script">"Absolutely. Let me get the right person on this — you deserve to have this handled properly."</div>
-            <div class="sit-preview-more">+ 4 more steps, scripts, and what not to say in the full guide</div>
-            <a href="guide.html" class="sit-card-btn">Get the full guide →</a>
+            <div class="sit-preview-more">+ 4 more steps, scripts, and what not to say — in the guide, which keeps growing as we hear what people face.</div>
+            <a href="guide.html" class="sit-card-btn">Open the guide →</a>
           </div>
         </div>
       </div>
@@ -1766,8 +2202,8 @@ footer {
             </div>
             <div class="sit-move-label">What to do instead</div>
             <div class="sit-preview-script">"I am following up on the [amount] owed from [date]. I need us to resolve this today — what does that look like on your end?"</div>
-            <div class="sit-preview-more">+ 4 more steps, scripts, and escalation paths in the full guide</div>
-            <a href="guide.html" class="sit-card-btn">Get the full guide →</a>
+            <div class="sit-preview-more">+ 4 more steps, scripts, and escalation paths — in the guide. The collection grows.</div>
+            <a href="guide.html" class="sit-card-btn">Open the guide →</a>
           </div>
         </div>
       </div>
@@ -1795,8 +2231,8 @@ footer {
             </div>
             <div class="sit-move-label">What to do instead</div>
             <div class="sit-preview-script">"I want to make sure I give you the right answer, not just a fast one. Let me find out and get back to you by [specific time]."</div>
-            <div class="sit-preview-more">+ 3 more steps and scripts in the full guide</div>
-            <a href="guide.html" class="sit-card-btn">Get the full guide →</a>
+            <div class="sit-preview-more">+ 3 more steps and scripts — continued in the guide, a live and growing collection.</div>
+            <a href="guide.html" class="sit-card-btn">Open the guide →</a>
           </div>
         </div>
       </div>
@@ -1824,8 +2260,8 @@ footer {
             </div>
             <div class="sit-move-label">What to do instead</div>
             <div class="sit-preview-script">"I made a mistake. I own that. Here is what I am doing right now to fix it."</div>
-            <div class="sit-preview-more">+ 4 more steps, scripts, and how to rebuild trust in the full guide</div>
-            <a href="guide.html" class="sit-card-btn">Get the full guide →</a>
+            <div class="sit-preview-more">+ 4 more steps, scripts, and how to rebuild trust — in the guide. The collection grows as we hear what people face.</div>
+            <a href="guide.html" class="sit-card-btn">Open the guide →</a>
           </div>
         </div>
       </div>
@@ -1853,8 +2289,8 @@ footer {
             </div>
             <div class="sit-move-label">What to do instead</div>
             <div class="sit-preview-script">"I want to make sure I understand what my options are. Can you walk me through that — and can I get that in writing?"</div>
-            <div class="sit-preview-more">+ 4 more steps, what to document, and when to escalate in the full guide</div>
-            <a href="guide.html" class="sit-card-btn">Get the full guide →</a>
+            <div class="sit-preview-more">+ 4 more steps, what to document, and when to escalate — continued in the guide. Live and growing.</div>
+            <a href="guide.html" class="sit-card-btn">Open the guide →</a>
           </div>
         </div>
       </div>
@@ -1940,7 +2376,7 @@ footer {
 </section>
 
 <!-- ── FOR ORGANIZATIONS ── -->
-<section class="orgs">
+<section class="orgs" id="orgs">
   <div class="orgs-inner">
     <div class="section-label reveal">For organizations</div>
     <h2 class="section-title reveal">The people you serve face<br><em>these moments every day.</em></h2>
@@ -1967,6 +2403,18 @@ footer {
       </div>
       <div class="org-teaser-right">
         <p class="org-teaser-cta-text">Ready to bring FirstStep to the people you serve?</p>
+
+        <a href="partners.html" class="org-primary-cta">
+          <span>See how a partnership works</span>
+          <span class="org-primary-cta-arrow">→</span>
+        </a>
+
+        <div class="org-divider">
+          <span class="org-divider-line"></span>
+          <span class="org-divider-text">or send a message now</span>
+          <span class="org-divider-line"></span>
+        </div>
+
         <form class="contact-form" id="org-form" onsubmit="submitForm(event, 'org-form', 'org-msg')">
           <div class="cf-row">
             <input type="text" name="name" placeholder="Your name" required class="cf-input">
@@ -1982,9 +2430,11 @@ footer {
             <option>Social Services</option>
             <option>School / Youth Program</option>
             <option>Government Agency</option>
+            <option>Individual / Personal Use</option>
             <option>Other</option>
           </select>
           <textarea name="message" placeholder="Tell us about the people you serve and what you need..." required class="cf-input cf-full cf-textarea"></textarea>
+          <textarea name="vision" placeholder="What would you build with this? Any wild ideas welcome — situations you'd want covered, populations you'd want served, ways you'd use this for yourself or others..." class="cf-input cf-full cf-textarea cf-vision"></textarea>
           <input type="hidden" name="source" value="Landing Page — Org Section">
           <button type="submit" class="cf-btn" id="org-btn">Send message →</button>
           <div class="cf-msg" id="org-msg"></div>
@@ -2028,6 +2478,48 @@ footer {
 </footer>
 
 <script>
+// Org banner — Option B: routes orgs to anchor scenario in org-mode
+(function() {
+  var banner = document.getElementById('orgBanner');
+  var closeBtn = document.getElementById('orgBannerClose');
+  var ctaBtn = document.getElementById('orgBannerCta');
+  if (!banner || !closeBtn) return;
+
+  // If user already dismissed in this session, hide banner but keep org-mode if previously set
+  try {
+    if (sessionStorage.getItem('orgBannerDismissed') === '1') {
+      banner.classList.add('hidden');
+    }
+    if (sessionStorage.getItem('orgMode') === '1') {
+      document.body.classList.add('org-mode');
+    }
+  } catch (e) { /* sessionStorage blocked, ignore */ }
+
+  function dismiss() {
+    banner.classList.add('hidden');
+    try { sessionStorage.setItem('orgBannerDismissed', '1'); } catch (e) {}
+  }
+
+  function enterOrgMode() {
+    document.body.classList.add('org-mode');
+    try { sessionStorage.setItem('orgMode', '1'); } catch (e) {}
+  }
+
+  closeBtn.addEventListener('click', dismiss);
+
+  // When org clicks "See it through their eyes":
+  // 1. Enter org mode (auto-opens ALL anchor cards via CSS, reveals post-anchor pitch section)
+  // 2. Smooth scroll to the situations section (which contains all three anchor cards)
+  // 3. Dismiss the banner after the scroll settles
+  if (ctaBtn) {
+    ctaBtn.addEventListener('click', function(e) {
+      enterOrgMode();
+      // Dismiss banner after scroll settles
+      setTimeout(dismiss, 1200);
+    });
+  }
+})();
+
 function toggleAnchor(id) {
   var card = document.getElementById(id);
   var isOpen = card.classList.contains('open');
@@ -2119,6 +2611,7 @@ function submitForm(e, formId, msgId) {
     org_type:     data.type         || 'Not provided',
     source:       data.source       || 'FirstStep Landing Page',
     message:      data.message      || 'Not provided',
+    vision:       data.vision       || 'Not provided',
     reply_to:     data.email        || 'info@getfirststep.org',
     email:        data.email        || 'info@getfirststep.org'
   }).then(() => {
