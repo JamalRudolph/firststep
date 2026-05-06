@@ -323,6 +323,77 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
   line-height: 1.3;
 }
 
+/* Gate box (used for Coworker Conflict harassment routing) */
+.gate-box {
+  background: white;
+  border: 1.5px solid var(--cream2);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 22px 26px;
+  margin-bottom: 32px;
+}
+.gate-title {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 14px;
+  font-style: italic;
+}
+.gate-row {
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.6;
+}
+.gate-row:last-child { margin-bottom: 0; }
+.gate-label {
+  font-family: var(--sans);
+  font-weight: 700;
+  color: var(--text);
+  margin-right: 4px;
+}
+.gate-arrow {
+  display: block;
+  margin-top: 4px;
+  font-style: italic;
+  color: var(--brown);
+  font-size: 12px;
+}
+
+/* Harassment block (bottom of Coworker Conflict) */
+.harassment-box {
+  background: #fff7ed;
+  border: 1.5px solid #fed7aa;
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin-top: 32px;
+}
+.hb-title {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: #92400e;
+  margin-bottom: 14px;
+  font-style: italic;
+}
+.hb-item {
+  font-size: 13px;
+  color: #5c3d2e;
+  margin-bottom: 10px;
+  padding-left: 16px;
+  position: relative;
+  line-height: 1.6;
+}
+.hb-item::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--amber);
+  font-weight: 700;
+}
+.hb-item:last-child { margin-bottom: 0; }
+
 /* Path selector */
 .paths {
   display: flex;
@@ -1083,12 +1154,12 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
       <div class="panel-header">
         <span class="panel-tag">Workplace Situation</span>
         <h2 class="panel-title">Asking <em>for Help</em></h2>
-        <p class="panel-intro">One of the hardest things about being new is asking for help without feeling like you are broadcasting that you do not know what you are doing. Here is how to ask well.</p>
+        <p class="panel-intro">Asking for help feels like admitting you don't belong here. It isn't. Every person who is good at this job was once exactly where you are — they just asked the questions out loud instead of carrying the weight in silence. The version of you that asks early is the version that gets good faster.</p>
       </div>
       <div class="remember-box">
-        <div class="rb-item"><div class="rb-label">Truth</div><div class="rb-value">Asking for help early saves everyone time including your supervisor.</div></div>
-        <div class="rb-item"><div class="rb-label">Truth</div><div class="rb-value">Struggling silently is what actually looks bad.</div></div>
-        <div class="rb-item"><div class="rb-label">Rule</div><div class="rb-value">Try for two minutes first. Then ask.</div></div>
+        <div class="rb-item"><div class="rb-label">Truth</div><div class="rb-value">Asking for help early saves everyone time, including your supervisor's.</div></div>
+        <div class="rb-item"><div class="rb-label">Truth</div><div class="rb-value">Struggling silently is what actually looks bad. Not asking.</div></div>
+        <div class="rb-item"><div class="rb-label">Truth</div><div class="rb-value">Every person who is good at this job was once exactly where you are.</div></div>
       </div>
       <div class="steps-layout">
         <div class="you">
@@ -1104,8 +1175,8 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
         </div>
       </div>
       <div class="confidence-box">
-        <div class="cb-title">Asking is how you learn. Learning is how you grow.</div>
-        <div class="cb-text">The workers who improve fastest are the ones who ask the most questions early. Not because they are the least capable — because they are the most intentional about getting better.</div>
+        <div class="cb-title">Asking is not weakness. It's how you become the person who knows.</div>
+        <div class="cb-text">The workers who grow fastest are not the ones who figured everything out alone. They're the ones who asked early, listened carefully, and remembered the answer. You are doing the thing that actually builds skill. The discomfort of asking now is the price of the confidence you'll have later.</div>
       </div>
     </div>
 
@@ -1115,12 +1186,12 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
       <div class="panel-header">
         <span class="panel-tag">Workplace Situation</span>
         <h2 class="panel-title">Calling <em>Out Sick</em></h2>
-        <p class="panel-intro">You are not well and you need to call out. Here is how to do it the right way so it does not create problems for you later.</p>
+        <p class="panel-intro">Calling out sick is harder than it should be. You're worried about your supervisor's reaction, your paycheck, whether this counts against you. All of those worries are real. Here's the truth that cuts through them: doing this the right way protects you. Coming in sick when you shouldn't doesn't.</p>
       </div>
       <div class="remember-box">
         <div class="rb-item"><div class="rb-label">Do it early</div><div class="rb-value">Call as soon as you know — not 10 minutes before your shift.</div></div>
         <div class="rb-item"><div class="rb-label">Keep it simple</div><div class="rb-value">You do not owe a detailed medical explanation.</div></div>
-        <div class="rb-item"><div class="rb-label">Follow up</div><div class="rb-value">Confirm the call was received if possible.</div></div>
+        <div class="rb-item"><div class="rb-label">Truth</div><div class="rb-value">Taking care of yourself today is how you stay reliable long term.</div></div>
       </div>
       <div class="steps-layout">
         <div class="you">
@@ -1137,8 +1208,8 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
         </div>
       </div>
       <div class="confidence-box">
-        <div class="cb-title">Taking care of yourself is taking care of your job.</div>
-        <div class="cb-text">Coming in sick when you should not be helps nobody. Calling out the right way — early, professionally, and briefly — shows responsibility. That is the version of this that actually protects your job.</div>
+        <div class="cb-title">Showing up sick is not loyalty. It's a problem you'll pay for later.</div>
+        <div class="cb-text">A worker who calls out the right way — early, professionally, briefly — is more reliable than one who shows up sick, infects the team, and works at half capacity. Your supervisor knows the difference. Taking care of yourself is part of the job, not a break from it.</div>
       </div>
     </div>
 
@@ -1148,12 +1219,12 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
       <div class="panel-header">
         <span class="panel-tag">Customer Situation · Common</span>
         <h2 class="panel-title">Refund or <em>Return Request</em></h2>
-        <p class="panel-intro">A customer wants their money back or wants to return something. Your job is to follow your company policy, be clear about what is possible, and be human about how you communicate it.</p>
+        <p class="panel-intro">Refund calls put you in a hard spot. Sometimes the customer is right and you wish you could give them more. Sometimes you're not sure and policy is the only thing protecting you. Either way — your job isn't to judge whether they deserve it. Your job is to know your policy, communicate it clearly, and treat the person on the line like a person. The rest is not your call to make.</p>
       </div>
       <div class="remember-box">
         <div class="rb-item"><div class="rb-label">First</div><div class="rb-value">Know your refund and return policy before calls start.</div></div>
         <div class="rb-item"><div class="rb-label">Never</div><div class="rb-value">Promise a refund you are not authorized to approve.</div></div>
-        <div class="rb-item"><div class="rb-label">Always</div><div class="rb-value">Document the request and your response.</div></div>
+        <div class="rb-item"><div class="rb-label">Truth</div><div class="rb-value">Saying no with respect is not the same as saying no with dismissal.</div></div>
       </div>
       <div class="steps-layout">
         <div class="you">
@@ -1172,7 +1243,7 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
       </div>
       <div class="confidence-box">
         <div class="cb-title">You cannot always give them what they want. You can always give them respect.</div>
-        <div class="cb-text">The way you say no matters as much as the no itself. A customer who felt heard and respected even when they did not get a refund is far less likely to escalate than one who felt dismissed.</div>
+        <div class="cb-text">The way you say no matters as much as the no itself. A customer who felt heard and treated with dignity — even when they didn't get a refund — is far less likely to escalate than one who felt brushed off. Following policy is not cold. Following policy without losing your humanity is the whole skill.</div>
       </div>
     </div>
 
@@ -1182,12 +1253,25 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
       <div class="panel-header">
         <span class="panel-tag">Workplace Situation</span>
         <h2 class="panel-title">Coworker <em>Conflict</em></h2>
-        <p class="panel-intro">Tension with a coworker is uncomfortable and distracting. Here is how to handle it without making it worse and without letting it affect your work.</p>
+        <p class="panel-intro">Tension with a coworker sits with you. You replay it on the drive home. You wonder if you're being too sensitive, or not sensitive enough. You weigh whether saying something will fix it or make it worse. There's no perfect move here — but there is a move that gives you the best chance of fixing this without making it bigger than it needs to be.</p>
       </div>
+
+      <div class="gate-box">
+        <div class="gate-title">First — which one is this?</div>
+        <div class="gate-row">
+          <span class="gate-label">Conflict</span> is friction. A coworker said something that bothered you. Someone took credit for your work. There's tension you want to clear.
+          <span class="gate-arrow">→ The steps below are for this.</span>
+        </div>
+        <div class="gate-row">
+          <span class="gate-label">Harassment</span> is different. It's repeated. It's targeted. It might involve race, gender, age, religion, disability, or sexual conduct. It might involve threats or intimidation.
+          <span class="gate-arrow">→ Do not use the steps below. Skip to "If this is harassment" at the bottom of this page.</span>
+        </div>
+      </div>
+
       <div class="remember-box">
         <div class="rb-item"><div class="rb-label">Try first</div><div class="rb-value">Address it directly with the person before involving anyone else.</div></div>
         <div class="rb-item"><div class="rb-label">Never</div><div class="rb-value">Vent to other coworkers about it. It always gets back.</div></div>
-        <div class="rb-item"><div class="rb-label">When to escalate</div><div class="rb-value">If direct conversation fails or if it involves harassment.</div></div>
+        <div class="rb-item"><div class="rb-label">Trust your gut</div><div class="rb-value">If this feels like more than conflict, it is. Read the section at the bottom of this page first.</div></div>
       </div>
       <div class="steps-layout">
         <div class="you">
@@ -1204,9 +1288,19 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
           <div class="step-item"><div class="step-num say">3</div><div class="step-body"><div class="step-label">Closing toward resolution</div><div class="step-script">"I am not trying to start anything — I just wanted to clear the air so we can move forward. Is there anything on your end I should know?"</div></div></div>
         </div>
       </div>
+
+      <div class="harassment-box">
+        <div class="hb-title">If this is harassment</div>
+        <div class="hb-item">Do not confront the person directly. It can escalate. It can be used against you.</div>
+        <div class="hb-item">Document everything. Date, time, what was said or done, who else was there. Write it down the same day.</div>
+        <div class="hb-item">Go to your supervisor or HR. If your supervisor is the problem, go above them or to HR directly.</div>
+        <div class="hb-item">You have legal protections. Harassment based on race, color, religion, sex, national origin, age, disability, or genetic information is illegal under federal law.</div>
+        <div class="hb-item">If you don't feel safe at work, that is information. Trust it.</div>
+      </div>
+
       <div class="confidence-box">
-        <div class="cb-title">Handling conflict directly is a leadership skill.</div>
-        <div class="cb-text">Most workplace problems get worse when they are avoided and better when they are addressed calmly and directly. Going to the person before going to your supervisor shows maturity. Even if it feels uncomfortable.</div>
+        <div class="cb-title">Going to the person first is harder than going around them. It's also what works.</div>
+        <div class="cb-text">Most workplace conflicts get bigger when they're avoided and smaller when they're handled directly and calmly. You don't have to be perfect at this. You just have to do it before the resentment builds into something neither of you can come back from. That takes courage. The fact that you're even thinking about how to do it right means you already have it.</div>
       </div>
     </div>
 
@@ -1216,12 +1310,12 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
       <div class="panel-header">
         <span class="panel-tag">Customer Situation · Common</span>
         <h2 class="panel-title">Long Hold or <em>Wait Time</em></h2>
-        <p class="panel-intro">The customer has been waiting too long. They are frustrated before you even say hello. Here is how to recover the call from the very first word.</p>
+        <p class="panel-intro">The customer waited too long before you ever picked up. That wasn't your fault — but right now, you're the one who has to make it right. The good news: you can. A long wait followed by a complete resolution often ends better than a short wait and a partial answer. Here's how to recover the call from the very first word.</p>
       </div>
       <div class="remember-box">
         <div class="rb-item"><div class="rb-label">First word</div><div class="rb-value">Acknowledge the wait before anything else.</div></div>
         <div class="rb-item"><div class="rb-label">Never</div><div class="rb-value">Start with a script like nothing happened. They notice.</div></div>
-        <div class="rb-item"><div class="rb-label">Goal</div><div class="rb-value">Make the wait worth it by solving the problem completely.</div></div>
+        <div class="rb-item"><div class="rb-label">Truth</div><div class="rb-value">Their frustration is not personal. Don't take it that way.</div></div>
       </div>
       <div class="steps-layout">
         <div class="you">
@@ -1238,8 +1332,8 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
         </div>
       </div>
       <div class="confidence-box">
-        <div class="cb-title">You did not make them wait. You made the wait worth it.</div>
-        <div class="cb-text">A customer who waited 20 minutes and got their problem completely solved often leaves happier than someone who waited 2 minutes and got a partial answer. The recovery is in the resolution.</div>
+        <div class="cb-title">You didn't make them wait. You made the wait worth it.</div>
+        <div class="cb-text">A customer who waited 20 minutes and got their problem completely solved often leaves happier than someone who waited 2 minutes and got brushed off. The recovery is in the resolution. You are not the cause of their frustration — you are the reason it ends.</div>
       </div>
     </div>
 
@@ -1249,12 +1343,12 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
       <div class="panel-header">
         <span class="panel-tag">Workplace Situation</span>
         <h2 class="panel-title">Performance <em>Review</em></h2>
-        <p class="panel-intro">Your review is coming up. Whether it is your first one or your fifth, here is how to prepare, what to say, and how to handle feedback — good or difficult.</p>
+        <p class="panel-intro">A review is not a verdict on who you are. It is one person's read on how you've been doing — and a chance for you to share your own. The workers who get the most out of reviews aren't the ones who walk in defending themselves. They're the ones who walk in curious. Curious about what their supervisor sees that they don't. Curious about what good looks like in this role. Curiosity is the move that turns a review into something useful.</p>
       </div>
       <div class="remember-box">
         <div class="rb-item"><div class="rb-label">Before</div><div class="rb-value">Write down three things you did well and one thing to improve.</div></div>
         <div class="rb-item"><div class="rb-label">During</div><div class="rb-value">Listen more than you talk. Ask questions.</div></div>
-        <div class="rb-item"><div class="rb-label">After</div><div class="rb-value">Follow through on anything you committed to.</div></div>
+        <div class="rb-item"><div class="rb-label">Truth</div><div class="rb-value">Feedback is information. Defensiveness is what blocks it from working.</div></div>
       </div>
       <div class="steps-layout">
         <div class="you">
@@ -1271,8 +1365,8 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
         </div>
       </div>
       <div class="confidence-box">
-        <div class="cb-title">A performance review is a conversation, not a verdict.</div>
-        <div class="cb-text">The workers who grow fastest treat reviews as information, not judgment. Criticism is just someone telling you how to get to where you want to go. The ones who get defensive stay where they are.</div>
+        <div class="cb-title">A performance review is a conversation, not a sentence.</div>
+        <div class="cb-text">The workers who grow fastest treat reviews as data, not judgment. Criticism is just someone telling you how to get to where you want to go. The ones who get defensive stay where they are. The ones who listen, ask follow-up questions, and act on what they hear — those are the ones who become the people the company doesn't want to lose. Walking in with curiosity instead of fear changes everything about what you take out of the room.</div>
       </div>
     </div>
 
