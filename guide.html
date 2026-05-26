@@ -54,7 +54,7 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 .sb-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; background: var(--cream2); transition: background 0.15s; }
 .sb-item:hover .sb-dot { background: var(--amber2); }
 .sb-divider { height: 1px; background: var(--cream2); margin: 8px 16px; }
-.sb-coming { padding: 8px 12px; font-family: var(--sans); font-size: 11px; color: var(--muted); font-style: italic; }
+.sb-coming { padding: 8px 12px; font-family: var(--sans); font-size: 11px; color: var(--muted); font-style: italic; line-height: 1.5; }
 
 .main { overflow-y: auto; }
 
@@ -79,7 +79,7 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 .sit-card.c-dusk  { border-left-color: var(--dusk); }
 .sit-card.c-teal  { border-left-color: #0d9488; }
 .sit-card.c-purple{ border-left-color: #7c3aed; }
-.sit-card.c-rust  { border-left-color: #b45309; }
+.sit-card.c-coral { border-left-color: #ea580c; }
 
 .sc-icon { font-size: 28px; margin-bottom: 10px; display: block; }
 .sc-badge { font-family: var(--sans); font-size: 8px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; display: block; }
@@ -176,8 +176,15 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 
     <div class="sb-section">
       <div class="sb-label">Family</div>
-      <button class="sb-item" onclick="showSit('parentboundary')" id="sb-parentboundary"><span class="sb-dot"></span> Boundary with a parent</button>
       <button class="sb-item" onclick="showSit('kidhardtalk')" id="sb-kidhardtalk"><span class="sb-dot"></span> Talking to your kid</button>
+      <button class="sb-item" onclick="showSit('tellparent')" id="sb-tellparent"><span class="sb-dot"></span> Telling a parent something hard</button>
+    </div>
+    <div class="sb-divider"></div>
+
+    <div class="sb-section">
+      <div class="sb-label">Relationships</div>
+      <button class="sb-item" onclick="showSit('boundary')" id="sb-boundary"><span class="sb-dot"></span> Setting a boundary</button>
+      <button class="sb-item" onclick="showSit('askhelp')" id="sb-askhelp"><span class="sb-dot"></span> Saying no to a hard ask</button>
     </div>
     <div class="sb-divider"></div>
 
@@ -209,7 +216,7 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 
     <div class="sb-section">
       <div class="sb-label">Coming Soon</div>
-      <div class="sb-coming">Transitions &amp; endings, more healthcare, more workplace, rural-specific situations, and more — being written now.</div>
+      <div class="sb-coming">More relationships situations, life transitions, rural-specific moments, an under-18 phase, and more — being written.</div>
     </div>
   </div>
 
@@ -220,8 +227,8 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
       <p class="home-sub">Pick a situation below. Every one comes with step-by-step guidance and the exact words to say. Plain and simple.</p>
 
       <div class="scope-frame">
-        <div class="scope-title">14 situations now · more coming</div>
-        <div class="scope-text">FirstStep is being built for everyday people in hard moments — across healthcare, work, money, family, government, technology, identity, and crisis. <strong>We are starting with these 14.</strong> They were chosen because they reach the most people across the most situations: returning citizens, caregivers, seniors, people recently disabled, single parents, working poor, immigrants, veterans, people in rural areas, people new to systems, people in mental health struggles, and first-generation anything. More are being written. If yours is not here yet, check back — or send us what you wish was on this page.</div>
+        <div class="scope-title">15 situations now · more coming</div>
+        <div class="scope-text">FirstStep is built for everyday people in hard moments — across healthcare, money, family, relationships, work, government, technology, and crisis. <strong>We are starting with these 15.</strong> They were chosen because they reach the most people across the most situations: returning citizens, caregivers, seniors, people recently disabled, single parents, working poor, immigrants, veterans, people in rural areas, people new to systems, people in mental health struggles, and first-generation anything. More are being written. If yours is not here yet, check back — or send us what you wish was on this page.</div>
       </div>
 
       <div class="sit-grid" id="sitGrid">
@@ -268,18 +275,32 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
           <div class="sc-desc">The loop where you need ID to get ID. Here is how to break it open, one document at a time.</div>
         </button>
 
-        <button class="sit-card c-dusk" onclick="showSit('parentboundary')">
-          <span class="sc-icon">🤝</span>
-          <span class="sc-badge">Family · Boundaries</span>
-          <div class="sc-title">Boundary with a Parent Who Won't Accept It</div>
-          <div class="sc-desc">You have told them. They keep stepping over it. Holding the limit without exploding the relationship is a skill.</div>
-        </button>
-
         <button class="sit-card c-dusk" onclick="showSit('kidhardtalk')">
           <span class="sc-icon">👨‍👧</span>
           <span class="sc-badge">Family · Parenting</span>
           <div class="sc-title">Talking to Your Kid About Something Hard</div>
           <div class="sc-desc">A divorce, a diagnosis, a death, a move. You are not going to do it perfectly. Here is how to do it lovingly.</div>
+        </button>
+
+        <button class="sit-card c-dusk" onclick="showSit('tellparent')">
+          <span class="sc-icon">👨‍👩‍👦</span>
+          <span class="sc-badge">Family · Telling your parent</span>
+          <div class="sc-title">Telling a Parent Something Hard</div>
+          <div class="sc-desc">You are an adult. You decide what to share. Here is how to say it without it costing you more than it has to.</div>
+        </button>
+
+        <button class="sit-card c-coral" onclick="showSit('boundary')">
+          <span class="sc-icon">🤝</span>
+          <span class="sc-badge">Relationships · Boundaries</span>
+          <div class="sc-title">Setting a Boundary with Someone Who Won't Accept It</div>
+          <div class="sc-desc">Parent, friend, partner, coworker, neighbor — whoever it is, the skill is the same. Holding the limit without exploding the relationship.</div>
+        </button>
+
+        <button class="sit-card c-coral" onclick="showSit('askhelp')">
+          <span class="sc-icon">💬</span>
+          <span class="sc-badge">Relationships · Asking and answering</span>
+          <div class="sc-title">Someone You Love Asks for Help You Can't Give</div>
+          <div class="sc-desc">A real ask, real love, and a real no. Saying it without losing the relationship is a specific skill.</div>
         </button>
 
         <button class="sit-card c-brown" onclick="showSit('firedlaidoff')">
@@ -1132,145 +1153,6 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 </div>
 
 
-<!-- PANEL 10: FM-01 — Setting a Boundary with a Parent Who Won't Accept It -->
-<!-- Room: Buffer | Populations: Single parents / First-gen / Recently disabled / Re-entering society -->
-<!-- v2.0 draft, pending verification pass -->
-<div class="sit-panel" id="panel-parentboundary">
-  <button class="panel-back" onclick="showHome()">← All Situations</button>
-  <div class="panel-header">
-    <span class="panel-tag">Family · Boundaries</span>
-    <h2 class="panel-title">Setting a Boundary with a <em>Parent Who Won't Accept It</em></h2>
-    <p class="panel-intro">You have told them. Maybe more than once. The visits, the comments about your kids, the unsolicited advice, the money pressure, the criticism of your partner, the calls at the wrong times — whatever the boundary is, they keep stepping over it. They tell you you're being dramatic, ungrateful, selfish, or that "family doesn't do this." You are not wrong to ask for what you asked for. Holding it without exploding the relationship is a separate skill — and it is learnable.</p>
-  </div>
-
-  <div class="remember-box">
-    <div class="rb-item"><div class="rb-label">Truth</div><div class="rb-value">A boundary is a statement about what YOU will do. It is not a request for their permission.</div></div>
-    <div class="rb-item"><div class="rb-label">Permission</div><div class="rb-value">You are allowed to set limits with a parent. Being someone's child does not require you to be everything they want you to be.</div></div>
-    <div class="rb-item"><div class="rb-label">Expect</div><div class="rb-value">They may not respond well at first. That does not mean the boundary is wrong.</div></div>
-  </div>
-
-  <div class="steps-layout">
-    <div class="you">
-      <div class="steps-col-label you">What YOU do — buffer first</div>
-
-      <div class="step-item">
-        <div class="step-num you">1</div>
-        <div class="step-body">
-          <div class="step-label">Get clear, alone, on what the boundary actually is</div>
-          <div class="step-detail">Vague boundaries get crossed. "Stop being so critical" is a feeling. "I will end the call if you criticize my parenting choices" is a boundary. Write down: what behavior, and what you will do if it happens. Specific.</div>
-        </div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-num you">2</div>
-        <div class="step-body">
-          <div class="step-label">Decide the consequence in advance — and be willing to follow through</div>
-          <div class="step-detail">A boundary without a follow-through is a suggestion. If the consequence is "I will leave," you have to be willing to leave. Pick a consequence you can actually do. Smaller consequences you will keep are better than big consequences you will not.</div>
-        </div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-num you">3</div>
-        <div class="step-body">
-          <div class="step-label">Pick a calm moment to state it — not mid-fight</div>
-          <div class="step-detail">Boundaries set during an argument almost never hold. Wait until things are calm. Tell them you want to talk. Then say it once, clearly, without a long explanation.</div>
-        </div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-num you">4</div>
-        <div class="step-body">
-          <div class="step-label">Hold it without defending it</div>
-          <div class="step-detail">If they argue, get hurt, or try to negotiate, you do not have to defend the boundary point by point. Repeat it. "I understand you feel that way. The boundary is still the same."</div>
-          <div class="step-warning">⚠ Defending the boundary turns it into a debate. The boundary is not up for debate. It is a statement of what you will do.</div>
-        </div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-num you">5</div>
-        <div class="step-body">
-          <div class="step-label">Follow through the first time it is crossed</div>
-          <div class="step-detail">The first crossing is the test. If you follow through that first time — leave, end the call, decline the visit — the boundary becomes real. If you do not, you have just taught them this boundary is negotiable.</div>
-        </div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-num you">6</div>
-        <div class="step-body">
-          <div class="step-label">Expect a hard week (or month). Stay steady anyway.</div>
-          <div class="step-detail">A parent who has not respected boundaries before will often escalate when you set one — anger, guilt-trips, silent treatment, going through other family members. This is the part most people give up at. The other side of this hard stretch is a calmer relationship — or a clearer one. Both are okay outcomes.</div>
-        </div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-num you">7</div>
-        <div class="step-body">
-          <div class="step-label">Get support outside the family</div>
-          <div class="step-detail">A therapist, a counselor, a trusted friend, or even a peer support group can help you hold the boundary when guilt and family pressure mount. Doing this alone is much harder than doing it with someone in your corner.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="say">
-      <div class="steps-col-label say">What to SAY</div>
-
-      <div class="step-item">
-        <div class="step-num say">1</div>
-        <div class="step-body">
-          <div class="step-label">Stating the boundary</div>
-          <div class="step-script">"I want to talk about something important. When [specific behavior happens], it [specific impact on you]. Going forward, if [behavior] happens, I will [specific consequence]. I am telling you this because I want our relationship to work, and I need this to change."</div>
-        </div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-num say">2</div>
-        <div class="step-body">
-          <div class="step-label">When they argue or get hurt</div>
-          <div class="step-script">"I hear that this is hard for you. The boundary is still the same. I am not changing my mind because you are upset about it."</div>
-        </div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-num say">3</div>
-        <div class="step-body">
-          <div class="step-label">When they accuse you of being ungrateful or selfish</div>
-          <div class="step-script">"I am setting a limit, not a verdict on you. I love you. I am also going to do this. Both are true."</div>
-        </div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-num say">4</div>
-        <div class="step-body">
-          <div class="step-label">Following through the first time</div>
-          <div class="step-script">"I told you what I was going to do if this happened. I am doing it now. We can talk again when [time / condition]." Then do the thing. Hang up. Leave. End the visit.</div>
-        </div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-num say">5</div>
-        <div class="step-body">
-          <div class="step-label">When other family members get involved</div>
-          <div class="step-script">"This is between me and [parent]. I'm not going to relitigate it through other people. If you want to support me, you can tell them to come to me directly."</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="escalate-box">
-    <div class="eb-title">If the relationship is more than just difficult</div>
-    <div class="eb-item">If a parent is verbally, emotionally, or physically abusive, what you are dealing with is more than boundaries — please consider speaking to a therapist or calling a domestic abuse hotline (1-800-799-7233) for guidance, even as an adult child</div>
-    <div class="eb-item">If you are a first-generation adult navigating cultural expectations, organizations like Asian Mental Health Collective, Therapy for Black Girls, Latinx Therapy, and similar can connect you with therapists who understand the context</div>
-    <div class="eb-item">For low-cost therapy: Open Path Collective (openpathcollective.org) and Federally Qualified Health Centers offer affordable mental health care</div>
-    <div class="eb-item">If holding boundaries with a parent has become impossible without consequences to your kids, your job, or your housing, a family therapist or counselor can help you think through next steps</div>
-  </div>
-
-  <div class="confidence-box">
-    <div class="cb-title">Boundaries are an act of love — for them, for you, for the relationship.</div>
-    <div class="cb-text">It does not feel that way when you are doing it. It feels like betrayal, like you are the bad child, like you are breaking something sacred. But a relationship without boundaries is not a closer relationship — it is one where one person disappears so the other can stay comfortable. Setting limits does not mean you love them less. It means you are trying to build a version of the relationship that you can actually sustain for the next thirty years, instead of the version that is burning you out right now. That is grown-up love. It is the hardest kind.</div>
-  </div>
-</div>
-
-
 <!-- PANEL 11: FM-04 — Talking to Your Kid About Something Hard -->
 <!-- Room: Buffer | Populations: Single parents / Caregivers / Recently disabled / Veterans -->
 <!-- v2.0 draft, pending verification pass -->
@@ -1423,6 +1305,488 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
   <div class="confidence-box">
     <div class="cb-title">You are not going to do this perfectly. You are going to do it lovingly. That is what they will remember.</div>
     <div class="cb-text">Years from now, your child will not remember the exact words you used. They will remember that you sat down with them. That you told them yourself. That you cried with them or held them or just sat in the quiet. That you said it was not their fault. That you came back the next day to talk again. That is the whole thing. That is what good parenting in a hard moment looks like — not having the right script, but being there, being honest, and coming back. You are doing it right by trying this hard.</div>
+  </div>
+</div>
+
+
+<!-- PANEL: Telling a Parent Something Hard (Adult Child's Side) -->
+<!-- Category: Family | Room: Buffer | Mirror of FM-04 "Talking to your kid" -->
+<!-- Populations: Re-entering society / Recently disabled / Single parents / First-gen / LGBTQ+ overlay / Mental health -->
+<!-- v2.1 draft, pending verification pass -->
+<div class="sit-panel" id="panel-tellparent">
+  <button class="panel-back" onclick="showHome()">← All Situations</button>
+  <div class="panel-header">
+    <span class="panel-tag">Family · Telling your parent</span>
+    <h2 class="panel-title">Telling a Parent <em>Something Hard</em></h2>
+    <p class="panel-intro">A diagnosis. A divorce. A loss of a job. A relapse. A pregnancy they did not expect. A sexuality you have not named to them. A debt you got into. A truth about something that happened to you when you were younger. Something your kid is going through. You are an adult now, and you have to tell a parent something that is going to land hard. You do not owe them every detail. But you want — or need — to tell them. Here is how to do that without it costing you more than it has to.</p>
+  </div>
+
+  <div class="remember-box">
+    <div class="rb-item"><div class="rb-label">Truth</div><div class="rb-value">You are an adult. You get to decide what you share, how much, and when.</div></div>
+    <div class="rb-item"><div class="rb-label">Permission</div><div class="rb-value">You do not have to manage their reaction. Their feelings are theirs to handle.</div></div>
+    <div class="rb-item"><div class="rb-label">Expect</div><div class="rb-value">Their first reaction is rarely their final reaction. Give the conversation room to evolve.</div></div>
+  </div>
+
+  <div class="steps-layout">
+    <div class="you">
+      <div class="steps-col-label you">Before the conversation</div>
+
+      <div class="step-item">
+        <div class="step-num you">1</div>
+        <div class="step-body">
+          <div class="step-label">Decide why you are telling them</div>
+          <div class="step-detail">Are you telling them because they need to know? Because you want their support? Because you are tired of hiding it? Because they are going to find out anyway and you want them to hear it from you? Knowing your reason shapes what you say and helps you stay steady if they react badly.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num you">2</div>
+        <div class="step-body">
+          <div class="step-label">Decide what you ARE and ARE NOT sharing</div>
+          <div class="step-detail">You do not have to tell them everything. You are an adult. You can say "I want to tell you the headline; the details are between me and [doctor / lawyer / therapist / partner]." Knowing in advance what is on the table and what is not protects you from oversharing when emotions get high.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num you">3</div>
+        <div class="step-body">
+          <div class="step-label">Pick the right setting</div>
+          <div class="step-detail">Some news is better in person. Some is better on the phone where you have control over the call. Some is better in a letter or message where they can read it once, sit with it, and come back. Match the format to how this parent processes things — and to how safe you feel being in the room with them when they hear it.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num you">4</div>
+        <div class="step-body">
+          <div class="step-label">Have an exit plan</div>
+          <div class="step-detail">If they react in a way that hurts you, where will you go? Who will you call? Plan this before the conversation, not during it. If you are at their home, have a way to leave. If you are on the phone, give yourself permission to end the call.</div>
+        </div>
+      </div>
+
+      <div class="steps-col-label you" style="margin-top:36px">During the conversation</div>
+
+      <div class="step-item">
+        <div class="step-num you">5</div>
+        <div class="step-body">
+          <div class="step-label">Lead with the news. Do not bury it.</div>
+          <div class="step-detail">Long preambles make it worse. "Mom, Dad — I have something to tell you. [The thing]." Then stop and let them respond. Do not over-explain in the first thirty seconds. Give them room to absorb it.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num you">6</div>
+        <div class="step-body">
+          <div class="step-label">Let their first reaction be their first reaction</div>
+          <div class="step-detail">They may cry. They may be angry. They may say something hurtful they later regret. They may say nothing. None of these are the final word on how they feel. Many parents say the wrong thing in the first ten minutes and the right thing in the next ten days.</div>
+          <div class="step-warning">⚠ Resist the urge to take back the news or apologize for telling them. You did the right thing by telling them.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num you">7</div>
+        <div class="step-body">
+          <div class="step-label">If they push for details you do not want to share, hold the line</div>
+          <div class="step-detail">"I am sharing what I am sharing. The rest is private." Repeat as needed. You can love them and still not tell them everything.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num you">8</div>
+        <div class="step-body">
+          <div class="step-label">End the conversation when it is enough</div>
+          <div class="step-detail">You do not have to stay until they are okay with it. You can say "I love you, I told you what I needed to tell you, and we can talk more when we both have had time." Then end the conversation.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num you">9</div>
+        <div class="step-body">
+          <div class="step-label">Take care of yourself afterward</div>
+          <div class="step-detail">Whatever happened, telling a parent something hard is a heavy thing. Call a friend. Eat something. Sleep if you can. Do not make any other big decisions today.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="say">
+      <div class="steps-col-label say">What to SAY</div>
+
+      <div class="step-item">
+        <div class="step-num say">1</div>
+        <div class="step-body">
+          <div class="step-label">Opening the conversation</div>
+          <div class="step-script">"I want to tell you something. I have been thinking about when to share this, and now feels like the time. [The thing]. I am telling you because [your reason]. I do not need you to fix anything — I just wanted you to know."</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num say">2</div>
+        <div class="step-body">
+          <div class="step-label">When they react badly in the moment</div>
+          <div class="step-script">"I hear that this is hard for you. It is hard for me too. I am not asking you to be okay with this right now. I am just asking you to listen."</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num say">3</div>
+        <div class="step-body">
+          <div class="step-label">If they push for details you do not want to share</div>
+          <div class="step-script">"I am sharing what I am ready to share. The rest is private for now. I might tell you more later, but I might not — and that has to be okay."</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num say">4</div>
+        <div class="step-body">
+          <div class="step-label">If they say something hurtful</div>
+          <div class="step-script">"What you just said hurt. I'm going to end this conversation for now and come back to it when we have both had time to think. I love you."</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num say">5</div>
+        <div class="step-body">
+          <div class="step-label">If they say nothing</div>
+          <div class="step-script">"I know this is a lot. You don't have to say anything right now. Take whatever time you need. I am here when you want to talk."</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num say">6</div>
+        <div class="step-body">
+          <div class="step-label">Coming back days later if needed</div>
+          <div class="step-script">"I want to follow up on what I told you. I am not asking you to change how you feel — I just want us to be able to talk about it as it goes. Is now a good time, or should we pick a time?"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="escalate-box">
+    <div class="eb-title">If this conversation could go a hard direction</div>
+    <div class="eb-item">If you are telling a parent something where their reaction could put you at risk (housing, safety, financial dependence), think carefully about timing and setting. A therapist can help you plan a high-stakes disclosure</div>
+    <div class="eb-item">For LGBTQ+ adults disclosing identity to family: The Trevor Project (thetrevorproject.org) and PFLAG (pflag.org) have resources and support for navigating family disclosure at any age</div>
+    <div class="eb-item">For people in recovery telling family about relapse or treatment: SAMHSA (1-800-662-4357) has resources for family conversations about substance use</div>
+    <div class="eb-item">For adult survivors disclosing childhood abuse or trauma to a parent: RAINN (1-800-656-4673) has trained counselors who can help you prepare</div>
+    <div class="eb-item">For first-generation adults disclosing in cultural-family contexts: identity-specific therapy directories (Asian Mental Health Collective, Therapy for Black Girls, Latinx Therapy, and similar) connect you with therapists who understand the context</div>
+    <div class="eb-item">If the conversation reveals or risks abuse from a parent, the National Domestic Violence Hotline (1-800-799-7233) supports adult children too — not just spouses</div>
+  </div>
+
+  <div class="confidence-box">
+    <div class="cb-title">You are not asking permission. You are sharing your life.</div>
+    <div class="cb-text">You spent a long time as a child whose news your parents got to react to as they pleased. You are not that child anymore. You are an adult sharing news from your adult life — and how they respond is not the measure of whether you did the right thing in telling them. You did the right thing by deciding what to share, choosing a moment, saying the words, and letting them have their reaction. The conversation does not end today. Their first response is not their final one. You did something brave. Whatever they do with it is their work, not yours.</div>
+  </div>
+</div>
+
+
+<!-- PANEL: Setting a Boundary with Someone Who Won't Accept It -->
+<!-- Category: Relationships (NEW) | Universal scope — parent, friend, partner, coworker, neighbor, sibling, in-law, anyone -->
+<!-- v2.1 draft, pending verification pass -->
+<div class="sit-panel" id="panel-boundary">
+  <button class="panel-back" onclick="showHome()">← All Situations</button>
+  <div class="panel-header">
+    <span class="panel-tag">Relationships · Boundaries</span>
+    <h2 class="panel-title">Setting a Boundary with <em>Someone Who Won't Accept It</em></h2>
+    <p class="panel-intro">You have told them. Maybe more than once. A parent, a friend, a partner, a coworker, a neighbor, a sibling, a family member, someone from your church or community — and they keep stepping over the line you asked them to respect. They tell you you're being dramatic, overreacting, selfish, or that "this isn't a big deal." You are not wrong to ask for what you asked for. Holding the boundary without exploding the relationship is a separate skill — and it is the same skill, whoever they are.</p>
+  </div>
+
+  <div class="remember-box">
+    <div class="rb-item"><div class="rb-label">Truth</div><div class="rb-value">A boundary is a statement about what YOU will do. It is not a request for their permission.</div></div>
+    <div class="rb-item"><div class="rb-label">Permission</div><div class="rb-value">You are allowed to set limits in any relationship — close, casual, family, professional, or community.</div></div>
+    <div class="rb-item"><div class="rb-label">Expect</div><div class="rb-value">They may not respond well at first. That does not mean the boundary is wrong.</div></div>
+  </div>
+
+  <div class="steps-layout">
+    <div class="you">
+      <div class="steps-col-label you">What YOU do — get clear first</div>
+
+      <div class="step-item">
+        <div class="step-num you">1</div>
+        <div class="step-body">
+          <div class="step-label">Get clear, alone, on what the boundary actually is</div>
+          <div class="step-detail">Vague boundaries get crossed. "Stop being so critical" is a feeling. "I will end the call if you criticize my parenting" is a boundary. Write down: what behavior, and what you will do if it happens. Specific. Whether the person is your mother, your best friend, your coworker, or your neighbor — the work of being specific is the same.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num you">2</div>
+        <div class="step-body">
+          <div class="step-label">Decide the consequence in advance — and be willing to follow through</div>
+          <div class="step-detail">A boundary without follow-through is a suggestion. If the consequence is "I will leave the room," you have to be willing to leave. If it is "I will end the call," you have to be willing to hang up. Pick a consequence you can actually do. Smaller consequences you will keep are better than big consequences you will not.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num you">3</div>
+        <div class="step-body">
+          <div class="step-label">Pick a calm moment to state it — not mid-conflict</div>
+          <div class="step-detail">Boundaries set during a fight almost never hold. Wait until things are calm. Ask for a private moment if needed. Then say it once, clearly, without a long defense or apology.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num you">4</div>
+        <div class="step-body">
+          <div class="step-label">Hold it without defending it</div>
+          <div class="step-detail">If they argue, get hurt, or try to negotiate, you do not have to defend the boundary point by point. Repeat it. "I understand you feel that way. The boundary is still the same."</div>
+          <div class="step-warning">⚠ Defending the boundary turns it into a debate. The boundary is not up for debate. It is a statement of what you will do.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num you">5</div>
+        <div class="step-body">
+          <div class="step-label">Follow through the first time it is crossed</div>
+          <div class="step-detail">The first crossing is the test. If you follow through that first time — leave, end the call, end the visit, stop responding for the rest of the day — the boundary becomes real. If you do not, you have just taught them this boundary is negotiable.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num you">6</div>
+        <div class="step-body">
+          <div class="step-label">Expect a hard week (or longer). Stay steady anyway.</div>
+          <div class="step-detail">A person who has not respected boundaries before will often escalate when you set one — anger, guilt-trips, silent treatment, going through other people in your life to pressure you. This is the part most people give up at. The other side of this hard stretch is a calmer relationship — or a clearer one. Both are valid outcomes.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num you">7</div>
+        <div class="step-body">
+          <div class="step-label">Get support outside the relationship in question</div>
+          <div class="step-detail">A therapist, a counselor, a trusted friend, or even a peer support group can help you hold the boundary when guilt and outside pressure mount. Doing this alone is much harder than doing it with someone in your corner.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="say">
+      <div class="steps-col-label say">What to SAY</div>
+
+      <div class="step-item">
+        <div class="step-num say">1</div>
+        <div class="step-body">
+          <div class="step-label">Stating the boundary</div>
+          <div class="step-script">"I want to talk about something important. When [specific behavior happens], it [specific impact on you]. Going forward, if [behavior] happens, I will [specific consequence]. I am telling you this because I want our relationship to work, and I need this to change."</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num say">2</div>
+        <div class="step-body">
+          <div class="step-label">When they argue or get hurt</div>
+          <div class="step-script">"I hear that this is hard for you. The boundary is still the same. I am not changing my mind because you are upset about it."</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num say">3</div>
+        <div class="step-body">
+          <div class="step-label">When they accuse you of overreacting or being selfish</div>
+          <div class="step-script">"I am setting a limit, not a verdict on you. I care about this relationship. I am also going to do this. Both are true."</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num say">4</div>
+        <div class="step-body">
+          <div class="step-label">Following through the first time</div>
+          <div class="step-script">"I told you what I was going to do if this happened. I am doing it now. We can talk again when [time / condition]." Then do the thing. Hang up. Leave. End the visit. Stop replying for the day.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num say">5</div>
+        <div class="step-body">
+          <div class="step-label">When other people in your life get pulled into it</div>
+          <div class="step-script">"This is between me and [person]. I'm not going to relitigate it through other people. If you want to support me, you can tell them to come to me directly."</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num say">6</div>
+        <div class="step-body">
+          <div class="step-label">If it is a coworker or professional context</div>
+          <div class="step-script">"I want to keep working together well. Going forward, I need [specific thing]. If [behavior] happens again, I am going to [specific work-appropriate consequence — talk to HR, decline that kind of task, end the meeting, etc.]." Be specific and professional. Document.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="escalate-box">
+    <div class="eb-title">If the relationship is more than just difficult</div>
+    <div class="eb-item">If anyone in your life is verbally, emotionally, or physically abusive, what you are dealing with is more than boundaries — please consider speaking to a therapist or calling the National Domestic Violence Hotline at 1-800-799-7233 for guidance</div>
+    <div class="eb-item">For workplace boundaries that involve harassment or discrimination, the EEOC (eeoc.gov) handles formal complaints, and most workplaces have HR escalation paths</div>
+    <div class="eb-item">For low-cost therapy support to help hold boundaries: Open Path Collective (openpathcollective.org) and Federally Qualified Health Centers offer affordable mental health care</div>
+    <div class="eb-item">For first-generation adults navigating cultural family expectations, communities like Asian Mental Health Collective, Therapy for Black Girls, Latinx Therapy, and similar can connect you with therapists who understand the context</div>
+    <div class="eb-item">If holding a boundary in a relationship has become impossible without consequences to your kids, job, or housing, a counselor can help you think through next steps</div>
+  </div>
+
+  <div class="confidence-box">
+    <div class="cb-title">Boundaries are an act of care — for them, for you, for the relationship.</div>
+    <div class="cb-text">It does not feel that way when you are doing it. It feels like betrayal, like you are the bad person, like you are breaking something good. But a relationship without boundaries is not a closer relationship — it is one where one person disappears so the other can stay comfortable. Setting limits does not mean you care less. It means you are trying to build a version of the relationship that you can actually sustain for the long term, instead of the version that is burning you out right now. Whoever the person is — parent, partner, friend, family member, coworker, neighbor — the principle holds. That is grown-up care. It is the hardest kind.</div>
+  </div>
+</div>
+
+
+<!-- PANEL: Someone You Love Asks for Help You Can't Give -->
+<!-- Category: Relationships | Room: Default -->
+<!-- Populations: Working poor / Single parents / Recently disabled / Re-entering society / Universal -->
+<!-- v2.1 draft, pending verification pass -->
+<div class="sit-panel" id="panel-askhelp">
+  <button class="panel-back" onclick="showHome()">← All Situations</button>
+  <div class="panel-header">
+    <span class="panel-tag">Relationships · Asking and answering</span>
+    <h2 class="panel-title">Someone You Love Asks for <em>Help You Can't Give</em></h2>
+    <p class="panel-intro">A family member needs money you do not have. A friend is asking you to co-sign a loan. A sibling needs a place to stay and you cannot host them right now. A partner wants something from you you cannot give. The ask is real, your love for them is real, and your no is also real. Saying no without losing the relationship is a specific skill — different from setting an ongoing boundary, because this is one moment, one ask, one answer. Here is how to give the answer without giving up the relationship.</p>
+  </div>
+
+  <div class="remember-box">
+    <div class="rb-item"><div class="rb-label">Truth</div><div class="rb-value">No is a complete answer. You do not owe a detailed reason for it.</div></div>
+    <div class="rb-item"><div class="rb-label">Permission</div><div class="rb-value">Saying no to one ask does not mean you love them less. It means you know what you can actually do.</div></div>
+    <div class="rb-item"><div class="rb-label">Remember</div><div class="rb-value">Saying yes when you cannot afford to causes real damage — to your finances, your stability, and the relationship itself.</div></div>
+  </div>
+
+  <div class="steps-layout">
+    <div class="you">
+      <div class="steps-col-label you">What YOU do</div>
+
+      <div class="step-item">
+        <div class="step-num you">1</div>
+        <div class="step-body">
+          <div class="step-label">Do not answer in the moment if you do not have to</div>
+          <div class="step-detail">"Let me think about it and get back to you" is one of the most underused sentences in adult life. Asks in the moment often feel urgent when they are not. Give yourself a few hours or a day to check what you can actually afford — emotionally, financially, time-wise — before committing.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num you">2</div>
+        <div class="step-body">
+          <div class="step-label">Be honest with yourself about your capacity</div>
+          <div class="step-detail">Ask: Can I actually do this without putting myself in a hard spot? Will I resent doing it? Will it hurt my own family, my own bills, my own health? If the answer to any of those is yes, the answer to the ask is probably no — and that is okay.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num you">3</div>
+        <div class="step-body">
+          <div class="step-label">Say no clearly — not maybe, not vaguely</div>
+          <div class="step-detail">"Maybe" or "I'll see what I can do" when you actually mean no leaves them hoping and you avoiding. It hurts the relationship more than a clean no. Give them the answer they need to plan around.</div>
+          <div class="step-warning">⚠ A clear no respects them more than a vague maybe. They can move on and find another path. A maybe leaves them stuck.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num you">4</div>
+        <div class="step-body">
+          <div class="step-label">Do not over-explain</div>
+          <div class="step-detail">You do not need to list every reason. Long explanations sound like negotiations — like you are looking for permission. A short, honest reason is enough. "I can't do this right now" is a complete sentence.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num you">5</div>
+        <div class="step-body">
+          <div class="step-label">If you can do something smaller, offer that — but only if you actually can</div>
+          <div class="step-detail">"I can't give you the $500, but I can give you $50" — only if $50 is actually fine for you. Do not offer a smaller version out of guilt that you will also regret. A real smaller offer can preserve the relationship. A guilt-driven one builds resentment.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num you">6</div>
+        <div class="step-body">
+          <div class="step-label">If you can help in a non-money way, name it</div>
+          <div class="step-detail">"I can't lend you the money, but I can help you look into [program / resource / option]." Pointing them toward resources is real help — sometimes more useful than the cash they asked for. 211 is often a good first call for someone needing housing, food, utility, or financial help.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num you">7</div>
+        <div class="step-body">
+          <div class="step-label">Hold the no if they push back</div>
+          <div class="step-detail">If they get hurt, angry, or guilt-trip you, the answer is still no. You can sit with their disappointment without changing your mind. Their pain is not a sign you should change your answer — it is a sign they are also dealing with a hard situation.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num you">8</div>
+        <div class="step-body">
+          <div class="step-label">Stay in the relationship after the no</div>
+          <div class="step-detail">A no is not a goodbye. Check in with them in a few days. Send a regular message. Show up to dinner. The relationship continues. The no was about this one ask, not about them as a person.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="say">
+      <div class="steps-col-label say">What to SAY</div>
+
+      <div class="step-item">
+        <div class="step-num say">1</div>
+        <div class="step-body">
+          <div class="step-label">Buying yourself time</div>
+          <div class="step-script">"That's a big ask and I want to give you a real answer, not a quick one. Let me think about it and get back to you by [day/time]."</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num say">2</div>
+        <div class="step-body">
+          <div class="step-label">The clear no</div>
+          <div class="step-script">"I thought about it carefully, and I'm not able to do this. I love you and I wish the answer could be different — but I can't."</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num say">3</div>
+        <div class="step-body">
+          <div class="step-label">When they ask why</div>
+          <div class="step-script">"I just don't have the [money / room / capacity] to do it right now without putting myself in a hard spot. I know that's not the answer you were hoping for."</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num say">4</div>
+        <div class="step-body">
+          <div class="step-label">Offering a smaller real version (if you actually can)</div>
+          <div class="step-script">"I can't do [the whole ask], but here is what I can do: [smaller real offer]. I want to help where I actually can."</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num say">5</div>
+        <div class="step-body">
+          <div class="step-label">Pointing toward another resource</div>
+          <div class="step-script">"I can't help with this directly, but I want to help you figure out a path. Have you tried [211 / local agency / specific program]? I can sit with you while you make the call if that would help."</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num say">6</div>
+        <div class="step-body">
+          <div class="step-label">When they push back hard</div>
+          <div class="step-script">"I hear that this is hard, and I am sorry I can't help in the way you were hoping. My answer is the same. I love you and I am not going back on this."</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num say">7</div>
+        <div class="step-body">
+          <div class="step-label">Staying in the relationship afterward</div>
+          <div class="step-script">A few days later: "Hey — just thinking about you. How are things going? I wanted to check in." A no does not have to be followed by silence. Keep showing up in normal ways.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="escalate-box">
+    <div class="eb-title">If the ask is a pattern or the person is in real crisis</div>
+    <div class="eb-item">If a family member or friend keeps asking for money in a way that is straining you, that is a different situation — see the "Setting a Boundary" guide. One ask is a moment. A pattern needs a different conversation.</div>
+    <div class="eb-item">If the person asking is in real crisis (homelessness, eviction, food insecurity, medical emergency), 211 (call or text) connects them to local emergency resources at no cost</div>
+    <div class="eb-item">For someone facing eviction: see the "Eviction notice arrived" guide — there are emergency rental assistance programs specifically for this</div>
+    <div class="eb-item">For a friend or family member in mental health crisis: 988 (call or text) is the Suicide and Crisis Lifeline. SAMHSA helpline (1-800-662-4357) handles non-crisis mental health and substance use</div>
+    <div class="eb-item">If someone is repeatedly asking for money in a way that might be related to addiction or financial exploitation, Al-Anon (al-anon.org) and similar support groups help family members navigate this</div>
+    <div class="eb-item">If you are being asked to co-sign a loan or take on financial risk for someone else, talk to a financial counselor first — nfcc.org connects you to free nonprofit credit counseling</div>
+  </div>
+
+  <div class="confidence-box">
+    <div class="cb-title">Saying no is not failing them. Saying yes you cannot deliver on is.</div>
+    <div class="cb-text">The most damaging thing in relationships built around asks is not the no. It is the yes that becomes a no later — the help that was promised but could not be sustained, the loan that was made but resented, the room that was offered but came with bitterness. A clean no, said with care, leaves the relationship intact. A yes you cannot follow through on hollows it out. You are allowed to know what you can do. You are allowed to say it. The people who love you will adjust. The ones who do not are showing you something — and that is information, not a loss.</div>
   </div>
 </div>
 
