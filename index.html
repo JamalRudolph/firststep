@@ -34,7 +34,7 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 ::-webkit-scrollbar-track { background: var(--cream2); }
 ::-webkit-scrollbar-thumb { background: var(--amber); border-radius: 2px; }
 
-/* QUICK EXIT BAR (privacy-protective per research) */
+/* QUICK EXIT BAR */
 .quick-exit {
   position: fixed;
   top: 0; right: 0;
@@ -67,7 +67,6 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
   justify-content: center;
   padding: 80px 24px 60px;
 }
-/* Subtle sunrise glow */
 .hero::before {
   content: '';
   position: absolute;
@@ -79,7 +78,6 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
   background: radial-gradient(ellipse, rgba(245,158,63,0.35) 0%, rgba(245,158,63,0.08) 45%, transparent 75%);
   pointer-events: none;
 }
-/* Quiet stars */
 .hero::after {
   content: '';
   position: absolute;
@@ -113,7 +111,6 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 }
 .hero-brand span { color: var(--amber); font-style: italic; }
 
-/* The acknowledgment — direct, present-tense */
 .hero-acknowledge {
   font-family: var(--serif);
   font-size: clamp(28px, 5vw, 44px);
@@ -137,7 +134,7 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
   animation: fadeUp 0.8s ease 0.2s both;
 }
 
-/* The search input — primary action */
+/* Search input */
 .search-wrap {
   position: relative;
   max-width: 560px;
@@ -197,7 +194,26 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 }
 .hero-secondary a:hover { text-decoration-color: var(--amber); }
 
-/* SITUATIONS — the action lives here, right after the hero */
+/* NEW — Hero org-aware line (subtle, below secondary) */
+.hero-org-aware {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.42);
+  margin-top: 14px;
+  animation: fadeUp 0.8s ease 0.5s both;
+  letter-spacing: 0.01em;
+}
+.hero-org-aware a {
+  color: var(--amber2);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(251,191,106,0.4);
+  font-weight: 600;
+}
+.hero-org-aware a:hover { text-decoration-color: var(--amber); color: var(--amber); }
+
+/* SITUATIONS */
 .situations {
   padding: 80px 24px 60px;
   max-width: 1180px;
@@ -319,7 +335,116 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
   border-color: var(--amber);
 }
 
-/* VOICE NOT SCRIPT — crisis-line peer block */
+/* NEW — FOR ORGANIZATIONS STRIP */
+.for-orgs {
+  padding: 80px 24px;
+  background: linear-gradient(180deg, var(--cream) 0%, var(--cream2) 100%);
+  border-top: 1.5px solid var(--cream2);
+  border-bottom: 1.5px solid var(--warm);
+}
+.for-orgs-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.fo-eyebrow {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 12px;
+}
+.fo-eyebrow::before {
+  content: '';
+  width: 22px; height: 2px;
+  background: var(--rose);
+}
+.fo-h {
+  font-family: var(--serif);
+  font-size: clamp(24px, 3.5vw, 34px);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  margin-bottom: 18px;
+}
+.fo-h em { font-style: italic; color: var(--rose); }
+.fo-body {
+  font-size: 15px;
+  color: var(--text2);
+  line-height: 1.75;
+  margin-bottom: 18px;
+  font-weight: 400;
+}
+.fo-body:last-of-type { margin-bottom: 28px; }
+.fo-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  background: var(--dawn);
+  padding: 14px 28px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.2s;
+  letter-spacing: 0.01em;
+}
+.fo-cta:hover {
+  background: var(--rose);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(139,38,53,0.3);
+}
+.fo-audiences {
+  background: white;
+  border-radius: 16px;
+  padding: 32px 28px;
+  border: 1.5px solid var(--cream2);
+  border-left: 4px solid var(--amber);
+}
+.fo-audiences-label {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+.fo-audiences-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.fo-audiences-list li {
+  font-family: var(--serif);
+  font-size: 15px;
+  color: var(--text);
+  font-weight: 500;
+  line-height: 1.45;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--cream2);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.fo-audiences-list li:last-child { border-bottom: none; }
+.fo-audiences-list li::before {
+  content: '→';
+  color: var(--amber);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* VOICE NOT SCRIPT */
 .voice {
   background: white;
   padding: 70px 24px;
@@ -402,7 +527,7 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
   letter-spacing: 0.04em;
 }
 
-/* TRUTH — founder Moment/Crossroad utterance */
+/* TRUTH */
 .truth {
   padding: 90px 24px;
   background: var(--cream2);
@@ -444,7 +569,7 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 }
 .truth-attr span { color: var(--brown); }
 
-/* HOW — three steps, restrained */
+/* HOW */
 .how {
   padding: 80px 24px;
   background: var(--cream);
@@ -503,7 +628,7 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
   font-weight: 400;
 }
 
-/* CTA — quiet, declarative */
+/* CTA */
 .cta {
   background: linear-gradient(135deg, var(--dawn) 0%, var(--dusk) 50%, #3d1a6e 100%);
   padding: 90px 24px;
@@ -621,6 +746,8 @@ footer {
 @media (max-width: 768px) {
   .hero { min-height: 70vh; padding: 60px 20px 50px; }
   .situations { padding: 56px 20px 40px; }
+  .for-orgs { padding: 60px 20px; }
+  .for-orgs-inner { grid-template-columns: 1fr; gap: 36px; }
   .voice { padding: 50px 20px; }
   .truth { padding: 64px 20px; }
   .how { padding: 56px 20px; }
@@ -652,7 +779,11 @@ footer {
     </div>
 
     <div class="hero-secondary">
-      Free · No login · No app · <a href="guide.html">Or just open the guide →</a>
+      Free · No login · No app · <a href="firststep_guide.html">Or just open the guide →</a>
+    </div>
+
+    <div class="hero-org-aware">
+      Running an organization? <a href="partners.html">FirstStep partners with the orgs holding the door open →</a>
     </div>
   </div>
 </section>
@@ -665,112 +796,112 @@ footer {
 
   <div class="sit-grid">
 
-    <a href="guide.html#panel-doctorlisten" class="sit-card c-green">
+    <a href="firststep_guide.html#panel-doctorlisten" class="sit-card c-green">
       <span class="sc-icon">🩺</span>
       <span class="sc-tag">Healthcare · Self-advocacy</span>
       <div class="sc-title">The Doctor Isn't Listening</div>
       <div class="sc-desc">They cut you off, dismissed it, or moved on. Here is how to be heard.</div>
     </a>
 
-    <a href="guide.html#panel-medcost" class="sit-card c-green">
+    <a href="firststep_guide.html#panel-medcost" class="sit-card c-green">
       <span class="sc-icon">💊</span>
       <span class="sc-tag">Healthcare · Affording care</span>
       <div class="sc-title">Can't Afford the Medication</div>
       <div class="sc-desc">The price at the pharmacy is more than you can pay. There are real paths to bring it down.</div>
     </a>
 
-    <a href="guide.html#panel-debtcollector" class="sit-card c-amber">
+    <a href="firststep_guide.html#panel-debtcollector" class="sit-card c-amber">
       <span class="sc-icon">📞</span>
       <span class="sc-tag">Financial · Consumer rights</span>
       <div class="sc-title">A Debt Collector Is Calling</div>
       <div class="sc-desc">Federal law gives you specific rights. Most collectors count on you not knowing them.</div>
     </a>
 
-    <a href="guide.html#panel-applybenefits" class="sit-card c-amber">
+    <a href="firststep_guide.html#panel-applybenefits" class="sit-card c-amber">
       <span class="sc-icon">📋</span>
       <span class="sc-tag">Financial · System navigation</span>
       <div class="sc-title">Applying for SNAP, Medicaid, or Assistance</div>
       <div class="sc-desc">Forms are long and questions feel like traps. Knowing how to move through carefully protects you.</div>
     </a>
 
-    <a href="guide.html#panel-ssacall" class="sit-card c-blue">
+    <a href="firststep_guide.html#panel-ssacall" class="sit-card c-blue">
       <span class="sc-icon">🏛️</span>
       <span class="sc-tag">Government · Social Security</span>
       <div class="sc-title">First Call to SSA, SSI, or SSDI</div>
       <div class="sc-desc">Long phone tree. Hours of hold time. Going in prepared changes everything.</div>
     </a>
 
-    <a href="guide.html#panel-idoffice" class="sit-card c-blue">
+    <a href="firststep_guide.html#panel-idoffice" class="sit-card c-blue">
       <span class="sc-icon">🪪</span>
       <span class="sc-tag">Government · Identification</span>
       <div class="sc-title">DMV / ID When Documents Are a Mess</div>
       <div class="sc-desc">The loop where you need ID to get ID. Here is how to break it open.</div>
     </a>
 
-    <a href="guide.html#panel-kidhardtalk" class="sit-card c-dusk">
+    <a href="firststep_guide.html#panel-kidhardtalk" class="sit-card c-dusk">
       <span class="sc-icon">👨‍👧</span>
       <span class="sc-tag">Family · Parenting</span>
       <div class="sc-title">Talking to Your Kid About Something Hard</div>
       <div class="sc-desc">A divorce. A diagnosis. A death. You won't do it perfectly. Here is how to do it lovingly.</div>
     </a>
 
-    <a href="guide.html#panel-tellparent" class="sit-card c-dusk">
+    <a href="firststep_guide.html#panel-tellparent" class="sit-card c-dusk">
       <span class="sc-icon">👨‍👩‍👦</span>
       <span class="sc-tag">Family · Telling your parent</span>
       <div class="sc-title">Telling a Parent Something Hard</div>
       <div class="sc-desc">You are an adult. You decide what to share. Here is how to say it without it costing more.</div>
     </a>
 
-    <a href="guide.html#panel-boundary" class="sit-card c-coral">
+    <a href="firststep_guide.html#panel-boundary" class="sit-card c-coral">
       <span class="sc-icon">🤝</span>
       <span class="sc-tag">Relationships · Boundaries</span>
       <div class="sc-title">Setting a Boundary with Someone Who Won't Accept It</div>
       <div class="sc-desc">Parent, friend, partner, coworker — the skill is the same. Holding the limit without exploding it.</div>
     </a>
 
-    <a href="guide.html#panel-askhelp" class="sit-card c-coral">
+    <a href="firststep_guide.html#panel-askhelp" class="sit-card c-coral">
       <span class="sc-icon">💬</span>
       <span class="sc-tag">Relationships · Asking and answering</span>
       <div class="sc-title">Someone You Love Asks for Help You Can't Give</div>
       <div class="sc-desc">A real ask, real love, and a real no. Saying it without losing the relationship.</div>
     </a>
 
-    <a href="guide.html#panel-firedlaidoff" class="sit-card c-brown">
+    <a href="firststep_guide.html#panel-firedlaidoff" class="sit-card c-brown">
       <span class="sc-icon">💼</span>
       <span class="sc-tag">Workplace · Job loss</span>
       <div class="sc-title">You Just Got Fired or Laid Off</div>
       <div class="sc-desc">Don't make a decision you can't take back. The work can wait one day.</div>
     </a>
 
-    <a href="guide.html#panel-interviewgap" class="sit-card c-brown">
+    <a href="firststep_guide.html#panel-interviewgap" class="sit-card c-brown">
       <span class="sc-icon">🎤</span>
       <span class="sc-tag">Workplace · Returning to work</span>
       <div class="sc-title">Job Interview After a Long Gap</div>
       <div class="sc-desc">They will ask about the gap. Here is how to handle it without shame or overexplaining.</div>
     </a>
 
-    <a href="guide.html#panel-telehealth" class="sit-card c-teal">
+    <a href="firststep_guide.html#panel-telehealth" class="sit-card c-teal">
       <span class="sc-icon">📡</span>
       <span class="sc-tag">Technology · Healthcare access</span>
       <div class="sc-title">Telehealth When Your Setup Isn't Reliable</div>
       <div class="sc-desc">Internet drops. The link might not load. Knowing the backup plan protects your care.</div>
     </a>
 
-    <a href="guide.html#panel-bgcheck" class="sit-card c-teal">
+    <a href="firststep_guide.html#panel-bgcheck" class="sit-card c-teal">
       <span class="sc-icon">📄</span>
       <span class="sc-tag">Technology · Background reports</span>
       <div class="sc-title">Background Check Returned Wrong Information</div>
       <div class="sc-desc">Federal law gives you specific rights to dispute. Most errors are fixable.</div>
     </a>
 
-    <a href="guide.html#panel-eviction" class="sit-card c-rose">
+    <a href="firststep_guide.html#panel-eviction" class="sit-card c-rose">
       <span class="sc-icon">🏠</span>
       <span class="sc-tag">Crisis · Housing</span>
       <div class="sc-title">An Eviction Notice Just Arrived</div>
       <div class="sc-desc">A notice is not the same as being evicted. There is process, time, and protections.</div>
     </a>
 
-    <a href="guide.html#panel-exhaustion" class="sit-card c-purple">
+    <a href="firststep_guide.html#panel-exhaustion" class="sit-card c-purple">
       <span class="sc-icon">🌙</span>
       <span class="sc-tag">Inside · Depletion</span>
       <div class="sc-title">Exhaustion That Feels Like Wanting to Quit Everything</div>
@@ -780,7 +911,31 @@ footer {
   </div>
 
   <div class="sit-more">
-    <a href="guide.html" class="sit-more-link">See all situations in the guide →</a>
+    <a href="firststep_guide.html" class="sit-more-link">See all situations in the guide →</a>
+  </div>
+</section>
+
+<!-- NEW — FOR ORGANIZATIONS STRIP -->
+<section class="for-orgs" id="for-orgs">
+  <div class="for-orgs-inner">
+    <div class="fo-left">
+      <div class="fo-eyebrow">For Organizations</div>
+      <h2 class="fo-h">FirstStep also partners with the orgs <em>holding the door open.</em></h2>
+      <p class="fo-body">If you run a workforce program, a reentry initiative, a community college, or a family services organization — the people you serve walk in expecting to lose, and your team walks in hoping to help. FirstStep is built for both of them.</p>
+      <p class="fo-body">Custom situations built on your real moments. Branded for your participants. Documented for your reporting. See what a partnership looks like.</p>
+      <a href="partners.html" class="fo-cta">See the partnership page →</a>
+    </div>
+    <div class="fo-right">
+      <div class="fo-audiences">
+        <div class="fo-audiences-label">Built for organizations like:</div>
+        <ul class="fo-audiences-list">
+          <li>Workforce Development Boards · Career Centers · Employer Partners</li>
+          <li>Reentry Programs · Parole Offices · Second Chance Initiatives</li>
+          <li>Community Colleges · Adult Education · Continuing Ed</li>
+          <li>Family Services · Housing · Legal Aid · Community Health Workers</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -855,7 +1010,7 @@ footer {
   <div class="cta-inner">
     <h2 class="cta-h">When the moment comes,<br><em>you'll know where to go.</em></h2>
     <p class="cta-sub">Open it now. Bookmark it on your phone. Share it with someone who needs it. It is yours — free, no signup, always here.</p>
-    <a href="guide.html" class="cta-btn">Open FirstStep →</a>
+    <a href="firststep_guide.html" class="cta-btn">Open FirstStep →</a>
     <div class="cta-trust">Free · No login · No app · Works on any device</div>
   </div>
 </section>
@@ -864,7 +1019,8 @@ footer {
 <footer>
   <div class="f-brand">First<span>Step</span></div>
   <ul class="f-links">
-    <li><a href="guide.html">Open the guide</a></li>
+    <li><a href="firststep_guide.html">Open the guide</a></li>
+    <li><a href="partners.html">For Organizations</a></li>
     <li><a href="mailto:info@getfirststep.org">Contact</a></li>
     <li><a href="https://rudolphcx.com">Rudolph CX</a></li>
   </ul>
@@ -875,9 +1031,9 @@ footer {
 function goToGuide() {
   var q = document.getElementById('searchInput').value.trim();
   if (q) {
-    window.location.href = 'guide.html?q=' + encodeURIComponent(q);
+    window.location.href = 'firststep_guide.html?q=' + encodeURIComponent(q);
   } else {
-    window.location.href = 'guide.html';
+    window.location.href = 'firststep_guide.html';
   }
 }
 </script>
