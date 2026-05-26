@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FirstStep Guide — You Know What To Do</title>
+<title>FirstStep — You're in a moment. Pick what you need.</title>
+<meta name="description" content="FirstStep is a free guide for people in hard moments. Pick what's happening right now — get the exact steps and words to handle it.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -28,185 +29,240 @@
   --sans:   'Plus Jakarta Sans', system-ui, sans-serif;
 }
 html { scroll-behavior: smooth; }
-body { font-family: var(--sans); background: var(--cream); color: var(--text); overflow-x: hidden; }
+body { font-family: var(--sans); background: var(--cream); color: var(--text); overflow-x: hidden; line-height: 1.6; }
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--cream2); }
 ::-webkit-scrollbar-thumb { background: var(--amber); border-radius: 2px; }
 
-/* ── TOPBAR ── */
-.topbar {
-  background: var(--dawn);
-  padding: 14px 28px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: sticky; top: 0; z-index: 100;
-  box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+/* QUICK EXIT BAR (privacy-protective per research) */
+.quick-exit {
+  position: fixed;
+  top: 0; right: 0;
+  background: var(--rose);
+  color: white;
+  padding: 8px 16px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-bottom-left-radius: 8px;
+  cursor: pointer;
+  z-index: 200;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: background 0.15s;
 }
-.tb-brand {
+.quick-exit:hover { background: #6b1d29; }
+
+/* HERO — THE THRESHOLD */
+.hero {
+  min-height: 78vh;
+  background: linear-gradient(165deg, var(--dawn) 0%, var(--dusk) 45%, #4a2080 70%, #c17f3a 100%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px 60px;
+}
+/* Subtle sunrise glow */
+.hero::before {
+  content: '';
+  position: absolute;
+  bottom: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(245,158,63,0.35) 0%, rgba(245,158,63,0.08) 45%, transparent 75%);
+  pointer-events: none;
+}
+/* Quiet stars */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 18% 14%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 62% 9%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 82% 22%, rgba(255,255,255,0.45) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 35% 28%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 75% 12%, rgba(255,255,255,0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 48% 6%, rgba(255,255,255,0.4) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 720px;
+  width: 100%;
+}
+
+.hero-brand {
   font-family: var(--serif);
   font-size: 20px;
   font-weight: 700;
   color: white;
+  letter-spacing: -0.01em;
+  margin-bottom: 40px;
+  opacity: 0.85;
 }
-.tb-brand span { color: var(--amber); font-style: italic; }
+.hero-brand span { color: var(--amber); font-style: italic; }
 
-.tb-search {
-  flex: 1;
-  max-width: 400px;
-  margin: 0 24px;
-  position: relative;
+/* The acknowledgment — direct, present-tense */
+.hero-acknowledge {
+  font-family: var(--serif);
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 700;
+  color: white;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+  animation: fadeUp 0.8s ease 0.1s both;
 }
-.tb-search input {
+.hero-acknowledge em { font-style: italic; color: var(--amber); }
+
+.hero-permission {
+  font-family: var(--serif);
+  font-size: clamp(15px, 2.2vw, 18px);
+  color: rgba(255,255,255,0.72);
+  font-style: italic;
+  font-weight: 400;
+  margin-bottom: 38px;
+  line-height: 1.6;
+  animation: fadeUp 0.8s ease 0.2s both;
+}
+
+/* The search input — primary action */
+.search-wrap {
+  position: relative;
+  max-width: 560px;
+  margin: 0 auto 28px;
+  animation: fadeUp 0.8s ease 0.3s both;
+}
+.search-input {
   width: 100%;
-  padding: 9px 16px;
-  background: rgba(255,255,255,0.1);
-  border: 1.5px solid rgba(255,255,255,0.15);
+  padding: 20px 60px 20px 28px;
+  background: rgba(255,255,255,0.14);
+  backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(255,255,255,0.22);
   border-radius: 100px;
   font-family: var(--sans);
-  font-size: 13px;
+  font-size: 16px;
+  font-weight: 400;
   color: white;
   outline: none;
   transition: all 0.2s;
 }
-.tb-search input::placeholder { color: rgba(255,255,255,0.4); }
-.tb-search input:focus {
-  background: rgba(255,255,255,0.15);
+.search-input::placeholder { color: rgba(255,255,255,0.55); }
+.search-input:focus {
+  background: rgba(255,255,255,0.2);
   border-color: var(--amber);
+  box-shadow: 0 0 0 4px rgba(245,158,63,0.15);
 }
-
-.tb-back {
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 600;
-  color: rgba(255,255,255,0.6);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: color 0.15s;
-}
-.tb-back:hover { color: var(--amber); }
-
-/* ── MAIN LAYOUT ── */
-.app {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  min-height: calc(100vh - 52px);
-}
-
-/* ── SIDEBAR ── */
-.sidebar {
-  background: white;
-  border-right: 1.5px solid var(--cream2);
-  overflow-y: auto;
-  position: sticky;
-  top: 52px;
-  height: calc(100vh - 52px);
-}
-
-.sb-section {
-  padding: 20px 16px 8px;
-}
-.sb-label {
-  font-family: var(--sans);
-  font-size: 9px;
+.search-btn {
+  position: absolute;
+  right: 6px; top: 50%;
+  transform: translateY(-50%);
+  width: 48px; height: 48px;
+  background: var(--amber);
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  color: var(--dawn);
   font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted);
-  padding: 0 8px;
-  margin-bottom: 8px;
+  transition: all 0.2s;
 }
-.sb-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
-  border-radius: 10px;
+.search-btn:hover { background: var(--amber2); transform: translateY(-50%) scale(1.05); }
+
+.hero-secondary {
   font-family: var(--sans);
   font-size: 13px;
   font-weight: 500;
-  color: var(--text2);
-  cursor: pointer;
-  transition: all 0.15s;
-  margin-bottom: 2px;
-  border: none;
-  background: none;
-  width: 100%;
-  text-align: left;
+  color: rgba(255,255,255,0.5);
+  margin-top: 8px;
+  animation: fadeUp 0.8s ease 0.4s both;
 }
-.sb-item:hover { background: var(--cream); color: var(--text); }
-.sb-item.active {
-  background: var(--dawn);
-  color: white;
+.hero-secondary a {
+  color: var(--amber2);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(251,191,106,0.4);
 }
-.sb-item.active .sb-dot { background: var(--amber); }
-.sb-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  background: var(--cream2);
-  transition: background 0.15s;
-}
-.sb-item:hover .sb-dot { background: var(--amber2); }
+.hero-secondary a:hover { text-decoration-color: var(--amber); }
 
-.sb-divider {
-  height: 1px;
-  background: var(--cream2);
-  margin: 8px 16px;
+/* SITUATIONS — the action lives here, right after the hero */
+.situations {
+  padding: 80px 24px 60px;
+  max-width: 1180px;
+  margin: 0 auto;
 }
 
-/* ── MAIN CONTENT ── */
-.main { overflow-y: auto; }
-
-/* HOME SCREEN */
-.home-screen {
-  padding: 48px 48px 80px;
-  max-width: 900px;
+.sit-eyebrow {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brown);
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 12px;
+}
+.sit-eyebrow::before {
+  content: '';
+  width: 22px; height: 2px;
+  background: var(--amber);
 }
 
-.home-greeting {
+.sit-h {
   font-family: var(--serif);
-  font-size: clamp(28px, 4vw, 44px);
+  font-size: clamp(26px, 4vw, 38px);
   font-weight: 700;
   color: var(--text);
   line-height: 1.15;
   letter-spacing: -0.02em;
   margin-bottom: 12px;
 }
-.home-greeting em { font-style: italic; color: var(--brown); }
+.sit-h em { font-style: italic; color: var(--brown); }
 
-.home-sub {
-  font-size: 16px;
+.sit-sub {
+  font-size: 15px;
   color: var(--muted);
   line-height: 1.7;
-  margin-bottom: 48px;
+  margin-bottom: 44px;
+  max-width: 600px;
   font-weight: 400;
-  max-width: 520px;
 }
 
 .sit-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
 }
 
 .sit-card {
   background: white;
   border: 1.5px solid var(--cream2);
   border-radius: 16px;
-  padding: 24px 20px;
+  padding: 22px 20px;
   cursor: pointer;
   transition: all 0.2s ease;
   border-left: 4px solid transparent;
   text-align: left;
-  width: 100%;
-  font-family: inherit;
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 .sit-card:hover {
-  box-shadow: 0 6px 24px rgba(44,24,16,0.09);
+  box-shadow: 0 8px 28px rgba(44,24,16,0.1);
   transform: translateY(-2px);
+  border-color: transparent;
 }
 .sit-card.c-green { border-left-color: var(--green); }
 .sit-card.c-blue  { border-left-color: var(--blue); }
@@ -216,13 +272,14 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 .sit-card.c-dusk  { border-left-color: var(--dusk); }
 .sit-card.c-teal  { border-left-color: #0d9488; }
 .sit-card.c-purple{ border-left-color: #7c3aed; }
+.sit-card.c-coral { border-left-color: #ea580c; }
 
-.sc-icon { font-size: 28px; margin-bottom: 10px; display: block; }
-.sc-badge {
+.sc-icon { font-size: 24px; margin-bottom: 8px; display: block; }
+.sc-tag {
   font-family: var(--sans);
   font-size: 8px;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--muted);
   margin-bottom: 6px;
@@ -230,11 +287,11 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 }
 .sc-title {
   font-family: var(--serif);
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--text);
   margin-bottom: 6px;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 .sc-desc {
   font-size: 12px;
@@ -243,1198 +300,586 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
   font-weight: 400;
 }
 
-/* SITUATION PANEL */
-.sit-panel { display: none; padding: 40px 48px 80px; max-width: 960px; }
-.sit-panel.active { display: block; }
-
-.panel-back {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+.sit-more {
+  text-align: center;
+  margin-top: 36px;
+}
+.sit-more-link {
   font-family: var(--sans);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
-  color: var(--muted);
-  cursor: pointer;
-  margin-bottom: 28px;
-  background: none;
-  border: none;
-  transition: color 0.15s;
-  padding: 0;
+  color: var(--brown);
+  text-decoration: none;
+  border-bottom: 1.5px solid rgba(139,111,71,0.3);
+  padding-bottom: 2px;
+  transition: all 0.15s;
 }
-.panel-back:hover { color: var(--text); }
+.sit-more-link:hover {
+  color: var(--text);
+  border-color: var(--amber);
+}
 
-.panel-header {
-  margin-bottom: 32px;
+/* VOICE NOT SCRIPT — crisis-line peer block */
+.voice {
+  background: white;
+  padding: 70px 24px;
+  border-top: 1.5px solid var(--cream2);
+  border-bottom: 1.5px solid var(--cream2);
 }
-.panel-tag {
+.voice-inner {
+  max-width: 920px;
+  margin: 0 auto;
+  text-align: center;
+}
+.voice-eyebrow {
   font-family: var(--sans);
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 8px;
-  display: block;
+  color: var(--rose);
+  margin-bottom: 14px;
 }
-.panel-title {
+.voice-h {
   font-family: var(--serif);
-  font-size: clamp(28px, 4vw, 40px);
+  font-size: clamp(24px, 3.5vw, 32px);
   font-weight: 700;
   color: var(--text);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  margin-bottom: 10px;
+  line-height: 1.2;
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
 }
-.panel-title em { font-style: italic; color: var(--brown); }
-.panel-intro {
+.voice-h em { font-style: italic; color: var(--rose); }
+.voice-sub {
   font-size: 15px;
   color: var(--muted);
   line-height: 1.7;
-  max-width: 600px;
+  max-width: 620px;
+  margin: 0 auto 36px;
   font-weight: 400;
 }
 
-/* Remember box */
-.remember-box {
-  background: linear-gradient(135deg, var(--dawn), var(--dusk));
-  border-radius: 16px;
-  padding: 20px 24px;
-  margin-bottom: 32px;
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
+.voice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  max-width: 800px;
+  margin: 0 auto;
 }
-.rb-item { flex: 1; min-width: 160px; }
-.rb-label {
+.voice-card {
+  background: #fff8f8;
+  border: 1px solid #fecdd3;
+  border-radius: 14px;
+  padding: 18px 16px;
+  text-align: left;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s;
+}
+.voice-card:hover {
+  border-color: var(--rose);
+  background: #fff1f2;
+  transform: translateY(-2px);
+}
+.vc-name {
   font-family: var(--sans);
-  font-size: 8px;
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.4);
+  color: var(--text);
   margin-bottom: 4px;
 }
-.rb-value {
+.vc-line {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+.vc-action {
   font-family: var(--sans);
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--amber2);
-  line-height: 1.3;
-}
-
-/* Gate box (used for Coworker Conflict harassment routing) */
-.gate-box {
-  background: white;
-  border: 1.5px solid var(--cream2);
-  border-left: 4px solid var(--amber);
-  border-radius: 12px;
-  padding: 22px 26px;
-  margin-bottom: 32px;
-}
-.gate-title {
-  font-family: var(--serif);
-  font-size: 17px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 14px;
-  font-style: italic;
-}
-.gate-row {
-  margin-bottom: 12px;
-  font-size: 13px;
-  color: var(--text2);
-  line-height: 1.6;
-}
-.gate-row:last-child { margin-bottom: 0; }
-.gate-label {
-  font-family: var(--sans);
-  font-weight: 700;
-  color: var(--text);
-  margin-right: 4px;
-}
-.gate-arrow {
-  display: block;
-  margin-top: 4px;
-  font-style: italic;
-  color: var(--brown);
   font-size: 12px;
+  font-weight: 700;
+  color: var(--rose);
+  letter-spacing: 0.04em;
 }
 
-/* Harassment block (bottom of Coworker Conflict) */
-.harassment-box {
-  background: #fff7ed;
-  border: 1.5px solid #fed7aa;
-  border-radius: 12px;
-  padding: 24px 28px;
-  margin-top: 32px;
+/* TRUTH — founder Moment/Crossroad utterance */
+.truth {
+  padding: 90px 24px;
+  background: var(--cream2);
 }
-.hb-title {
+.truth-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+}
+.truth-mark {
+  font-family: var(--serif);
+  font-size: 120px;
+  color: rgba(139,111,71,0.15);
+  line-height: 0.8;
+  display: block;
+  margin-bottom: -30px;
+}
+.truth-quote {
+  font-family: var(--serif);
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.45;
+  font-style: italic;
+  letter-spacing: -0.01em;
+  margin-bottom: 22px;
+  position: relative;
+  z-index: 1;
+}
+.truth-quote strong { font-weight: 700; font-style: normal; color: var(--brown); }
+.truth-attr {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.truth-attr span { color: var(--brown); }
+
+/* HOW — three steps, restrained */
+.how {
+  padding: 80px 24px;
+  background: var(--cream);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.how-h {
+  font-family: var(--serif);
+  font-size: clamp(24px, 3.5vw, 32px);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 14px;
+}
+.how-h em { font-style: italic; color: var(--brown); }
+.how-sub {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 44px;
+  max-width: 540px;
+  font-weight: 400;
+}
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 8px;
+}
+.how-card {
+  background: white;
+  border-radius: 16px;
+  padding: 28px 24px;
+  border: 1px solid var(--cream2);
+}
+.how-num {
+  font-family: var(--serif);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--amber);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.how-title {
   font-family: var(--serif);
   font-size: 18px;
   font-weight: 700;
-  color: #92400e;
-  margin-bottom: 14px;
-  font-style: italic;
-}
-.hb-item {
-  font-size: 13px;
-  color: #5c3d2e;
-  margin-bottom: 10px;
-  padding-left: 16px;
-  position: relative;
-  line-height: 1.6;
-}
-.hb-item::before {
-  content: '•';
-  position: absolute;
-  left: 0;
-  color: var(--amber);
-  font-weight: 700;
-}
-.hb-item:last-child { margin-bottom: 0; }
-
-/* Path selector */
-.paths {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 32px;
-}
-.path-btn {
-  padding: 8px 18px;
-  border-radius: 100px;
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.15s;
-  border: 1.5px solid var(--cream2);
-  background: white;
-  color: var(--text2);
-}
-.path-btn:hover { border-color: var(--amber); color: var(--text); }
-.path-btn.active {
-  background: var(--dawn);
-  border-color: var(--dawn);
-  color: white;
-}
-
-/* Two column steps */
-.steps-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin-bottom: 32px;
-}
-
-.steps-col-label {
-  font-family: var(--sans);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  margin-bottom: 16px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid var(--cream2);
-}
-.steps-col-label.you { color: var(--blue); border-color: var(--blue); }
-.steps-col-label.say { color: var(--green); border-color: var(--green); }
-
-.step-item {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 20px;
-  align-items: flex-start;
-}
-.step-num {
-  width: 28px; height: 28px;
-  border-radius: 50%;
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.you .step-num { background: #dbeafe; color: var(--blue); }
-.say .step-num { background: #d8f3dc; color: var(--green); }
-
-.step-body { flex: 1; }
-.step-label {
-  font-family: var(--sans);
-  font-size: 13px;
-  font-weight: 600;
   color: var(--text);
-  margin-bottom: 4px;
+  margin-bottom: 8px;
   line-height: 1.3;
 }
-.step-detail {
-  font-size: 12px;
+.how-desc {
+  font-size: 13px;
   color: var(--muted);
   line-height: 1.6;
-}
-.step-script {
-  background: #f0f9f4;
-  border-left: 2px solid var(--green2);
-  padding: 8px 12px;
-  border-radius: 0 8px 8px 0;
-  font-family: var(--serif);
-  font-size: 12px;
-  color: var(--green);
-  font-style: italic;
-  margin-top: 6px;
-  line-height: 1.55;
-}
-.step-warning {
-  background: #fff7ed;
-  border-left: 2px solid var(--amber);
-  padding: 8px 12px;
-  border-radius: 0 8px 8px 0;
-  font-family: var(--sans);
-  font-size: 11px;
-  color: #92400e;
-  margin-top: 6px;
-  line-height: 1.5;
-}
-.step-stop {
-  background: #fff1f2;
-  border-left: 2px solid var(--rose);
-  padding: 8px 12px;
-  border-radius: 0 8px 8px 0;
-  font-family: var(--sans);
-  font-size: 11px;
-  color: var(--rose);
-  margin-top: 6px;
-  line-height: 1.5;
-  font-weight: 600;
-}
-
-/* Escalate box */
-.escalate-box {
-  background: #fff1f2;
-  border: 1.5px solid #fecdd3;
-  border-radius: 12px;
-  padding: 20px 24px;
-  margin-top: 32px;
-}
-.eb-title {
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--rose);
-  margin-bottom: 8px;
-}
-.eb-item {
-  font-size: 13px;
-  color: var(--text2);
-  margin-bottom: 6px;
-  padding-left: 12px;
-  position: relative;
-  line-height: 1.5;
-}
-.eb-item::before {
-  content: '→';
-  position: absolute;
-  left: 0;
-  color: var(--rose);
-  font-size: 11px;
-}
-
-/* Confidence section */
-.confidence-box {
-  background: linear-gradient(135deg, #f0f9f4, #d8f3dc);
-  border: 1.5px solid #b7e4c7;
-  border-radius: 16px;
-  padding: 28px 28px;
-  margin-top: 32px;
-}
-.cb-title {
-  font-family: var(--serif);
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--green);
-  margin-bottom: 8px;
-  font-style: italic;
-}
-.cb-text {
-  font-size: 14px;
-  color: var(--green);
-  line-height: 1.7;
   font-weight: 400;
 }
 
-/* Template box */
-.template-box {
-  background: white;
-  border: 1.5px solid var(--cream2);
-  border-radius: 12px;
-  padding: 20px 24px;
-  margin-top: 24px;
+/* CTA — quiet, declarative */
+.cta {
+  background: linear-gradient(135deg, var(--dawn) 0%, var(--dusk) 50%, #3d1a6e 100%);
+  padding: 90px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
-.tb-title {
-  font-family: var(--sans);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 12px;
+.cta::before {
+  content: '';
+  position: absolute;
+  bottom: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 350px;
+  background: radial-gradient(ellipse, rgba(245,158,63,0.22) 0%, transparent 70%);
+  pointer-events: none;
 }
-.tb-content {
+.cta-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 620px;
+  margin: 0 auto;
+}
+.cta-h {
   font-family: var(--serif);
-  font-size: 13px;
-  color: var(--text2);
-  line-height: 1.7;
-  font-style: italic;
-  white-space: pre-line;
-}
-.copy-btn {
-  margin-top: 12px;
-  padding: 8px 18px;
-  background: var(--dawn);
+  font-size: clamp(28px, 4.5vw, 44px);
+  font-weight: 700;
   color: white;
-  border: none;
-  border-radius: 100px;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 18px;
+}
+.cta-h em { font-style: italic; color: var(--amber); }
+.cta-sub {
+  font-size: 15px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.7;
+  margin-bottom: 40px;
+  font-weight: 400;
+}
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--amber);
+  color: var(--dawn);
   font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 600;
-  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 18px 40px;
+  border-radius: 100px;
+  text-decoration: none;
   transition: all 0.2s;
 }
-.copy-btn:hover { background: var(--dusk); }
-.copy-btn.copied { background: var(--green); }
+.cta-btn:hover {
+  background: var(--amber2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(245,158,63,0.4);
+}
+.cta-trust {
+  margin-top: 24px;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+/* FOOTER */
+footer {
+  background: var(--text);
+  padding: 36px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.f-brand {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+}
+.f-brand span { color: var(--amber); font-style: italic; }
+.f-links {
+  display: flex;
+  gap: 22px;
+  list-style: none;
+}
+.f-links a {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  transition: color 0.15s;
+}
+.f-links a:hover { color: var(--amber); }
+.f-copy {
+  width: 100%;
+  font-family: var(--sans);
+  font-size: 11px;
+  color: rgba(255,255,255,0.28);
+  margin-top: 4px;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
 @media (max-width: 768px) {
-  .app { grid-template-columns: 1fr; }
-  .sidebar { display: none; }
-  .home-screen, .sit-panel { padding: 24px 20px 60px; }
-  .steps-layout { grid-template-columns: 1fr; }
-  .remember-box { flex-direction: column; }
+  .hero { min-height: 70vh; padding: 60px 20px 50px; }
+  .situations { padding: 56px 20px 40px; }
+  .voice { padding: 50px 20px; }
+  .truth { padding: 64px 20px; }
+  .how { padding: 56px 20px; }
+  .cta { padding: 64px 20px; }
+  .sit-grid { grid-template-columns: 1fr; }
+  .voice-grid { grid-template-columns: repeat(2, 1fr); }
+  footer { flex-direction: column; align-items: flex-start; }
+  .f-links { flex-wrap: wrap; gap: 14px; }
 }
 </style>
- <!-- Privacy-friendly analytics by Plausible -->
-<script async src="https://plausible.io/js/pa-8n8qXa4Sf5IBHRl3mfrWw.js"></script>
-<script>
-  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
-  plausible.init()
-</script>
- 
 </head>
 <body>
 
-<!-- TOPBAR -->
-<div class="topbar">
-  <div class="tb-brand">First<span>Step</span></div>
-  <div class="tb-search">
-    <input type="text" placeholder="What is happening right now?" id="searchInput" oninput="filterSituations(this.value)">
-  </div>
-  <a href="index.html" class="tb-back">← Back to Home</a>
-</div>
+<!-- QUICK EXIT (privacy-protective per research pattern) -->
+<a href="https://www.google.com" class="quick-exit" onclick="window.open('https://www.google.com','_blank');window.location.replace('https://weather.com');return false;">Quick Exit ✕</a>
 
-<!-- APP -->
-<div class="app">
+<!-- HERO — THE THRESHOLD -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-brand">First<span>Step</span></div>
 
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-    <div class="sb-section">
-      <div class="sb-label">Customer Situations</div>
-      <button class="sb-item active" onclick="showHome()" id="sb-home">
-        <span class="sb-dot"></span> All Situations
-      </button>
-      <button class="sb-item" onclick="showSit('angry')" id="sb-angry">
-        <span class="sb-dot"></span> Angry Customer
-      </button>
-      <button class="sb-item" onclick="showSit('manager')" id="sb-manager">
-        <span class="sb-dot"></span> Wants a Manager
-      </button>
-      <button class="sb-item" onclick="showSit('refund')" id="sb-refund">
-        <span class="sb-dot"></span> Refund Request
-      </button>
-      <button class="sb-item" onclick="showSit('dontknow')" id="sb-dontknow">
-        <span class="sb-dot"></span> Don't Know the Answer
-      </button>
-      <button class="sb-item" onclick="showSit('mistake')" id="sb-mistake">
-        <span class="sb-dot"></span> You Made a Mistake
-      </button>
-      <button class="sb-item" onclick="showSit('rude')" id="sb-rude">
-        <span class="sb-dot"></span> Rude or Abusive Caller
-      </button>
-      <button class="sb-item" onclick="showSit('wait')" id="sb-wait">
-        <span class="sb-dot"></span> Long Hold or Wait
-      </button>
+    <h1 class="hero-acknowledge">You're in a moment.<br><em>Pick what you need.</em></h1>
+
+    <p class="hero-permission">You don't have to know what to call this. You don't have to be in crisis. You just have to be here.</p>
+
+    <div class="search-wrap">
+      <input type="text" class="search-input" id="searchInput" placeholder="What is happening right now?" onkeydown="if(event.key==='Enter'){goToGuide()}">
+      <button class="search-btn" onclick="goToGuide()" aria-label="Open guide">→</button>
     </div>
-    <div class="sb-divider"></div>
-    <div class="sb-section">
-      <div class="sb-label">Workplace Situations</div>
-      <button class="sb-item" onclick="showSit('coworker')" id="sb-coworker">
-        <span class="sb-dot"></span> Coworker Conflict
-      </button>
-      <button class="sb-item" onclick="showSit('help')" id="sb-help">
-        <span class="sb-dot"></span> Asking for Help
-      </button>
-      <button class="sb-item" onclick="showSit('review')" id="sb-review">
-        <span class="sb-dot"></span> Performance Review
-      </button>
-      <button class="sb-item" onclick="showSit('callout')" id="sb-callout">
-        <span class="sb-dot"></span> Calling Out Sick
-      </button>
-      <button class="sb-item" onclick="showSit('overwhelmed')" id="sb-overwhelmed">
-        <span class="sb-dot"></span> Feeling Overwhelmed
-      </button>
-    </div>
-    <div class="sb-divider"></div>
-    <div class="sb-section">
-      <div class="sb-label">Confidence & Mindset</div>
-      <button class="sb-item" onclick="showSit('nervous')" id="sb-nervous">
-        <span class="sb-dot"></span> First Day Nerves
-      </button>
-      <button class="sb-item" onclick="showSit('imposter')" id="sb-imposter">
-        <span class="sb-dot"></span> Feeling Like a Fraud
-      </button>
+
+    <div class="hero-secondary">
+      Free · No login · No app · <a href="guide.html">Or just open the guide →</a>
     </div>
   </div>
+</section>
 
-  <!-- MAIN -->
-  <div class="main" id="mainContent">
+<!-- SITUATIONS — action first, marketing later -->
+<section class="situations" id="situations">
+  <div class="sit-eyebrow">What are you dealing with?</div>
+  <h2 class="sit-h">Pick the one closest to <em>what's happening right now.</em></h2>
+  <p class="sit-sub">Every situation comes with step-by-step guidance and the exact words to say. Plain. Specific. No filler. We are starting with these 16. More are being written.</p>
 
-    <!-- HOME -->
-    <div class="home-screen" id="homeScreen">
-      <h1 class="home-greeting">What are you dealing with <em>right now?</em></h1>
-      <p class="home-sub">Pick a situation below. Every one comes with step-by-step guidance and the exact words to say. Plain and simple.</p>
+  <div class="sit-grid">
 
-      <div class="sit-grid" id="sitGrid">
+    <a href="guide.html#panel-doctorlisten" class="sit-card c-green">
+      <span class="sc-icon">🩺</span>
+      <span class="sc-tag">Healthcare · Self-advocacy</span>
+      <div class="sc-title">The Doctor Isn't Listening</div>
+      <div class="sc-desc">They cut you off, dismissed it, or moved on. Here is how to be heard.</div>
+    </a>
 
-        <button class="sit-card c-green" onclick="showSit('angry')">
-          <span class="sc-icon">😤</span>
-          <span class="sc-badge">Most common · Customer</span>
-          <div class="sc-title">Angry or Upset Customer</div>
-          <div class="sc-desc">Customer is frustrated, raising their voice, or demanding something you are not sure how to handle.</div>
-        </button>
+    <a href="guide.html#panel-medcost" class="sit-card c-green">
+      <span class="sc-icon">💊</span>
+      <span class="sc-tag">Healthcare · Affording care</span>
+      <div class="sc-title">Can't Afford the Medication</div>
+      <div class="sc-desc">The price at the pharmacy is more than you can pay. There are real paths to bring it down.</div>
+    </a>
 
-        <button class="sit-card c-blue" onclick="showSit('manager')">
-          <span class="sc-icon">👔</span>
-          <span class="sc-badge">Escalation · Customer</span>
-          <div class="sc-title">They Want a Manager</div>
-          <div class="sc-desc">Customer is demanding your supervisor. Learn exactly how to handle this calmly and professionally.</div>
-        </button>
+    <a href="guide.html#panel-debtcollector" class="sit-card c-amber">
+      <span class="sc-icon">📞</span>
+      <span class="sc-tag">Financial · Consumer rights</span>
+      <div class="sc-title">A Debt Collector Is Calling</div>
+      <div class="sc-desc">Federal law gives you specific rights. Most collectors count on you not knowing them.</div>
+    </a>
 
-        <button class="sit-card c-amber" onclick="showSit('refund')">
-          <span class="sc-icon">💸</span>
-          <span class="sc-badge">Common · Customer</span>
-          <div class="sc-title">Refund or Return Request</div>
-          <div class="sc-desc">Customer wants their money back or wants to return something. Here is what to ask and what to say.</div>
-        </button>
+    <a href="guide.html#panel-applybenefits" class="sit-card c-amber">
+      <span class="sc-icon">📋</span>
+      <span class="sc-tag">Financial · System navigation</span>
+      <div class="sc-title">Applying for SNAP, Medicaid, or Assistance</div>
+      <div class="sc-desc">Forms are long and questions feel like traps. Knowing how to move through carefully protects you.</div>
+    </a>
 
-        <button class="sit-card c-rose" onclick="showSit('dontknow')">
-          <span class="sc-icon">🤷</span>
-          <span class="sc-badge">Common · Customer</span>
-          <div class="sc-title">You Don't Know the Answer</div>
-          <div class="sc-desc">Customer asks something you have no idea about. Handle it professionally without guessing or panicking.</div>
-        </button>
+    <a href="guide.html#panel-ssacall" class="sit-card c-blue">
+      <span class="sc-icon">🏛️</span>
+      <span class="sc-tag">Government · Social Security</span>
+      <div class="sc-title">First Call to SSA, SSI, or SSDI</div>
+      <div class="sc-desc">Long phone tree. Hours of hold time. Going in prepared changes everything.</div>
+    </a>
 
-        <button class="sit-card c-brown" onclick="showSit('mistake')">
-          <span class="sc-icon">😬</span>
-          <span class="sc-badge">Happens to everyone · Customer</span>
-          <div class="sc-title">You Made a Mistake</div>
-          <div class="sc-desc">Something went wrong and it was your fault. Own it, fix it, and move forward with confidence.</div>
-        </button>
+    <a href="guide.html#panel-idoffice" class="sit-card c-blue">
+      <span class="sc-icon">🪪</span>
+      <span class="sc-tag">Government · Identification</span>
+      <div class="sc-title">DMV / ID When Documents Are a Mess</div>
+      <div class="sc-desc">The loop where you need ID to get ID. Here is how to break it open.</div>
+    </a>
 
-        <button class="sit-card c-rose" onclick="showSit('rude')">
-          <span class="sc-icon">🚫</span>
-          <span class="sc-badge">Hard situation · Customer</span>
-          <div class="sc-title">Rude or Abusive Caller</div>
-          <div class="sc-desc">Customer is being verbally abusive or crossing a line. You have rights. Here is what to do.</div>
-        </button>
+    <a href="guide.html#panel-kidhardtalk" class="sit-card c-dusk">
+      <span class="sc-icon">👨‍👧</span>
+      <span class="sc-tag">Family · Parenting</span>
+      <div class="sc-title">Talking to Your Kid About Something Hard</div>
+      <div class="sc-desc">A divorce. A diagnosis. A death. You won't do it perfectly. Here is how to do it lovingly.</div>
+    </a>
 
-        <button class="sit-card c-teal" onclick="showSit('wait')">
-          <span class="sc-icon">⏳</span>
-          <span class="sc-badge">Common · Customer</span>
-          <div class="sc-title">Long Hold or Wait Time</div>
-          <div class="sc-desc">Customer has been waiting a long time and is frustrated about it. How to acknowledge and recover.</div>
-        </button>
+    <a href="guide.html#panel-tellparent" class="sit-card c-dusk">
+      <span class="sc-icon">👨‍👩‍👦</span>
+      <span class="sc-tag">Family · Telling your parent</span>
+      <div class="sc-title">Telling a Parent Something Hard</div>
+      <div class="sc-desc">You are an adult. You decide what to share. Here is how to say it without it costing more.</div>
+    </a>
 
-        <button class="sit-card c-dusk" onclick="showSit('coworker')">
-          <span class="sc-icon">🤝</span>
-          <span class="sc-badge">Workplace</span>
-          <div class="sc-title">Coworker Conflict</div>
-          <div class="sc-desc">Tension with a teammate. What to say, what to do, and when to involve a supervisor.</div>
-        </button>
+    <a href="guide.html#panel-boundary" class="sit-card c-coral">
+      <span class="sc-icon">🤝</span>
+      <span class="sc-tag">Relationships · Boundaries</span>
+      <div class="sc-title">Setting a Boundary with Someone Who Won't Accept It</div>
+      <div class="sc-desc">Parent, friend, partner, coworker — the skill is the same. Holding the limit without exploding it.</div>
+    </a>
 
-        <button class="sit-card c-green" onclick="showSit('help')">
-          <span class="sc-icon">🙋</span>
-          <span class="sc-badge">Workplace</span>
-          <div class="sc-title">Asking for Help</div>
-          <div class="sc-desc">You need help and are not sure how to ask without looking like you do not know what you are doing.</div>
-        </button>
+    <a href="guide.html#panel-askhelp" class="sit-card c-coral">
+      <span class="sc-icon">💬</span>
+      <span class="sc-tag">Relationships · Asking and answering</span>
+      <div class="sc-title">Someone You Love Asks for Help You Can't Give</div>
+      <div class="sc-desc">A real ask, real love, and a real no. Saying it without losing the relationship.</div>
+    </a>
 
-        <button class="sit-card c-blue" onclick="showSit('review')">
-          <span class="sc-icon">📋</span>
-          <span class="sc-badge">Workplace</span>
-          <div class="sc-title">Performance Review</div>
-          <div class="sc-desc">Your review is coming up. How to prepare, what to say, and how to handle tough feedback.</div>
-        </button>
+    <a href="guide.html#panel-firedlaidoff" class="sit-card c-brown">
+      <span class="sc-icon">💼</span>
+      <span class="sc-tag">Workplace · Job loss</span>
+      <div class="sc-title">You Just Got Fired or Laid Off</div>
+      <div class="sc-desc">Don't make a decision you can't take back. The work can wait one day.</div>
+    </a>
 
-        <button class="sit-card c-amber" onclick="showSit('callout')">
-          <span class="sc-icon">🤒</span>
-          <span class="sc-badge">Workplace</span>
-          <div class="sc-title">Calling Out Sick</div>
-          <div class="sc-desc">You are not well and need to call out. The right way to do it so it does not hurt you.</div>
-        </button>
+    <a href="guide.html#panel-interviewgap" class="sit-card c-brown">
+      <span class="sc-icon">🎤</span>
+      <span class="sc-tag">Workplace · Returning to work</span>
+      <div class="sc-title">Job Interview After a Long Gap</div>
+      <div class="sc-desc">They will ask about the gap. Here is how to handle it without shame or overexplaining.</div>
+    </a>
 
-        <button class="sit-card c-purple" onclick="showSit('overwhelmed')">
-          <span class="sc-icon">😮‍💨</span>
-          <span class="sc-badge">Mindset</span>
-          <div class="sc-title">Feeling Overwhelmed</div>
-          <div class="sc-desc">Everything feels like too much right now. Here is how to reset and get through the rest of your shift.</div>
-        </button>
+    <a href="guide.html#panel-telehealth" class="sit-card c-teal">
+      <span class="sc-icon">📡</span>
+      <span class="sc-tag">Technology · Healthcare access</span>
+      <div class="sc-title">Telehealth When Your Setup Isn't Reliable</div>
+      <div class="sc-desc">Internet drops. The link might not load. Knowing the backup plan protects your care.</div>
+    </a>
 
-        <button class="sit-card c-amber" onclick="showSit('nervous')">
-          <span class="sc-icon">🌅</span>
-          <span class="sc-badge">Mindset · Day one</span>
-          <div class="sc-title">First Day Nerves</div>
-          <div class="sc-desc">You are nervous about starting. Everyone is. Here is how to walk in ready and leave proud.</div>
-        </button>
+    <a href="guide.html#panel-bgcheck" class="sit-card c-teal">
+      <span class="sc-icon">📄</span>
+      <span class="sc-tag">Technology · Background reports</span>
+      <div class="sc-title">Background Check Returned Wrong Information</div>
+      <div class="sc-desc">Federal law gives you specific rights to dispute. Most errors are fixable.</div>
+    </a>
 
-        <button class="sit-card c-dusk" onclick="showSit('imposter')">
-          <span class="sc-icon">💪</span>
-          <span class="sc-badge">Mindset</span>
-          <div class="sc-title">Feeling Like a Fraud</div>
-          <div class="sc-desc">That voice saying you do not belong here. You do. Here is how to quiet it and keep going.</div>
-        </button>
+    <a href="guide.html#panel-eviction" class="sit-card c-rose">
+      <span class="sc-icon">🏠</span>
+      <span class="sc-tag">Crisis · Housing</span>
+      <div class="sc-title">An Eviction Notice Just Arrived</div>
+      <div class="sc-desc">A notice is not the same as being evicted. There is process, time, and protections.</div>
+    </a>
 
-      </div>
+    <a href="guide.html#panel-exhaustion" class="sit-card c-purple">
+      <span class="sc-icon">🌙</span>
+      <span class="sc-tag">Inside · Depletion</span>
+      <div class="sc-title">Exhaustion That Feels Like Wanting to Quit Everything</div>
+      <div class="sc-desc">This is not a normal tired. You don't have to fix it today. You only have to not be alone with it.</div>
+    </a>
+
+  </div>
+
+  <div class="sit-more">
+    <a href="guide.html" class="sit-more-link">See all situations in the guide →</a>
+  </div>
+</section>
+
+<!-- VOICE NOT SCRIPT — crisis lines as peers -->
+<section class="voice">
+  <div class="voice-inner">
+    <div class="voice-eyebrow">When you need a voice, not a script</div>
+    <h2 class="voice-h">Some moments need <em>a person on the other end.</em></h2>
+    <p class="voice-sub">FirstStep gives you the steps and the words. Sometimes that's not what you need. When you need to talk to a real person — these helplines are free, confidential, and answer 24/7. You do not have to be in crisis to call.</p>
+
+    <div class="voice-grid">
+      <a href="tel:988" class="voice-card">
+        <div class="vc-name">988</div>
+        <div class="vc-line">Suicide & Crisis Lifeline. Mental health, emotional distress, substance use.</div>
+        <div class="vc-action">Call or text 988</div>
+      </a>
+      <a href="sms:741741" class="voice-card">
+        <div class="vc-name">Crisis Text Line</div>
+        <div class="vc-line">Any moment of distress. Text-based, anonymous.</div>
+        <div class="vc-action">Text HOME to 741741</div>
+      </a>
+      <a href="tel:18007997233" class="voice-card">
+        <div class="vc-name">Domestic Violence Hotline</div>
+        <div class="vc-line">Abuse, control, unsafe partner or family member.</div>
+        <div class="vc-action">Call 1-800-799-7233</div>
+      </a>
+      <a href="tel:18006564673" class="voice-card">
+        <div class="vc-name">RAINN</div>
+        <div class="vc-line">Sexual assault survivor support. Free, confidential.</div>
+        <div class="vc-action">Call 1-800-656-4673</div>
+      </a>
     </div>
+  </div>
+</section>
 
-    <!-- SITUATION PANELS -->
+<!-- TRUTH — founder Moment/Crossroad utterance -->
+<section class="truth">
+  <div class="truth-inner">
+    <span class="truth-mark">"</span>
+    <div class="truth-quote">This is the moment. You're <strong>in</strong> the moment. You can't miss the moment because you can never relive that moment. And that moment is like a crossroad. <strong>If you in it, you cross the road.</strong> If not, you may get stuck at the crossroad.</div>
+    <div class="truth-attr">Jamal Rudolph &nbsp;·&nbsp; <span>Founder, FirstStep</span></div>
+  </div>
+</section>
 
-    <!-- ANGRY CUSTOMER -->
-    <div class="sit-panel" id="panel-angry">
-      <button class="panel-back" onclick="showHome()">← All Situations</button>
-      <div class="panel-header">
-        <span class="panel-tag">Customer Situation · Most Common</span>
-        <h2 class="panel-title">Angry or <em>Upset Customer</em></h2>
-        <p class="panel-intro">That person is not just angry at you. They feel like nobody has listened to them. You are the first person with a real chance to change that. How you respond in the next ten seconds will determine everything about how this call goes.</p>
-      </div>
-      <div class="remember-box">
-        <div class="rb-item"><div class="rb-label">First thing</div><div class="rb-value">Let them finish. Do not say a word until they stop completely.</div></div>
-        <div class="rb-item"><div class="rb-label">Never say</div><div class="rb-value">"Calm down" or "That's not my fault" — both make it worse.</div></div>
-        <div class="rb-item"><div class="rb-label">Remember</div><div class="rb-value">They are angry at the situation. You are the path out of it.</div></div>
-      </div>
-      <div class="steps-layout">
-        <div class="you">
-          <div class="steps-col-label you">What YOU do</div>
-          <div class="step-item">
-            <div class="step-num you">1</div>
-            <div class="step-body">
-              <div class="step-label">Let them talk without interrupting</div>
-              <div class="step-detail">Even if they are wrong. Even if you want to explain. Wait until they fully stop talking before you say anything.</div>
-              <div class="step-warning">⚡ Interrupting makes angry customers angrier. Every time.</div>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num you">2</div>
-            <div class="step-body">
-              <div class="step-label">Take a slow breath</div>
-              <div class="step-detail">Literally. A quiet breath. It slows your heart rate and keeps your voice steady. Nobody on the phone can hear you doing it.</div>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num you">3</div>
-            <div class="step-body">
-              <div class="step-label">Find out exactly what they need</div>
-              <div class="step-detail">Ask one clear question. Do not guess. Do not assume. Ask them directly what would make this right.</div>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num you">4</div>
-            <div class="step-body">
-              <div class="step-label">Do what you can — escalate what you cannot</div>
-              <div class="step-detail">If you can fix it, fix it. If you cannot, tell them who can and transfer them warmly — do not just dump the call.</div>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num you">5</div>
-            <div class="step-body">
-              <div class="step-label">Document the call</div>
-              <div class="step-detail">Write down what happened, what they wanted, and what you did. Every time. Even if it was just venting.</div>
-            </div>
-          </div>
-        </div>
-        <div class="say">
-          <div class="steps-col-label say">What to SAY</div>
-          <div class="step-item">
-            <div class="step-num say">1</div>
-            <div class="step-body">
-              <div class="step-label">Acknowledge what they feel</div>
-              <div class="step-script">"I hear you. That should not have happened and I understand why you are frustrated."</div>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num say">2</div>
-            <div class="step-body">
-              <div class="step-label">Tell them you are here to help</div>
-              <div class="step-script">"Let me see what I can do for you right now."</div>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num say">3</div>
-            <div class="step-body">
-              <div class="step-label">Ask what they need</div>
-              <div class="step-script">"What would make this right for you today?"</div>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num say">4</div>
-            <div class="step-body">
-              <div class="step-label">If you need to put them on hold</div>
-              <div class="step-script">"May I place you on a brief hold — no longer than two minutes — so I can look into this properly?"</div>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num say">5</div>
-            <div class="step-body">
-              <div class="step-label">When you close the call</div>
-              <div class="step-script">"I appreciate your patience today. Is there anything else I can help you with?"</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="escalate-box">
-        <div class="eb-title">When to escalate to your supervisor</div>
-        <div class="eb-item">Customer is being verbally abusive or using threatening language</div>
-        <div class="eb-item">You have tried everything and they are still demanding a supervisor</div>
-        <div class="eb-item">The resolution they need is beyond your authority to provide</div>
-        <div class="eb-item">You feel unsafe or uncomfortable continuing the call</div>
-      </div>
-      <div class="confidence-box">
-        <div class="cb-title">Staying calm is a skill. You just used it.</div>
-        <div class="cb-text">An angry call is hard. The fact that you followed through instead of reacting means you are doing this right. Not every call ends perfectly — but every call you handle with steadiness is a step forward.</div>
-      </div>
+<!-- HOW — three steps -->
+<section class="how">
+  <div class="sit-eyebrow">Simple by design</div>
+  <h2 class="how-h">Three steps. <em>That is it.</em></h2>
+  <p class="how-sub">No training. No login. No app to download. If you can read it, you can use it.</p>
+
+  <div class="how-grid">
+    <div class="how-card">
+      <div class="how-num">01</div>
+      <div class="how-title">Pick your moment</div>
+      <div class="how-desc">Type what is happening or pick from the situations. We meet you where you are.</div>
     </div>
-
-    <!-- MANAGER -->
-    <div class="sit-panel" id="panel-manager">
-      <button class="panel-back" onclick="showHome()">← All Situations</button>
-      <div class="panel-header">
-        <span class="panel-tag">Customer Situation · Escalation</span>
-        <h2 class="panel-title">They Want <em>a Manager</em></h2>
-        <p class="panel-intro">When someone asks for a manager, they are not attacking you. They have hit a wall and believe someone with more authority can move it. Your job is not to be that wall. It is to open the door — calmly and completely.</p>
-      </div>
-      <div class="remember-box">
-        <div class="rb-item"><div class="rb-label">Try first</div><div class="rb-value">Make one genuine attempt to solve it before escalating.</div></div>
-        <div class="rb-item"><div class="rb-label">Never say</div><div class="rb-value">"My manager will tell you the same thing."</div></div>
-        <div class="rb-item"><div class="rb-label">Always</div><div class="rb-value">Brief your supervisor fully before transferring.</div></div>
-      </div>
-      <div class="steps-layout">
-        <div class="you">
-          <div class="steps-col-label you">What YOU do</div>
-          <div class="step-item"><div class="step-num you">1</div><div class="step-body"><div class="step-label">Try to resolve it first</div><div class="step-detail">Before escalating, make one genuine attempt to solve the problem yourself. Ask what they need and see if it is within your authority.</div></div></div>
-          <div class="step-item"><div class="step-num you">2</div><div class="step-body"><div class="step-label">If they still want a manager, agree</div><div class="step-detail">Do not argue. Do not try to talk them out of it. Simply acknowledge and move forward.</div></div></div>
-          <div class="step-item"><div class="step-num you">3</div><div class="step-body"><div class="step-label">Brief your supervisor before transfer</div><div class="step-detail">Tell your supervisor the customer name, the issue, and what you already tried. Never cold transfer without briefing first.</div></div></div>
-          <div class="step-item"><div class="step-num you">4</div><div class="step-body"><div class="step-label">Document the full interaction</div><div class="step-detail">Notes on what the customer said, what you tried, and that they requested escalation.</div></div></div>
-        </div>
-        <div class="say">
-          <div class="steps-col-label say">What to SAY</div>
-          <div class="step-item"><div class="step-num say">1</div><div class="step-body"><div class="step-label">Offer to try first</div><div class="step-script">"Let me see if I can help you directly first — what do you need so I can see what is possible?"</div></div></div>
-          <div class="step-item"><div class="step-num say">2</div><div class="step-body"><div class="step-label">If they insist on a manager</div><div class="step-script">"Absolutely. Let me get my supervisor for you right now. May I place you on a brief hold while I connect them?"</div></div></div>
-          <div class="step-item"><div class="step-num say">3</div><div class="step-body"><div class="step-label">Briefing your supervisor</div><div class="step-script">"I have [Customer Name] on the line. They called about [issue], I tried [what you did], and they are requesting to speak with you directly."</div></div></div>
-          <div class="step-item"><div class="step-num say">4</div><div class="step-body"><div class="step-label">Coming back after hold</div><div class="step-script">"Thank you for your patience. My supervisor is ready for you now — they have everything they need to help you."</div></div></div>
-        </div>
-      </div>
-      <div class="confidence-box">
-        <div class="cb-title">This is not about you.</div>
-        <div class="cb-text">When a customer asks for a manager it almost never means you did something wrong. It usually means they are frustrated and believe escalating will get faster results. You handled your part. Hand it off cleanly and document what you did.</div>
-      </div>
+    <div class="how-card">
+      <div class="how-num">02</div>
+      <div class="how-title">Follow the steps</div>
+      <div class="how-desc">Every situation has clear numbered steps — what you do, and the exact words to say. In plain language.</div>
     </div>
-
-    <!-- DONT KNOW -->
-    <div class="sit-panel" id="panel-dontknow">
-      <button class="panel-back" onclick="showHome()">← All Situations</button>
-      <div class="panel-header">
-        <span class="panel-tag">Customer Situation · Common</span>
-        <h2 class="panel-title">You Don't Know <em>the Answer</em></h2>
-        <p class="panel-intro">Not knowing the answer is not the problem. What people do next is the problem — they guess, they panic, they bluff. All three are worse than saying you don't know and owning what happens next. Honesty handled well builds more trust than a fast wrong answer.</p>
-      </div>
-      <div class="remember-box">
-        <div class="rb-item"><div class="rb-label">Never do</div><div class="rb-value">Guess. Making up an answer is worse than saying you don't know.</div></div>
-        <div class="rb-item"><div class="rb-label">Always do</div><div class="rb-value">Give them a path forward, not just "I don't know."</div></div>
-        <div class="rb-item"><div class="rb-label">Remember</div><div class="rb-value">Honesty builds more trust than a wrong answer.</div></div>
-      </div>
-      <div class="steps-layout">
-        <div class="you">
-          <div class="steps-col-label you">What YOU do</div>
-          <div class="step-item"><div class="step-num you">1</div><div class="step-body"><div class="step-label">Do not panic or guess</div><div class="step-detail">Take a breath. It is okay not to know. What is not okay is making something up.</div><div class="step-stop">🛑 Never guess on something that could affect the customer's money, account, or benefits.</div></div></div>
-          <div class="step-item"><div class="step-num you">2</div><div class="step-body"><div class="step-label">Check your resources first</div><div class="step-detail">Before putting them on hold, quickly scan your guide, your knowledge base, or your screen for the answer. Ten seconds of looking beats two minutes of hold time.</div></div></div>
-          <div class="step-item"><div class="step-num you">3</div><div class="step-body"><div class="step-label">Put them on hold and find out</div><div class="step-detail">If you cannot find it quickly, put them on hold, ask a coworker or supervisor, and come back with the right answer.</div></div></div>
-          <div class="step-item"><div class="step-num you">4</div><div class="step-body"><div class="step-label">Document the question</div><div class="step-detail">Write it down. You will get asked this again. The next time you will know the answer.</div></div></div>
-        </div>
-        <div class="say">
-          <div class="steps-col-label say">What to SAY</div>
-          <div class="step-item"><div class="step-num say">1</div><div class="step-body"><div class="step-label">Be honest immediately</div><div class="step-script">"That is a great question and I want to make sure I give you the right answer — not just a quick one."</div></div></div>
-          <div class="step-item"><div class="step-num say">2</div><div class="step-body"><div class="step-label">Ask for a moment to look it up</div><div class="step-script">"May I place you on a brief hold so I can get you accurate information? I want to make sure I get this right for you."</div></div></div>
-          <div class="step-item"><div class="step-num say">3</div><div class="step-body"><div class="step-label">Coming back from hold</div><div class="step-script">"Thank you for your patience. I looked into this and here is what I found..."</div></div></div>
-          <div class="step-item"><div class="step-num say">4</div><div class="step-body"><div class="step-label">If you still cannot find the answer</div><div class="step-script">"I want to make sure you get the right information on this. Let me connect you with someone who specializes in this area so they can give you a definitive answer."</div></div></div>
-        </div>
-      </div>
-      <div class="confidence-box">
-        <div class="cb-title">Not knowing is okay. Pretending to know is not.</div>
-        <div class="cb-text">The customers who remember you best are the ones who felt like you were honest with them. "I am going to find out the right answer for you" is one of the most powerful things you can say on a call.</div>
-      </div>
+    <div class="how-card">
+      <div class="how-num">03</div>
+      <div class="how-title">Handle it. Move forward.</div>
+      <div class="how-desc">You know what to do. You know what to say. The moment passes — and you got through it.</div>
     </div>
+  </div>
+</section>
 
-    <!-- MISTAKE -->
-    <div class="sit-panel" id="panel-mistake">
-      <button class="panel-back" onclick="showHome()">← All Situations</button>
-      <div class="panel-header">
-        <span class="panel-tag">Customer Situation · Happens to Everyone</span>
-        <h2 class="panel-title">You Made <em>a Mistake</em></h2>
-        <p class="panel-intro">Everyone makes mistakes. What separates good workers from great ones is how they handle it. Own it fast. Fix it faster. Move forward.</p>
-      </div>
-      <div class="remember-box">
-        <div class="rb-item"><div class="rb-label">First thing</div><div class="rb-value">Acknowledge it. Do not deflect or make excuses.</div></div>
-        <div class="rb-item"><div class="rb-label">Never say</div><div class="rb-value">"The system did it" or "That is not normally how we do it"</div></div>
-        <div class="rb-item"><div class="rb-label">Always</div><div class="rb-value">Tell your supervisor. Do not try to hide it.</div></div>
-      </div>
-      <div class="steps-layout">
-        <div class="you">
-          <div class="steps-col-label you">What YOU do</div>
-          <div class="step-item"><div class="step-num you">1</div><div class="step-body"><div class="step-label">Acknowledge the mistake clearly</div><div class="step-detail">Do not minimize it, do not explain it away, do not blame the system. Own it directly.</div></div></div>
-          <div class="step-item"><div class="step-num you">2</div><div class="step-body"><div class="step-label">Focus immediately on the fix</div><div class="step-detail">Spend one sentence on the apology and the rest on what you are going to do to make it right.</div></div></div>
-          <div class="step-item"><div class="step-num you">3</div><div class="step-body"><div class="step-label">Tell your supervisor</div><div class="step-detail">Before the customer complains. Before anyone finds out another way. This is always the right move and supervisors always respect it.</div></div></div>
-          <div class="step-item"><div class="step-num you">4</div><div class="step-body"><div class="step-label">Document everything</div><div class="step-detail">What happened, how it happened, and what you did to fix it. This is your protection.</div></div></div>
-        </div>
-        <div class="say">
-          <div class="steps-col-label say">What to SAY</div>
-          <div class="step-item"><div class="step-num say">1</div><div class="step-body"><div class="step-label">Own it directly</div><div class="step-script">"I made an error and I sincerely apologize for that. Let me fix this for you right now."</div></div></div>
-          <div class="step-item"><div class="step-num say">2</div><div class="step-body"><div class="step-label">Tell them what you are going to do</div><div class="step-script">"Here is what I am going to do to make this right..."</div></div></div>
-          <div class="step-item"><div class="step-num say">3</div><div class="step-body"><div class="step-label">To your supervisor</div><div class="step-script">"I want to let you know I made an error on a call. Here is what happened and here is what I did to fix it. I wanted you to hear it from me first."</div></div></div>
-        </div>
-      </div>
-      <div class="confidence-box">
-        <div class="cb-title">Owning it is a strength, not a weakness.</div>
-        <div class="cb-text">The workers who get in serious trouble are not the ones who make mistakes. They are the ones who try to hide them. When you own your mistakes early and fix them fast, you build a reputation for integrity. That reputation is worth more than a perfect record.</div>
-      </div>
-    </div>
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-inner">
+    <h2 class="cta-h">When the moment comes,<br><em>you'll know where to go.</em></h2>
+    <p class="cta-sub">Open it now. Bookmark it on your phone. Share it with someone who needs it. It is yours — free, no signup, always here.</p>
+    <a href="guide.html" class="cta-btn">Open FirstStep →</a>
+    <div class="cta-trust">Free · No login · No app · Works on any device</div>
+  </div>
+</section>
 
-    <!-- NERVOUS -->
-    <div class="sit-panel" id="panel-nervous">
-      <button class="panel-back" onclick="showHome()">← All Situations</button>
-      <div class="panel-header">
-        <span class="panel-tag">Mindset · Day One</span>
-        <h2 class="panel-title">First Day <em>Nerves</em></h2>
-        <p class="panel-intro">You are nervous. Of course you are. Starting something new is one of the hardest things a person does. What you are feeling right now is not weakness — it is proof that this matters to you.</p>
-      </div>
-      <div class="remember-box">
-        <div class="rb-item"><div class="rb-label">Truth</div><div class="rb-value">Everyone around you was nervous on their first day too.</div></div>
-        <div class="rb-item"><div class="rb-label">Truth</div><div class="rb-value">Nobody expects you to know everything yet.</div></div>
-        <div class="rb-item"><div class="rb-label">Truth</div><div class="rb-value">Showing up ready to learn is all that is required today.</div></div>
-      </div>
-      <div class="steps-layout">
-        <div class="you">
-          <div class="steps-col-label you">Before your shift</div>
-          <div class="step-item"><div class="step-num you">1</div><div class="step-body"><div class="step-label">Prepare the night before</div><div class="step-detail">Lay out your clothes. Know your start time. Know how you are getting there. Remove every logistical worry you can.</div></div></div>
-          <div class="step-item"><div class="step-num you">2</div><div class="step-body"><div class="step-label">Eat something before you go</div><div class="step-detail">Your brain needs fuel. Nerves burn energy. Do not skip a meal on your first day.</div></div></div>
-          <div class="step-item"><div class="step-num you">3</div><div class="step-body"><div class="step-label">Open FirstStep before your first call</div><div class="step-detail">Familiarize yourself with where things are. Know that if something unexpected happens you have a guide right here.</div></div></div>
-          <div class="step-item"><div class="step-num you">4</div><div class="step-body"><div class="step-label">Give yourself permission to be new</div><div class="step-detail">You are supposed to be learning. Questions are not a sign of weakness. They are a sign of engagement.</div></div></div>
-        </div>
-        <div class="say">
-          <div class="steps-col-label say">Talk to yourself like this</div>
-          <div class="step-item"><div class="step-num say">1</div><div class="step-body"><div class="step-label">Before you start</div><div class="step-script">"I am prepared. I have what I need. I do not have to know everything — I just have to show up and try."</div></div></div>
-          <div class="step-item"><div class="step-num say">2</div><div class="step-body"><div class="step-label">When you feel overwhelmed</div><div class="step-script">"One situation at a time. Right now I just need to handle this one thing."</div></div></div>
-          <div class="step-item"><div class="step-num say">3</div><div class="step-body"><div class="step-label">At the end of the day</div><div class="step-script">"I showed up. I tried. I learned something. That is exactly what today was supposed to be."</div></div></div>
-        </div>
-      </div>
-      <div class="confidence-box">
-        <div class="cb-title">You already took the hardest step.</div>
-        <div class="cb-text">Getting the job was the hard part. Showing up is the second hardest. Everything after that gets easier with every single shift. The person you will be in 90 days will look back at today and be proud of you for starting.</div>
-      </div>
-    </div>
-
-    <!-- IMPOSTER -->
-    <div class="sit-panel" id="panel-imposter">
-      <button class="panel-back" onclick="showHome()">← All Situations</button>
-      <div class="panel-header">
-        <span class="panel-tag">Mindset · Self Doubt</span>
-        <h2 class="panel-title">Feeling Like <em>a Fraud</em></h2>
-        <p class="panel-intro">That voice in your head saying you do not belong here, that someone is going to find out you have no idea what you are doing, that everyone else has it figured out — that voice is lying to you. Here is the truth.</p>
-      </div>
-      <div class="remember-box">
-        <div class="rb-item"><div class="rb-label">Fact</div><div class="rb-value">70% of people experience imposter syndrome. Including your supervisor.</div></div>
-        <div class="rb-item"><div class="rb-label">Fact</div><div class="rb-value">You were hired because someone believed you could do this.</div></div>
-        <div class="rb-item"><div class="rb-label">Fact</div><div class="rb-value">Feeling uncertain does not mean you are incapable.</div></div>
-      </div>
-      <div class="steps-layout">
-        <div class="you">
-          <div class="steps-col-label you">What to do with the feeling</div>
-          <div class="step-item"><div class="step-num you">1</div><div class="step-body"><div class="step-label">Name it</div><div class="step-detail">Say it out loud or write it down. "I am feeling like I do not belong here today." Naming it takes away some of its power.</div></div></div>
-          <div class="step-item"><div class="step-num you">2</div><div class="step-body"><div class="step-label">Look at the evidence</div><div class="step-detail">What have you actually done right this week? One thing. Name it. The fraud feeling ignores evidence. You have to find it yourself.</div></div></div>
-          <div class="step-item"><div class="step-num you">3</div><div class="step-body"><div class="step-label">Do the next small thing</div><div class="step-detail">Do not try to prove yourself in one big moment. Just do the next thing in front of you correctly. Then the next. That is how confidence is built.</div></div></div>
-          <div class="step-item"><div class="step-num you">4</div><div class="step-body"><div class="step-label">Talk to someone you trust</div><div class="step-detail">A mentor, a coworker, a friend. Not to get fixed — just to be heard. Imposter syndrome thrives in silence.</div></div></div>
-        </div>
-        <div class="say">
-          <div class="steps-col-label say">Tell yourself the truth</div>
-          <div class="step-item"><div class="step-num say">1</div><div class="step-body"><div class="step-label">When the voice gets loud</div><div class="step-script">"I am new at this. New is not the same as incapable. Everyone who is good at their job was once exactly where I am."</div></div></div>
-          <div class="step-item"><div class="step-num say">2</div><div class="step-body"><div class="step-label">When you feel behind</div><div class="step-script">"I am learning. Learning takes time. The fact that I notice the gap means I am paying attention."</div></div></div>
-          <div class="step-item"><div class="step-num say">3</div><div class="step-body"><div class="step-label">At the end of a hard day</div><div class="step-script">"I stayed. I tried. I did not quit. That counts for everything."</div></div></div>
-        </div>
-      </div>
-      <div class="confidence-box">
-        <div class="cb-title">You belong here.</div>
-        <div class="cb-text">The people who worry most about whether they are good enough are almost always the ones who care the most about doing a good job. That caring is the thing that makes someone actually good at their work. You are not a fraud. You are someone who takes this seriously. That is exactly who should be here.</div>
-      </div>
-    </div>
-
-    <!-- RUDE -->
-    <div class="sit-panel" id="panel-rude">
-      <button class="panel-back" onclick="showHome()">← All Situations</button>
-      <div class="panel-header">
-        <span class="panel-tag">Customer Situation · Hard</span>
-        <h2 class="panel-title">Rude or <em>Abusive Caller</em></h2>
-        <p class="panel-intro">There is a difference between an upset customer and an abusive one. You are required to help frustrated customers. You are not required to accept verbal abuse. Here is the line and how to handle both sides of it.</p>
-      </div>
-      <div class="remember-box">
-        <div class="rb-item"><div class="rb-label">You have rights</div><div class="rb-value">No job requires you to accept personal insults or threats.</div></div>
-        <div class="rb-item"><div class="rb-label">The line</div><div class="rb-value">Frustrated = help them. Abusive = give one warning then escalate.</div></div>
-        <div class="rb-item"><div class="rb-label">Always</div><div class="rb-value">Stay calm. Your calm is your power.</div></div>
-      </div>
-      <div class="steps-layout">
-        <div class="you">
-          <div class="steps-col-label you">What YOU do</div>
-          <div class="step-item"><div class="step-num you">1</div><div class="step-body"><div class="step-label">Give one clear warning</div><div class="step-detail">If they are using slurs, threats, or personal insults — give one calm warning. If they continue, follow your company protocol.</div></div></div>
-          <div class="step-item"><div class="step-num you">2</div><div class="step-body"><div class="step-label">Do not match their energy</div><div class="step-detail">The moment you raise your voice or get defensive, you lose. Stay completely flat and professional. It is harder for them to stay hostile when you will not engage.</div></div></div>
-          <div class="step-item"><div class="step-num you">3</div><div class="step-body"><div class="step-label">Notify your supervisor immediately</div><div class="step-detail">Whether you ended the call or transferred it, tell your supervisor what happened right away. Document every detail.</div></div></div>
-        </div>
-        <div class="say">
-          <div class="steps-col-label say">What to SAY</div>
-          <div class="step-item"><div class="step-num say">1</div><div class="step-body"><div class="step-label">The one warning — calm and clear</div><div class="step-script">"I understand you are frustrated and I genuinely want to help you. However, I need to ask that we keep our conversation respectful so I can continue to assist you."</div></div></div>
-          <div class="step-item"><div class="step-num say">2</div><div class="step-body"><div class="step-label">If it continues</div><div class="step-script">"I am not able to continue this call under these conditions. I am going to end the call now and a supervisor will follow up with you. Thank you."</div></div></div>
-          <div class="step-item"><div class="step-num say">3</div><div class="step-body"><div class="step-label">To your supervisor after</div><div class="step-script">"I need to let you know about a call I just had. The customer became verbally abusive and I followed protocol. Here is what happened..."</div></div></div>
-        </div>
-      </div>
-      <div class="confidence-box">
-        <div class="cb-title">Professionalism is not the same as accepting abuse.</div>
-        <div class="cb-text">Staying calm under pressure is a skill. Knowing when you have done everything you can and escalating appropriately is also a skill. You do not have to absorb someone else's anger to do your job well.</div>
-      </div>
-    </div>
-
-    <!-- OVERWHELMED -->
-    <div class="sit-panel" id="panel-overwhelmed">
-      <button class="panel-back" onclick="showHome()">← All Situations</button>
-      <div class="panel-header">
-        <span class="panel-tag">Mindset · In the Moment</span>
-        <h2 class="panel-title">Feeling <em>Overwhelmed</em></h2>
-        <p class="panel-intro">The calls keep coming. You made a mistake earlier. You do not know what you are doing. Everything feels like too much. This is a real feeling and it happens to everyone. Here is how to get through the rest of your shift.</p>
-      </div>
-      <div class="remember-box">
-        <div class="rb-item"><div class="rb-label">Right now</div><div class="rb-value">One call. One moment. That is all you have to handle.</div></div>
-        <div class="rb-item"><div class="rb-label">Truth</div><div class="rb-value">The feeling of overwhelm is temporary. The shift will end.</div></div>
-        <div class="rb-item"><div class="rb-label">Permission</div><div class="rb-value">You are allowed to take a breath between calls.</div></div>
-      </div>
-      <div class="steps-layout">
-        <div class="you">
-          <div class="steps-col-label you">Right now — do this</div>
-          <div class="step-item"><div class="step-num you">1</div><div class="step-body"><div class="step-label">Stop and take three slow breaths</div><div class="step-detail">Not a suggestion. Actually do it. Right now if you are between calls. Your nervous system will respond.</div></div></div>
-          <div class="step-item"><div class="step-num you">2</div><div class="step-body"><div class="step-label">Narrow your focus to one thing</div><div class="step-detail">Not everything you need to do today. Not everything that went wrong. Just the one call or one task directly in front of you right now.</div></div></div>
-          <div class="step-item"><div class="step-num you">3</div><div class="step-body"><div class="step-label">Use your break if you have one</div><div class="step-detail">Step away from the screen. Walk. Get water. Do not eat lunch at your desk on a hard day.</div></div></div>
-          <div class="step-item"><div class="step-num you">4</div><div class="step-body"><div class="step-label">Tell your supervisor if you need support</div><div class="step-detail">You do not have to say you are overwhelmed. You can say "I could use a moment to regroup — is that okay?" Most supervisors will respect that.</div></div></div>
-        </div>
-        <div class="say">
-          <div class="steps-col-label say">Tell yourself</div>
-          <div class="step-item"><div class="step-num say">1</div><div class="step-body"><div class="step-label">Right now</div><div class="step-script">"I do not have to handle everything right now. I just have to handle this one thing."</div></div></div>
-          <div class="step-item"><div class="step-num say">2</div><div class="step-body"><div class="step-label">When it feels impossible</div><div class="step-script">"I have gotten through hard moments before. I will get through this one too."</div></div></div>
-          <div class="step-item"><div class="step-num say">3</div><div class="step-body"><div class="step-label">At the end of the shift</div><div class="step-script">"I stayed. I pushed through. That took real strength."</div></div></div>
-        </div>
-      </div>
-      <div class="confidence-box">
-        <div class="cb-title">Getting through a hard shift is a skill.</div>
-        <div class="cb-text">Every experienced worker has had days where they wondered how they were going to make it to the end of the shift. The ones who stay and push through build something that cannot be taught — resilience. You are building it right now.</div>
-      </div>
-    </div>
-
-    <!-- ASKING FOR HELP -->
-    <div class="sit-panel" id="panel-help">
-      <button class="panel-back" onclick="showHome()">← All Situations</button>
-      <div class="panel-header">
-        <span class="panel-tag">Workplace Situation</span>
-        <h2 class="panel-title">Asking <em>for Help</em></h2>
-        <p class="panel-intro">Asking for help feels like admitting you don't belong here. It isn't. Every person who is good at this job was once exactly where you are — they just asked the questions out loud instead of carrying the weight in silence. The version of you that asks early is the version that gets good faster.</p>
-      </div>
-      <div class="remember-box">
-        <div class="rb-item"><div class="rb-label">Truth</div><div class="rb-value">Asking for help early saves everyone time, including your supervisor's.</div></div>
-        <div class="rb-item"><div class="rb-label">Truth</div><div class="rb-value">Struggling silently is what actually looks bad. Not asking.</div></div>
-        <div class="rb-item"><div class="rb-label">Truth</div><div class="rb-value">Every person who is good at this job was once exactly where you are.</div></div>
-      </div>
-      <div class="steps-layout">
-        <div class="you">
-          <div class="steps-col-label you">What YOU do</div>
-          <div class="step-item"><div class="step-num you">1</div><div class="step-body"><div class="step-label">Try to figure it out first</div><div class="step-detail">Check your guide. Check your resources. Spend two minutes looking. This way when you ask you can say you already tried.</div></div></div>
-          <div class="step-item"><div class="step-num you">2</div><div class="step-body"><div class="step-label">Come with the specific question</div><div class="step-detail">Not "I don't know what to do" — but "I am not sure how to handle X when Y happens. Can you walk me through it?"</div></div></div>
-          <div class="step-item"><div class="step-num you">3</div><div class="step-body"><div class="step-label">Write down the answer</div><div class="step-detail">So you only have to ask once. Your supervisor will notice.</div></div></div>
-        </div>
-        <div class="say">
-          <div class="steps-col-label say">What to SAY</div>
-          <div class="step-item"><div class="step-num say">1</div><div class="step-body"><div class="step-label">The right way to ask</div><div class="step-script">"I want to make sure I handle this correctly — I looked it up and I am still not clear on [specific thing]. Can you help me understand how to approach this?"</div></div></div>
-          <div class="step-item"><div class="step-num say">2</div><div class="step-body"><div class="step-label">When timing is sensitive</div><div class="step-script">"When you have a moment, I have a quick question about [topic]. I want to make sure I am doing this right."</div></div></div>
-        </div>
-      </div>
-      <div class="confidence-box">
-        <div class="cb-title">Asking is not weakness. It's how you become the person who knows.</div>
-        <div class="cb-text">The workers who grow fastest are not the ones who figured everything out alone. They're the ones who asked early, listened carefully, and remembered the answer. You are doing the thing that actually builds skill. The discomfort of asking now is the price of the confidence you'll have later.</div>
-      </div>
-    </div>
-
-    <!-- CALLING OUT -->
-    <div class="sit-panel" id="panel-callout">
-      <button class="panel-back" onclick="showHome()">← All Situations</button>
-      <div class="panel-header">
-        <span class="panel-tag">Workplace Situation</span>
-        <h2 class="panel-title">Calling <em>Out Sick</em></h2>
-        <p class="panel-intro">Calling out sick is harder than it should be. You're worried about your supervisor's reaction, your paycheck, whether this counts against you. All of those worries are real. Here's the truth that cuts through them: doing this the right way protects you. Coming in sick when you shouldn't doesn't.</p>
-      </div>
-      <div class="remember-box">
-        <div class="rb-item"><div class="rb-label">Do it early</div><div class="rb-value">Call as soon as you know — not 10 minutes before your shift.</div></div>
-        <div class="rb-item"><div class="rb-label">Keep it simple</div><div class="rb-value">You do not owe a detailed medical explanation.</div></div>
-        <div class="rb-item"><div class="rb-label">Truth</div><div class="rb-value">Taking care of yourself today is how you stay reliable long term.</div></div>
-      </div>
-      <div class="steps-layout">
-        <div class="you">
-          <div class="steps-col-label you">What YOU do</div>
-          <div class="step-item"><div class="step-num you">1</div><div class="step-body"><div class="step-label">Call — do not text unless that is the policy</div><div class="step-detail">A call shows respect. Unless your workplace specifically uses text or an app for call-outs, call your supervisor directly.</div></div></div>
-          <div class="step-item"><div class="step-num you">2</div><div class="step-body"><div class="step-label">Know your workplace policy</div><div class="step-detail">Some workplaces have specific call-out numbers or systems. Know before you are sick. Check your employee handbook.</div></div></div>
-          <div class="step-item"><div class="step-num you">3</div><div class="step-body"><div class="step-label">Return ready</div><div class="step-detail">When you come back, let your supervisor know you are back and ready. No drama, no over-explaining.</div></div></div>
-        </div>
-        <div class="say">
-          <div class="steps-col-label say">What to SAY</div>
-          <div class="step-item"><div class="step-num say">1</div><div class="step-body"><div class="step-label">The call</div><div class="step-script">"Hi [Supervisor name], this is [Your name]. I am not feeling well today and I am not going to be able to come in for my shift. I wanted to let you know as early as possible."</div></div></div>
-          <div class="step-item"><div class="step-num say">2</div><div class="step-body"><div class="step-label">If they ask what is wrong</div><div class="step-script">"I am not feeling well — I just want to make sure I am okay before coming in so I do not affect anyone else."</div></div></div>
-          <div class="step-item"><div class="step-num say">3</div><div class="step-body"><div class="step-label">When you return</div><div class="step-script">"Good morning — I am back and feeling much better. Ready to get back to it."</div></div></div>
-        </div>
-      </div>
-      <div class="confidence-box">
-        <div class="cb-title">Showing up sick is not loyalty. It's a problem you'll pay for later.</div>
-        <div class="cb-text">A worker who calls out the right way — early, professionally, briefly — is more reliable than one who shows up sick, infects the team, and works at half capacity. Your supervisor knows the difference. Taking care of yourself is part of the job, not a break from it.</div>
-      </div>
-    </div>
-
-    <!-- REFUND -->
-    <div class="sit-panel" id="panel-refund">
-      <button class="panel-back" onclick="showHome()">← All Situations</button>
-      <div class="panel-header">
-        <span class="panel-tag">Customer Situation · Common</span>
-        <h2 class="panel-title">Refund or <em>Return Request</em></h2>
-        <p class="panel-intro">Refund calls put you in a hard spot. Sometimes the customer is right and you wish you could give them more. Sometimes you're not sure and policy is the only thing protecting you. Either way — your job isn't to judge whether they deserve it. Your job is to know your policy, communicate it clearly, and treat the person on the line like a person. The rest is not your call to make.</p>
-      </div>
-      <div class="remember-box">
-        <div class="rb-item"><div class="rb-label">First</div><div class="rb-value">Know your refund and return policy before calls start.</div></div>
-        <div class="rb-item"><div class="rb-label">Never</div><div class="rb-value">Promise a refund you are not authorized to approve.</div></div>
-        <div class="rb-item"><div class="rb-label">Truth</div><div class="rb-value">Saying no with respect is not the same as saying no with dismissal.</div></div>
-      </div>
-      <div class="steps-layout">
-        <div class="you">
-          <div class="steps-col-label you">What YOU do</div>
-          <div class="step-item"><div class="step-num you">1</div><div class="step-body"><div class="step-label">Get the full picture first</div><div class="step-detail">What did they buy, when, why do they want a refund, do they have a receipt or order number. Get all of this before offering any resolution.</div></div></div>
-          <div class="step-item"><div class="step-num you">2</div><div class="step-body"><div class="step-label">Check your policy</div><div class="step-detail">Is this within the return window? Does this qualify under your company's policy? Know before you commit to anything.</div></div></div>
-          <div class="step-item"><div class="step-num you">3</div><div class="step-body"><div class="step-label">If you can approve it — do it</div><div class="step-detail">Follow your process and confirm the resolution clearly.</div></div></div>
-          <div class="step-item"><div class="step-num you">4</div><div class="step-body"><div class="step-label">If you cannot — escalate cleanly</div><div class="step-detail">Do not just say no. Tell them who can help and how to reach them.</div></div></div>
-        </div>
-        <div class="say">
-          <div class="steps-col-label say">What to SAY</div>
-          <div class="step-item"><div class="step-num say">1</div><div class="step-body"><div class="step-label">Getting the information</div><div class="step-script">"I want to help you with this. Can you give me your order number and tell me a little about why you would like a refund?"</div></div></div>
-          <div class="step-item"><div class="step-num say">2</div><div class="step-body"><div class="step-label">If approved</div><div class="step-script">"I have processed your refund. You should see it back within [timeframe]. Is there anything else I can help you with today?"</div></div></div>
-          <div class="step-item"><div class="step-num say">3</div><div class="step-body"><div class="step-label">If not approved under policy</div><div class="step-script">"I completely understand your frustration. Based on our policy I am not able to process this directly, but I want to make sure you have a path forward. Let me connect you with someone who may have more options for you."</div></div></div>
-        </div>
-      </div>
-      <div class="confidence-box">
-        <div class="cb-title">You cannot always give them what they want. You can always give them respect.</div>
-        <div class="cb-text">The way you say no matters as much as the no itself. A customer who felt heard and treated with dignity — even when they didn't get a refund — is far less likely to escalate than one who felt brushed off. Following policy is not cold. Following policy without losing your humanity is the whole skill.</div>
-      </div>
-    </div>
-
-    <!-- COWORKER -->
-    <div class="sit-panel" id="panel-coworker">
-      <button class="panel-back" onclick="showHome()">← All Situations</button>
-      <div class="panel-header">
-        <span class="panel-tag">Workplace Situation</span>
-        <h2 class="panel-title">Coworker <em>Conflict</em></h2>
-        <p class="panel-intro">Tension with a coworker sits with you. You replay it on the drive home. You wonder if you're being too sensitive, or not sensitive enough. You weigh whether saying something will fix it or make it worse. There's no perfect move here — but there is a move that gives you the best chance of fixing this without making it bigger than it needs to be.</p>
-      </div>
-
-      <div class="gate-box">
-        <div class="gate-title">First — which one is this?</div>
-        <div class="gate-row">
-          <span class="gate-label">Conflict</span> is friction. A coworker said something that bothered you. Someone took credit for your work. There's tension you want to clear.
-          <span class="gate-arrow">→ The steps below are for this.</span>
-        </div>
-        <div class="gate-row">
-          <span class="gate-label">Harassment</span> is different. It's repeated. It's targeted. It might involve race, gender, age, religion, disability, or sexual conduct. It might involve threats or intimidation.
-          <span class="gate-arrow">→ Do not use the steps below. Skip to "If this is harassment" at the bottom of this page.</span>
-        </div>
-      </div>
-
-      <div class="remember-box">
-        <div class="rb-item"><div class="rb-label">Try first</div><div class="rb-value">Address it directly with the person before involving anyone else.</div></div>
-        <div class="rb-item"><div class="rb-label">Never</div><div class="rb-value">Vent to other coworkers about it. It always gets back.</div></div>
-        <div class="rb-item"><div class="rb-label">Trust your gut</div><div class="rb-value">If this feels like more than conflict, it is. Read the section at the bottom of this page first.</div></div>
-      </div>
-      <div class="steps-layout">
-        <div class="you">
-          <div class="steps-col-label you">What YOU do</div>
-          <div class="step-item"><div class="step-num you">1</div><div class="step-body"><div class="step-label">Wait until you are calm</div><div class="step-detail">Do not address conflict in the heat of the moment. Give yourself time to think clearly about what you actually want to say.</div></div></div>
-          <div class="step-item"><div class="step-num you">2</div><div class="step-body"><div class="step-label">Ask for a private moment</div><div class="step-detail">Not in front of other coworkers. Not during a busy period. Find a quiet moment to speak one on one.</div></div></div>
-          <div class="step-item"><div class="step-num you">3</div><div class="step-body"><div class="step-label">Focus on the behavior not the person</div><div class="step-detail">Talk about what happened, not what they are like as a person. This keeps the conversation from becoming an attack.</div></div></div>
-          <div class="step-item"><div class="step-num you">4</div><div class="step-body"><div class="step-label">Involve your supervisor if it continues</div><div class="step-detail">If one direct conversation does not resolve it, that is when you bring in your supervisor. Document what happened before that meeting.</div></div></div>
-        </div>
-        <div class="say">
-          <div class="steps-col-label say">What to SAY</div>
-          <div class="step-item"><div class="step-num say">1</div><div class="step-body"><div class="step-label">Opening the conversation</div><div class="step-script">"Hey, do you have a quick moment? I wanted to talk about something privately."</div></div></div>
-          <div class="step-item"><div class="step-num say">2</div><div class="step-body"><div class="step-label">Describing the issue</div><div class="step-script">"When [specific thing happened], I felt [how it affected you]. I wanted to bring it up directly because I think we can work well together and I did not want it to become a bigger issue."</div></div></div>
-          <div class="step-item"><div class="step-num say">3</div><div class="step-body"><div class="step-label">Closing toward resolution</div><div class="step-script">"I am not trying to start anything — I just wanted to clear the air so we can move forward. Is there anything on your end I should know?"</div></div></div>
-        </div>
-      </div>
-
-      <div class="harassment-box">
-        <div class="hb-title">If this is harassment</div>
-        <div class="hb-item">Do not confront the person directly. It can escalate. It can be used against you.</div>
-        <div class="hb-item">Document everything. Date, time, what was said or done, who else was there. Write it down the same day.</div>
-        <div class="hb-item">Go to your supervisor or HR. If your supervisor is the problem, go above them or to HR directly.</div>
-        <div class="hb-item">You have legal protections. Harassment based on race, color, religion, sex, national origin, age, disability, or genetic information is illegal under federal law.</div>
-        <div class="hb-item">If you don't feel safe at work, that is information. Trust it.</div>
-      </div>
-
-      <div class="confidence-box">
-        <div class="cb-title">Going to the person first is harder than going around them. It's also what works.</div>
-        <div class="cb-text">Most workplace conflicts get bigger when they're avoided and smaller when they're handled directly and calmly. You don't have to be perfect at this. You just have to do it before the resentment builds into something neither of you can come back from. That takes courage. The fact that you're even thinking about how to do it right means you already have it.</div>
-      </div>
-    </div>
-
-    <!-- WAIT TIME -->
-    <div class="sit-panel" id="panel-wait">
-      <button class="panel-back" onclick="showHome()">← All Situations</button>
-      <div class="panel-header">
-        <span class="panel-tag">Customer Situation · Common</span>
-        <h2 class="panel-title">Long Hold or <em>Wait Time</em></h2>
-        <p class="panel-intro">The customer waited too long before you ever picked up. That wasn't your fault — but right now, you're the one who has to make it right. The good news: you can. A long wait followed by a complete resolution often ends better than a short wait and a partial answer. Here's how to recover the call from the very first word.</p>
-      </div>
-      <div class="remember-box">
-        <div class="rb-item"><div class="rb-label">First word</div><div class="rb-value">Acknowledge the wait before anything else.</div></div>
-        <div class="rb-item"><div class="rb-label">Never</div><div class="rb-value">Start with a script like nothing happened. They notice.</div></div>
-        <div class="rb-item"><div class="rb-label">Truth</div><div class="rb-value">Their frustration is not personal. Don't take it that way.</div></div>
-      </div>
-      <div class="steps-layout">
-        <div class="you">
-          <div class="steps-col-label you">What YOU do</div>
-          <div class="step-item"><div class="step-num you">1</div><div class="step-body"><div class="step-label">Acknowledge the wait immediately</div><div class="step-detail">Before your name, before your company greeting — acknowledge that they waited. It disarms most frustration instantly.</div></div></div>
-          <div class="step-item"><div class="step-num you">2</div><div class="step-body"><div class="step-label">Move quickly to resolution</div><div class="step-detail">Do not add more time to an already frustrating experience. Get to the point and solve the problem efficiently.</div></div></div>
-          <div class="step-item"><div class="step-num you">3</div><div class="step-body"><div class="step-label">Close with something positive</div><div class="step-detail">End the call on a note that makes the wait feel worth it. A complete resolution is the best recovery.</div></div></div>
-        </div>
-        <div class="say">
-          <div class="steps-col-label say">What to SAY</div>
-          <div class="step-item"><div class="step-num say">1</div><div class="step-body"><div class="step-label">Opening the call</div><div class="step-script">"Thank you so much for your patience today — I know you have been waiting and I appreciate you staying on the line. My name is [name] and I am going to take great care of you right now."</div></div></div>
-          <div class="step-item"><div class="step-num say">2</div><div class="step-body"><div class="step-label">If they express frustration about the wait</div><div class="step-script">"You are absolutely right and I am sorry about that wait time. Let me make it up to you by making sure we get this completely resolved today."</div></div></div>
-          <div class="step-item"><div class="step-num say">3</div><div class="step-body"><div class="step-label">Closing the call</div><div class="step-script">"I am glad we were able to get this taken care of for you. I hope the rest of your day is much smoother than the start of this call."</div></div></div>
-        </div>
-      </div>
-      <div class="confidence-box">
-        <div class="cb-title">You didn't make them wait. You made the wait worth it.</div>
-        <div class="cb-text">A customer who waited 20 minutes and got their problem completely solved often leaves happier than someone who waited 2 minutes and got brushed off. The recovery is in the resolution. You are not the cause of their frustration — you are the reason it ends.</div>
-      </div>
-    </div>
-
-    <!-- REVIEW -->
-    <div class="sit-panel" id="panel-review">
-      <button class="panel-back" onclick="showHome()">← All Situations</button>
-      <div class="panel-header">
-        <span class="panel-tag">Workplace Situation</span>
-        <h2 class="panel-title">Performance <em>Review</em></h2>
-        <p class="panel-intro">A review is not a verdict on who you are. It is one person's read on how you've been doing — and a chance for you to share your own. The workers who get the most out of reviews aren't the ones who walk in defending themselves. They're the ones who walk in curious. Curious about what their supervisor sees that they don't. Curious about what good looks like in this role. Curiosity is the move that turns a review into something useful.</p>
-      </div>
-      <div class="remember-box">
-        <div class="rb-item"><div class="rb-label">Before</div><div class="rb-value">Write down three things you did well and one thing to improve.</div></div>
-        <div class="rb-item"><div class="rb-label">During</div><div class="rb-value">Listen more than you talk. Ask questions.</div></div>
-        <div class="rb-item"><div class="rb-label">Truth</div><div class="rb-value">Feedback is information. Defensiveness is what blocks it from working.</div></div>
-      </div>
-      <div class="steps-layout">
-        <div class="you">
-          <div class="steps-col-label you">What YOU do</div>
-          <div class="step-item"><div class="step-num you">1</div><div class="step-body"><div class="step-label">Prepare before you walk in</div><div class="step-detail">List your wins. Think about where you have grown. Think about one honest area for improvement. Come with something to say, not just something to hear.</div></div></div>
-          <div class="step-item"><div class="step-num you">2</div><div class="step-body"><div class="step-label">Do not get defensive about criticism</div><div class="step-detail">Even if you disagree, hear it fully before responding. Ask for specifics. Defensive reactions in reviews damage your reputation more than the feedback did.</div></div></div>
-          <div class="step-item"><div class="step-num you">3</div><div class="step-body"><div class="step-label">Ask what good looks like</div><div class="step-detail">Ask your supervisor what success looks like for your role. This shows you care about growing and gives you a clear target.</div></div></div>
-        </div>
-        <div class="say">
-          <div class="steps-col-label say">What to SAY</div>
-          <div class="step-item"><div class="step-num say">1</div><div class="step-body"><div class="step-label">Sharing your own progress</div><div class="step-script">"I feel like I have grown most in [area] since starting. I am still working on [honest area] and I want to get better at it."</div></div></div>
-          <div class="step-item"><div class="step-num say">2</div><div class="step-body"><div class="step-label">When you receive difficult feedback</div><div class="step-script">"Thank you for that feedback. Can you give me a specific example so I understand exactly what you are seeing? I want to make sure I improve in the right way."</div></div></div>
-          <div class="step-item"><div class="step-num say">3</div><div class="step-body"><div class="step-label">Asking what great looks like</div><div class="step-script">"What does really strong performance look like in this role? I want to know what I am working toward."</div></div></div>
-        </div>
-      </div>
-      <div class="confidence-box">
-        <div class="cb-title">A performance review is a conversation, not a sentence.</div>
-        <div class="cb-text">The workers who grow fastest treat reviews as data, not judgment. Criticism is just someone telling you how to get to where you want to go. The ones who get defensive stay where they are. The ones who listen, ask follow-up questions, and act on what they hear — those are the ones who become the people the company doesn't want to lose. Walking in with curiosity instead of fear changes everything about what you take out of the room.</div>
-      </div>
-    </div>
-
-  </div><!-- end main -->
-</div><!-- end app -->
+<!-- FOOTER -->
+<footer>
+  <div class="f-brand">First<span>Step</span></div>
+  <ul class="f-links">
+    <li><a href="guide.html">Open the guide</a></li>
+    <li><a href="mailto:info@getfirststep.org">Contact</a></li>
+    <li><a href="https://rudolphcx.com">Rudolph CX</a></li>
+  </ul>
+  <div class="f-copy">© 2026 Rudolph CX LLC · getfirststep.org · Built in Durham, NC · If you are in a life-threatening emergency, call 911.</div>
+</footer>
 
 <script>
-var currentPanel = null;
-
-function showHome() {
-  // Hide all panels
-  document.querySelectorAll('.sit-panel').forEach(function(p) { p.classList.remove('active'); });
-  document.getElementById('homeScreen').style.display = 'block';
-  // Update sidebar
-  document.querySelectorAll('.sb-item').forEach(function(i) { i.classList.remove('active'); });
-  document.getElementById('sb-home').classList.add('active');
-  currentPanel = null;
-  window.scrollTo(0, 0);
-}
-
-function showSit(id) {
-  document.getElementById('homeScreen').style.display = 'none';
-  document.querySelectorAll('.sit-panel').forEach(function(p) { p.classList.remove('active'); });
-  var panel = document.getElementById('panel-' + id);
-  if (panel) {
-    panel.classList.add('active');
-    window.scrollTo(0, 0);
+function goToGuide() {
+  var q = document.getElementById('searchInput').value.trim();
+  if (q) {
+    window.location.href = 'guide.html?q=' + encodeURIComponent(q);
+  } else {
+    window.location.href = 'guide.html';
   }
-  document.querySelectorAll('.sb-item').forEach(function(i) { i.classList.remove('active'); });
-  var sbItem = document.getElementById('sb-' + id);
-  if (sbItem) sbItem.classList.add('active');
-  currentPanel = id;
 }
-
-function filterSituations(query) {
-  if (!query.trim()) {
-    showHome();
-    return;
-  }
-  query = query.toLowerCase();
-  document.querySelectorAll('.sit-card').forEach(function(card) {
-    var text = card.innerText.toLowerCase();
-    card.style.display = text.includes(query) ? 'block' : 'none';
-  });
-  document.getElementById('homeScreen').style.display = 'block';
-  document.querySelectorAll('.sit-panel').forEach(function(p) { p.classList.remove('active'); });
-}
-
-// Copy buttons
-document.querySelectorAll('.copy-btn').forEach(function(btn) {
-  btn.addEventListener('click', function() {
-    var text = this.previousElementSibling.textContent;
-    navigator.clipboard.writeText(text).then(function() {});
-    btn.textContent = 'Copied!';
-    btn.classList.add('copied');
-    setTimeout(function() {
-      btn.textContent = 'Copy Template';
-      btn.classList.remove('copied');
-    }, 2000);
-  });
-});
 </script>
 </body>
 </html>
