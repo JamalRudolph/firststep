@@ -5,657 +5,173 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FirstStep for Partners — Built for the Moment Before the First Conversation</title>
 <meta name="description" content="FirstStep partners with workforce development boards, reentry programs, community colleges, and family services organizations. Built for the moment the participant walks in expecting to lose — and the frontline worker came hoping to help.">
-
 <style>
-/* ============================================ */
-/* RESET + BASE                                 */
-/* ============================================ */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  color: #1a1035;
-  background: #fdf8f0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-img { max-width: 100%; height: auto; display: block; }
-a { color: inherit; text-decoration: none; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.5;color:#1a1035;background:#fdf8f0;-webkit-font-smoothing:antialiased;}
+img{max-width:100%;height:auto;display:block;}
+a{color:inherit;text-decoration:none;}
 
-/* ============================================ */
-/* TOP BAR — MINIMAL STANDALONE FRAME           */
-/* ============================================ */
-.top-bar {
-  background: #1a1035;
-  color: #fdf8f0;
-  padding: 18px 32px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-.top-bar-left {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-.wordmark {
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-}
-.back-link {
-  font-size: 13px;
-  opacity: 0.65;
-  transition: opacity 0.2s;
-}
-.back-link:hover { opacity: 1; }
-.contact-link {
-  font-size: 14px;
-  font-weight: 500;
-  padding: 8px 18px;
-  border: 1px solid rgba(253, 248, 240, 0.3);
-  border-radius: 2px;
-  transition: all 0.2s;
-}
-.contact-link:hover {
-  background: #f59e3f;
-  border-color: #f59e3f;
-  color: #1a1035;
-}
-.top-bar-right {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-.nav-link {
-  font-size: 13px;
-  font-weight: 500;
-  opacity: 0.7;
-  transition: opacity 0.2s, color 0.2s;
-}
-.nav-link:hover {
-  opacity: 1;
-  color: #f59e3f;
-}
+/* TOP BAR */
+.top-bar{background:#1a1035;color:#fdf8f0;padding:18px 32px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;}
+.top-bar-left{display:flex;align-items:center;gap:24px;}
+.wordmark{font-size:18px;font-weight:700;letter-spacing:-0.01em;}
+.back-link{font-size:13px;opacity:0.65;transition:opacity 0.2s;}
+.back-link:hover{opacity:1;}
+.contact-link{font-size:14px;font-weight:500;padding:8px 18px;border:1px solid rgba(253,248,240,0.3);border-radius:2px;transition:all 0.2s;}
+.contact-link:hover{background:#f59e3f;border-color:#f59e3f;color:#1a1035;}
+.top-bar-right{display:flex;align-items:center;gap:24px;}
+.nav-link{font-size:13px;font-weight:500;opacity:0.7;transition:opacity 0.2s,color 0.2s;}
+.nav-link:hover{opacity:1;color:#f59e3f;}
 
-/* ============================================ */
-/* SHARED LAYOUT                                */
-/* ============================================ */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 32px;
-}
-.section-eyebrow {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #8b2635;
-  margin-bottom: 20px;
-}
-.section-headline {
-  font-size: 42px;
-  font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  color: #1a1035;
-  margin-bottom: 20px;
-}
-.section-subhead {
-  font-size: 19px;
-  line-height: 1.5;
-  color: #1a1035;
-  opacity: 0.75;
-}
+/* SHARED */
+.container{max-width:1200px;margin:0 auto;padding:0 32px;}
+.section-eyebrow{font-size:13px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#8b2635;margin-bottom:20px;}
+.section-headline{font-size:42px;font-weight:600;line-height:1.15;letter-spacing:-0.01em;color:#1a1035;margin-bottom:20px;}
+.section-subhead{font-size:19px;line-height:1.5;color:#1a1035;opacity:0.75;}
 
-/* ============================================ */
-/* §1 HERO                                      */
-/* ============================================ */
-.section-hero {
-  background: linear-gradient(180deg, #1a1035 0%, #2a1d4e 100%);
-  color: #fdf8f0;
-  padding: 120px 0 140px;
-  position: relative;
-  overflow: hidden;
-}
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 80px;
-  align-items: start;
-}
-.hero-eyebrow {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #f59e3f;
-  margin-bottom: 32px;
-}
-.hero-headline {
-  font-size: 52px;
-  font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: -0.015em;
-  margin-bottom: 40px;
-}
-.hero-headline .line {
-  display: block;
-  margin-bottom: 6px;
-}
-.hero-headline .line-4 {
-  font-size: 28px;
-  font-weight: 400;
-  line-height: 1.35;
-  opacity: 0.88;
-  margin-top: 24px;
-  color: #f5d9a8;
-}
-.hero-subhead {
-  font-size: 19px;
-  line-height: 1.55;
-  opacity: 0.82;
-  max-width: 580px;
-}
-.hero-subhead .opener {
-  display: block;
-  font-weight: 500;
-  color: #f5d9a8;
-  margin-bottom: 14px;
-  font-size: 17px;
-}
-.hero-moments {
-  border-left: 2px solid #f59e3f;
-  padding-left: 28px;
-  margin-top: 16px;
-}
-.hero-moment {
-  font-size: 16px;
-  line-height: 1.55;
-  margin-bottom: 24px;
-  opacity: 0.85;
-}
-.hero-moment:last-child { margin-bottom: 0; }
-.hero-moment .num {
-  display: inline-block;
-  color: #f59e3f;
-  font-weight: 600;
-  margin-right: 10px;
-}
+/* HERO — slightly more breathing room + amber accent line */
+.section-hero{background:linear-gradient(160deg,#1a1035 0%,#2a1d4e 100%);color:#fdf8f0;padding:128px 0 148px;position:relative;overflow:hidden;}
+.section-hero::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#f59e3f,#e8c880,#f59e3f);opacity:0.8;}
+.hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:80px;align-items:start;}
+.hero-eyebrow{font-size:13px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#f59e3f;margin-bottom:32px;}
+.hero-headline{font-size:52px;font-weight:600;line-height:1.1;letter-spacing:-0.015em;margin-bottom:40px;}
+.hero-headline .line{display:block;margin-bottom:6px;}
+.hero-headline .line-4{font-size:28px;font-weight:400;line-height:1.35;opacity:0.88;margin-top:24px;color:#f5d9a8;}
+.hero-subhead{font-size:19px;line-height:1.55;opacity:0.82;max-width:580px;}
+.hero-subhead .opener{display:block;font-weight:500;color:#f5d9a8;margin-bottom:14px;font-size:17px;}
+.hero-moments{border-left:2px solid #f59e3f;padding-left:28px;margin-top:16px;}
+.hero-moment{font-size:16px;line-height:1.55;margin-bottom:24px;opacity:0.85;}
+.hero-moment:last-child{margin-bottom:0;}
+.hero-moment .num{display:inline-block;color:#f59e3f;font-weight:600;margin-right:10px;}
 
-/* ============================================ */
-/* §2 RECOGNITION STRIP — ARCHITECTURAL CENTER  */
-/* ============================================ */
-.section-recognition {
-  background: #fdf8f0;
-  padding: 240px 0;
-  text-align: center;
-  position: relative;
-}
-.recognition-divider {
-  width: 80px;
-  height: 1px;
-  background: #8b2635;
-  margin: 0 auto 64px;
-  opacity: 0.6;
-}
-.recognition-divider.bottom {
-  margin: 64px auto 0;
-}
-.recognition-stack {
-  max-width: 880px;
-  margin: 0 auto;
-}
-.recognition-line {
-  font-size: 36px;
-  font-weight: 500;
-  line-height: 1.3;
-  color: #1a1035;
-  letter-spacing: -0.005em;
-  margin-bottom: 18px;
-}
-.recognition-line.l1, .recognition-line.l2 { opacity: 0.75; }
-.recognition-line.l3 {
-  opacity: 1;
-  font-weight: 600;
-  margin-top: 10px;
-}
+/* RECOGNITION — more visual weight */
+.section-recognition{background:#fdf8f0;padding:200px 0;text-align:center;position:relative;}
+.recognition-divider{width:60px;height:2px;background:#8b2635;margin:0 auto 64px;opacity:0.7;}
+.recognition-divider.bottom{margin:64px auto 0;}
+.recognition-stack{max-width:880px;margin:0 auto;}
+.recognition-line{font-size:36px;font-weight:500;line-height:1.3;color:#1a1035;letter-spacing:-0.005em;margin-bottom:18px;}
+.recognition-line.l1,.recognition-line.l2{opacity:0.65;}
+.recognition-line.l3{opacity:1;font-weight:700;margin-top:10px;font-size:40px;}
 
-/* ============================================ */
-/* §3 PROBLEM                                   */
-/* ============================================ */
-.section-problem {
-  background: #fdf8f0;
-  padding: 120px 0;
-  border-top: 1px solid rgba(26, 16, 53, 0.08);
-}
-.section-problem .section-header {
-  max-width: 760px;
-  margin: 0 auto 72px;
-  text-align: center;
-}
-.problem-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-}
-.problem-card {
-  background: #ffffff;
-  border-radius: 4px;
-  padding: 48px 36px;
-  border-top: 4px solid #f59e3f;
-  display: flex;
-  flex-direction: column;
-}
-.card-stat {
-  font-size: 64px;
-  font-weight: 700;
-  line-height: 1;
-  color: #1a1035;
-  letter-spacing: -0.02em;
-  margin-bottom: 16px;
-}
-.card-stat-context {
-  font-size: 15px;
-  line-height: 1.55;
-  color: #1a1035;
-  opacity: 0.78;
-  margin-bottom: 28px;
-}
-.card-moment {
-  font-size: 17px;
-  line-height: 1.45;
-  font-style: italic;
-  color: #8b2635;
-  border-left: 2px solid #f59e3f;
-  padding-left: 16px;
-  margin-bottom: 28px;
-  font-weight: 500;
-}
-.card-body {
-  font-size: 15px;
-  line-height: 1.6;
-  color: #1a1035;
-  opacity: 0.85;
-  margin-bottom: 24px;
-  flex-grow: 1;
-}
-.card-sources {
-  font-size: 12px;
-  line-height: 1.55;
-  color: #1a1035;
-  opacity: 0.55;
-  border-top: 1px solid rgba(26, 16, 53, 0.1);
-  padding-top: 16px;
-}
-.card-sources em { font-style: italic; }
+/* PROBLEM */
+.section-problem{background:#fdf8f0;padding:120px 0;border-top:1px solid rgba(26,16,53,0.08);}
+.section-problem .section-header{max-width:760px;margin:0 auto 72px;text-align:center;}
+.problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+.problem-card{background:#ffffff;border-radius:4px;padding:48px 36px;border-top:4px solid #f59e3f;display:flex;flex-direction:column;transition:box-shadow 0.2s;}
+.problem-card:hover{box-shadow:0 8px 32px rgba(26,16,53,0.08);}
+.card-stat{font-size:64px;font-weight:700;line-height:1;color:#1a1035;letter-spacing:-0.02em;margin-bottom:16px;}
+.card-stat-context{font-size:15px;line-height:1.55;color:#1a1035;opacity:0.78;margin-bottom:28px;}
+.card-moment{font-size:17px;line-height:1.45;font-style:italic;color:#8b2635;border-left:3px solid #f59e3f;padding-left:16px;margin-bottom:28px;font-weight:500;}
+.card-body{font-size:15px;line-height:1.6;color:#1a1035;opacity:0.85;margin-bottom:24px;flex-grow:1;}
+.card-sources{font-size:12px;line-height:1.55;color:#1a1035;opacity:0.55;border-top:1px solid rgba(26,16,53,0.1);padding-top:16px;}
+.card-sources em{font-style:italic;}
 
-/* ============================================ */
-/* §4 WHO WE'RE BUILT FOR                       */
-/* ============================================ */
-.section-who {
-  background: #1a1035;
-  color: #fdf8f0;
-  padding: 120px 0;
-}
-.section-who .section-eyebrow { color: #f59e3f; }
-.section-who .section-headline { color: #fdf8f0; }
-.section-who .section-subhead { color: #fdf8f0; opacity: 0.75; }
-.section-who .section-header {
-  max-width: 800px;
-  margin: 0 auto 72px;
-  text-align: center;
-}
-.who-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
-}
-.who-card {
-  background: rgba(253, 248, 240, 0.04);
-  border: 1px solid rgba(253, 248, 240, 0.1);
-  border-radius: 4px;
-  padding: 44px 36px;
-  transition: border-color 0.2s, background 0.2s;
-}
-.who-card:hover {
-  border-color: rgba(245, 158, 63, 0.5);
-  background: rgba(253, 248, 240, 0.06);
-}
-.who-card-type {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #f59e3f;
-  margin-bottom: 16px;
-}
-.who-card-moment {
-  font-size: 21px;
-  font-weight: 500;
-  line-height: 1.35;
-  margin-bottom: 20px;
-  letter-spacing: -0.005em;
-}
-.who-card-body {
-  font-size: 15px;
-  line-height: 1.6;
-  opacity: 0.78;
-}
+/* WHO WE'RE BUILT FOR */
+.section-who{background:#1a1035;color:#fdf8f0;padding:120px 0;}
+.section-who .section-eyebrow{color:#f59e3f;}
+.section-who .section-headline{color:#fdf8f0;}
+.section-who .section-subhead{color:#fdf8f0;opacity:0.75;}
+.section-who .section-header{max-width:800px;margin:0 auto 72px;text-align:center;}
+.who-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;}
+.who-card{background:rgba(253,248,240,0.04);border:1px solid rgba(253,248,240,0.1);border-radius:4px;padding:44px 36px;transition:border-color 0.2s,background 0.2s;}
+.who-card:hover{border-color:rgba(245,158,63,0.5);background:rgba(253,248,240,0.06);}
+.who-card-type{font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#f59e3f;margin-bottom:16px;}
+.who-card-moment{font-size:21px;font-weight:500;line-height:1.35;margin-bottom:20px;letter-spacing:-0.005em;}
+.who-card-body{font-size:15px;line-height:1.6;opacity:0.78;}
 
-/* ============================================ */
-/* §5 PARTNERSHIP INCLUDES                      */
-/* ============================================ */
-.section-includes {
-  background: #fdf8f0;
-  padding: 120px 0;
-}
-.section-includes .section-header {
-  max-width: 760px;
-  margin: 0 auto 72px;
-  text-align: center;
-}
-.includes-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 36px;
-}
-.includes-block {
-  background: #ffffff;
-  padding: 44px 36px;
-  border-radius: 4px;
-  border-left: 4px solid #8b2635;
-}
-.includes-num {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  color: #8b2635;
-  margin-bottom: 12px;
-}
-.includes-title {
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 1.25;
-  color: #1a1035;
-  letter-spacing: -0.005em;
-  margin-bottom: 16px;
-}
-.includes-body {
-  font-size: 15px;
-  line-height: 1.6;
-  color: #1a1035;
-  opacity: 0.82;
-  margin-bottom: 16px;
-}
-.includes-body:last-child { margin-bottom: 0; }
-.includes-footnote {
-  font-size: 12px;
-  line-height: 1.55;
-  color: #1a1035;
-  opacity: 0.55;
-  border-top: 1px solid rgba(26, 16, 53, 0.1);
-  padding-top: 14px;
-  margin-top: 8px;
-}
-.inline-link {
-  color: #8b2635;
-  font-weight: 600;
-  border-bottom: 1.5px solid rgba(139, 38, 53, 0.3);
-  transition: border-color 0.2s;
-}
-.inline-link:hover {
-  border-color: #f59e3f;
-}
+/* PARTNERSHIP INCLUDES */
+.section-includes{background:#fdf8f0;padding:120px 0;}
+.section-includes .section-header{max-width:760px;margin:0 auto 72px;text-align:center;}
+.includes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:36px;}
+.includes-block{background:#ffffff;padding:44px 36px;border-radius:4px;border-left:4px solid #8b2635;transition:box-shadow 0.2s;}
+.includes-block:hover{box-shadow:0 8px 32px rgba(26,16,53,0.07);}
+.includes-num{font-size:13px;font-weight:600;letter-spacing:0.12em;color:#8b2635;margin-bottom:12px;}
+.includes-title{font-size:24px;font-weight:600;line-height:1.25;color:#1a1035;letter-spacing:-0.005em;margin-bottom:16px;}
+.includes-body{font-size:15px;line-height:1.6;color:#1a1035;opacity:0.82;margin-bottom:16px;}
+.includes-body:last-child{margin-bottom:0;}
+.includes-footnote{font-size:12px;line-height:1.55;color:#1a1035;opacity:0.55;border-top:1px solid rgba(26,16,53,0.1);padding-top:14px;margin-top:8px;}
+.inline-link{color:#8b2635;font-weight:600;border-bottom:1.5px solid rgba(139,38,53,0.3);transition:border-color 0.2s;}
+.inline-link:hover{border-color:#f59e3f;}
 
-/* ============================================ */
-/* §6 BRIDGE TO RUDOLPH CX                      */
-/* ============================================ */
-.section-bridge {
-  background: #fdf8f0;
-  padding: 120px 0;
-  border-top: 1px solid rgba(26, 16, 53, 0.08);
-}
-.bridge-header {
-  max-width: 820px;
-  margin: 0 auto 60px;
-  text-align: center;
-}
-.bridge-paragraph {
-  max-width: 760px;
-  margin: 0 auto 56px;
-  font-size: 19px;
-  line-height: 1.6;
-  color: #1a1035;
-  opacity: 0.88;
-  text-align: center;
-}
-.rudolph-card {
-  max-width: 820px;
-  margin: 0 auto;
-  background: #1a1035;
-  color: #fdf8f0;
-  padding: 56px 48px;
-  border-radius: 4px;
-  border-top: 4px solid #f59e3f;
-}
-.rudolph-eyebrow {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  color: #f59e3f;
-  margin-bottom: 16px;
-}
-.rudolph-headline {
-  font-size: 30px;
-  font-weight: 600;
-  line-height: 1.25;
-  letter-spacing: -0.005em;
-  margin-bottom: 22px;
-}
-.rudolph-body {
-  font-size: 16px;
-  line-height: 1.6;
-  opacity: 0.85;
-  margin-bottom: 28px;
-}
-.rudolph-cta {
-  display: inline-block;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  color: #f59e3f;
-  border-bottom: 1px solid #f59e3f;
-  padding-bottom: 4px;
-  transition: color 0.2s, border-color 0.2s;
-}
-.rudolph-cta:hover {
-  color: #fdf8f0;
-  border-color: #fdf8f0;
-}
+/* BRIDGE */
+.section-bridge{background:#fdf8f0;padding:120px 0;border-top:1px solid rgba(26,16,53,0.08);}
+.bridge-header{max-width:820px;margin:0 auto 60px;text-align:center;}
+.bridge-paragraph{max-width:760px;margin:0 auto 56px;font-size:19px;line-height:1.6;color:#1a1035;opacity:0.88;text-align:center;}
+.rudolph-card{max-width:820px;margin:0 auto;background:#1a1035;color:#fdf8f0;padding:56px 48px;border-radius:4px;border-top:4px solid #f59e3f;}
+.rudolph-eyebrow{font-size:12px;font-weight:600;letter-spacing:0.15em;color:#f59e3f;margin-bottom:16px;}
+.rudolph-headline{font-size:30px;font-weight:600;line-height:1.25;letter-spacing:-0.005em;margin-bottom:22px;}
+.rudolph-body{font-size:16px;line-height:1.6;opacity:0.85;margin-bottom:28px;}
+.rudolph-cta{display:inline-block;font-size:14px;font-weight:600;letter-spacing:0.05em;color:#f59e3f;border-bottom:1px solid #f59e3f;padding-bottom:4px;transition:color 0.2s,border-color 0.2s;}
+.rudolph-cta:hover{color:#fdf8f0;border-color:#fdf8f0;}
 
-/* ============================================ */
-/* §7 TRUTH QUOTE                               */
-/* ============================================ */
-.section-truth {
-  background: #8b2635;
-  color: #fdf8f0;
-  padding: 140px 0;
-  text-align: center;
-}
-.truth-quote {
-  max-width: 880px;
-  margin: 0 auto;
-  font-size: 28px;
-  font-weight: 400;
-  line-height: 1.4;
-  letter-spacing: -0.005em;
-  font-style: italic;
-}
-.truth-quote::before {
-  content: "";
-  display: block;
-  width: 48px;
-  height: 2px;
-  background: #f59e3f;
-  margin: 0 auto 40px;
-}
-.truth-attribution {
-  margin-top: 36px;
-  font-size: 14px;
-  font-style: normal;
-  letter-spacing: 0.05em;
-  opacity: 0.7;
-  font-weight: 500;
-}
+/* TRUTH QUOTE — more presence */
+.section-truth{background:#8b2635;color:#fdf8f0;padding:160px 0;text-align:center;position:relative;overflow:hidden;}
+.section-truth::before{content:'\201C';position:absolute;top:-40px;left:50%;transform:translateX(-50%);font-size:320px;line-height:1;color:rgba(255,255,255,0.04);font-family:Georgia,serif;pointer-events:none;}
+.truth-quote{max-width:820px;margin:0 auto;font-size:28px;font-weight:400;line-height:1.5;letter-spacing:-0.005em;font-style:italic;position:relative;z-index:1;}
+.truth-quote::before{content:'';display:block;width:48px;height:3px;background:#f59e3f;margin:0 auto 48px;}
+.truth-attribution{margin-top:40px;font-size:14px;font-style:normal;letter-spacing:0.07em;opacity:0.65;font-weight:600;text-transform:uppercase;}
 
-/* ============================================ */
-/* §8 DIRECT CONTACT                            */
-/* ============================================ */
-.section-contact {
-  background: #fdf8f0;
-  padding: 120px 0;
-}
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 80px;
-  align-items: start;
-  max-width: 1080px;
-  margin: 0 auto;
-}
-.contact-left .section-eyebrow { color: #8b2635; }
-.contact-headline {
-  font-size: 38px;
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  color: #1a1035;
-  margin-bottom: 24px;
-}
-.contact-intro {
-  font-size: 17px;
-  line-height: 1.6;
-  color: #1a1035;
-  opacity: 0.82;
-  margin-bottom: 20px;
-}
-.contact-intro:last-child { margin-bottom: 0; }
-.contact-block {
-  background: #ffffff;
-  padding: 44px 36px;
-  border-radius: 4px;
-  border-top: 4px solid #f59e3f;
-}
-.contact-row {
-  margin-bottom: 26px;
-}
-.contact-row:last-child { margin-bottom: 0; }
-.contact-label {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #8b2635;
-  margin-bottom: 8px;
-}
-.contact-value {
-  font-size: 18px;
-  font-weight: 500;
-  color: #1a1035;
-  line-height: 1.4;
-}
-.contact-value a {
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s;
-}
-.contact-value a:hover { border-color: #f59e3f; }
-.contact-value.address {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.5;
-  opacity: 0.85;
-}
+/* CONTACT */
+.section-contact{background:#fdf8f0;padding:120px 0;}
+.contact-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:start;max-width:1080px;margin:0 auto;}
+.contact-left .section-eyebrow{color:#8b2635;}
+.contact-headline{font-size:38px;font-weight:600;line-height:1.2;letter-spacing:-0.01em;color:#1a1035;margin-bottom:24px;}
+.contact-intro{font-size:17px;line-height:1.6;color:#1a1035;opacity:0.82;margin-bottom:20px;}
+.contact-intro:last-child{margin-bottom:0;}
+.contact-block{background:#ffffff;padding:44px 36px;border-radius:4px;border-top:4px solid #f59e3f;}
+.contact-row{margin-bottom:28px;}
+.contact-row:last-child{margin-bottom:0;}
+.contact-label{font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#8b2635;margin-bottom:8px;}
+.contact-value{font-size:18px;font-weight:500;color:#1a1035;line-height:1.4;}
+.contact-value a{border-bottom:1px solid transparent;transition:border-color 0.2s;}
+.contact-value a:hover{border-color:#f59e3f;}
+.contact-value.address{font-size:16px;font-weight:400;line-height:1.5;opacity:0.85;}
 
-/* ============================================ */
-/* FOOTER                                       */
-/* ============================================ */
-.site-footer {
-  background: #1a1035;
-  color: #fdf8f0;
-  padding: 40px 32px;
-  text-align: center;
-  font-size: 13px;
-  opacity: 0.7;
-}
-.site-footer a {
-  color: #f59e3f;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s;
-}
-.site-footer a:hover { border-color: #f59e3f; }
-.site-footer .footer-sep {
-  display: inline-block;
-  margin: 0 10px;
-  opacity: 0.5;
-}
+/* FOOTER */
+.site-footer{background:#1a1035;color:#fdf8f0;padding:40px 32px;text-align:center;font-size:13px;opacity:0.7;}
+.site-footer a{color:#f59e3f;border-bottom:1px solid transparent;transition:border-color 0.2s;}
+.site-footer a:hover{border-color:#f59e3f;}
+.site-footer .footer-sep{display:inline-block;margin:0 10px;opacity:0.5;}
 
-/* ============================================ */
-/* MOBILE                                       */
-/* ============================================ */
-@media (max-width: 900px) {
-  .top-bar { padding: 14px 20px; }
-  .top-bar-left { gap: 16px; }
-  .wordmark { font-size: 16px; }
-  .back-link { display: none; }
-  .nav-link { display: none; }
-  .top-bar-right { gap: 12px; }
-  .container { padding: 0 24px; }
-
-  .section-hero { padding: 80px 0 90px; }
-  .hero-grid { grid-template-columns: 1fr; gap: 48px; }
-  .hero-headline { font-size: 34px; }
-  .hero-headline .line-4 { font-size: 21px; }
-
-  .section-recognition { padding: 120px 0; }
-  .recognition-line { font-size: 24px; }
-
-  .section-problem, .section-who, .section-includes, .section-bridge, .section-contact {
-    padding: 80px 0;
-  }
-  .section-headline { font-size: 30px; }
-  .section-subhead { font-size: 17px; }
-  .problem-grid { grid-template-columns: 1fr; gap: 24px; }
-  .card-stat { font-size: 52px; }
-  .who-grid { grid-template-columns: 1fr; gap: 20px; }
-  .who-card-moment { font-size: 19px; }
-  .includes-grid { grid-template-columns: 1fr; gap: 24px; }
-  .includes-title { font-size: 21px; }
-
-  .bridge-paragraph { font-size: 17px; }
-  .rudolph-card { padding: 40px 28px; }
-  .rudolph-headline { font-size: 24px; }
-
-  .section-truth { padding: 90px 0; }
-  .truth-quote { font-size: 21px; }
-
-  .contact-grid { grid-template-columns: 1fr; gap: 48px; }
-  .contact-headline { font-size: 28px; }
-  .contact-block { padding: 32px 28px; }
+/* MOBILE */
+@media(max-width:900px){
+  .top-bar{padding:14px 20px;}
+  .top-bar-left{gap:16px;}
+  .wordmark{font-size:16px;}
+  .back-link{display:none;}
+  .nav-link{display:none;}
+  .top-bar-right{gap:12px;}
+  .container{padding:0 24px;}
+  .section-hero{padding:80px 0 90px;}
+  .hero-grid{grid-template-columns:1fr;gap:48px;}
+  .hero-headline{font-size:34px;}
+  .hero-headline .line-4{font-size:21px;}
+  .section-recognition{padding:120px 0;}
+  .recognition-line{font-size:24px;}
+  .recognition-line.l3{font-size:28px;}
+  .section-problem,.section-who,.section-includes,.section-bridge,.section-contact{padding:80px 0;}
+  .section-headline{font-size:30px;}
+  .section-subhead{font-size:17px;}
+  .problem-grid{grid-template-columns:1fr;gap:24px;}
+  .card-stat{font-size:52px;}
+  .who-grid{grid-template-columns:1fr;gap:20px;}
+  .who-card-moment{font-size:19px;}
+  .includes-grid{grid-template-columns:1fr;gap:24px;}
+  .includes-title{font-size:21px;}
+  .bridge-paragraph{font-size:17px;}
+  .rudolph-card{padding:40px 28px;}
+  .rudolph-headline{font-size:24px;}
+  .section-truth{padding:100px 0;}
+  .truth-quote{font-size:21px;}
+  .contact-grid{grid-template-columns:1fr;gap:48px;}
+  .contact-headline{font-size:28px;}
+  .contact-block{padding:32px 28px;}
 }
 </style>
 </head>
 <body>
 
-<!-- ============================================ -->
-<!-- TOP BAR                                      -->
-<!-- ============================================ -->
 <header class="top-bar">
   <div class="top-bar-left">
     <a href="/" class="wordmark">FirstStep</a>
@@ -668,9 +184,7 @@ a { color: inherit; text-decoration: none; }
   </div>
 </header>
 
-<!-- ============================================ -->
-<!-- §1 HERO                                      -->
-<!-- ============================================ -->
+<!-- HERO -->
 <section class="section-hero">
   <div class="container">
     <div class="hero-grid">
@@ -698,9 +212,7 @@ a { color: inherit; text-decoration: none; }
   </div>
 </section>
 
-<!-- ============================================ -->
-<!-- §2 RECOGNITION STRIP — ARCHITECTURAL CENTER  -->
-<!-- ============================================ -->
+<!-- RECOGNITION -->
 <section class="section-recognition">
   <div class="container">
     <div class="recognition-divider"></div>
@@ -713,9 +225,7 @@ a { color: inherit; text-decoration: none; }
   </div>
 </section>
 
-<!-- ============================================ -->
-<!-- §3 THE PROBLEM                               -->
-<!-- ============================================ -->
+<!-- THE PROBLEM -->
 <section class="section-problem">
   <div class="container">
     <div class="section-header">
@@ -724,7 +234,6 @@ a { color: inherit; text-decoration: none; }
       <p class="section-subhead">Three numbers the field already knows. What changes when the moment is built for.</p>
     </div>
     <div class="problem-grid">
-
       <article class="problem-card">
         <p class="card-stat">15%</p>
         <p class="card-stat-context">of Americans ages 18–34 trust the federal government — down from 30% in 2022. Across all adults, trust in social service agencies dropped 5 points in three years.</p>
@@ -732,30 +241,25 @@ a { color: inherit; text-decoration: none; }
         <p class="card-body">The decline isn't isolated to politics. The Partnership for Public Service tracks it across institutions; the AAMC Center for Health Justice tracks it across pharmacies, hospitals, and social service agencies. Participants don't arrive neutral. They arrive carrying every prior intake form, every "we'll get back to you," every system that asked them to start over. The frontline conversation begins inside that gap — whether the worker knows it or not.</p>
         <p class="card-sources">Sources: Partnership for Public Service, <em>State of Public Trust in Government 2024</em>; AAMC Center for Health Justice, <em>Trust Trends 2021–2024</em>.</p>
       </article>
-
       <article class="problem-card">
         <p class="card-stat">20–40%</p>
         <p class="card-stat-context">annual turnover among public child welfare caseworkers. Median tenure: under two years. Optimal turnover in health and human services: 12%.</p>
         <p class="card-moment">"The person at the desk wanted to help. They also have twenty-eight other people waiting."</p>
         <p class="card-body">The federal GAO documented it in 2003. The Administration for Children and Families confirmed it again in the 2021–2022 NSCAW III workforce study. Edwards & Wildeman's 49-jurisdiction NCANDS analysis put the median frontline turnover at 22%, with state-level rates running as high as 36%. The cost isn't just hiring — it's the relationship that resets every time a family meets a new caseworker. Frontline workers don't leave because they stopped caring. They leave because caring inside the current system is unsustainable.</p>
-        <p class="card-sources">Sources: U.S. GAO, <em>Child Welfare: HHS Could Play a Greater Role</em> (GAO-03-357); Administration for Children and Families, <em>NSCAW III Workforce Study 2021–2022</em>; Edwards & Wildeman, NCANDS 49-jurisdiction analysis (2018); Quality Improvement Center for Workforce Development.</p>
+        <p class="card-sources">Sources: U.S. GAO, <em>Child Welfare: HHS Could Play a Greater Role</em> (GAO-03-357); Administration for Children and Families, <em>NSCAW III Workforce Study 2021–2022</em>; Edwards & Wildeman, NCANDS 49-jurisdiction analysis (2018).</p>
       </article>
-
       <article class="problem-card">
         <p class="card-stat">39%</p>
         <p class="card-stat-context">of people released from state prison return within three years. Federal cost per incarcerated person: $39,158 a year. The trust gap doesn't just hurt — it bills.</p>
         <p class="card-moment">"What the system spent getting them here is more than what it would have cost to actually reach them."</p>
-        <p class="card-body">The Bureau of Justice Statistics' most recent five-year tracking study (prisoners released in 2012, followed through 2017) put the three-year return-to-prison rate at 39% and the five-year rate at roughly half. The Federal Bureau of Prisons reported the average annual cost per federal inmate at $39,158 in FY 2020. The cost compounds across systems: workforce non-completion, foster-care re-entry, missed appointments, repeated intakes. Every moment a participant doesn't trust enough to engage is a moment the system pays for later.</p>
+        <p class="card-body">The Bureau of Justice Statistics' most recent five-year tracking study put the three-year return-to-prison rate at 39% and the five-year rate at roughly half. The Federal Bureau of Prisons reported the average annual cost per federal inmate at $39,158 in FY 2020. Every moment a participant doesn't trust enough to engage is a moment the system pays for later.</p>
         <p class="card-sources">Sources: Bureau of Justice Statistics, <em>Recidivism of Prisoners Released in 34 States in 2012</em> (July 2021); Federal Bureau of Prisons FY 2020 cost report; Council on Criminal Justice, <em>National Recidivism Report</em>.</p>
       </article>
-
     </div>
   </div>
 </section>
 
-<!-- ============================================ -->
-<!-- §4 WHO WE'RE BUILT FOR                       -->
-<!-- ============================================ -->
+<!-- WHO -->
 <section class="section-who">
   <div class="container">
     <div class="section-header">
@@ -764,38 +268,31 @@ a { color: inherit; text-decoration: none; }
       <p class="section-subhead">The pattern repeats across sectors. The names change. The moment doesn't.</p>
     </div>
     <div class="who-grid">
-
       <article class="who-card">
         <p class="who-card-type">WORKFORCE DEVELOPMENT BOARDS · CAREER CENTERS · EMPLOYER PARTNERS</p>
         <p class="who-card-moment">"The job started Monday. The hard part started Tuesday."</p>
         <p class="who-card-body">Placement is the headline metric. Retention is the actual outcome. The gap between the two is where most workforce dollars quietly leak. FirstStep operates on the Tuesday — the first hard conversation between participant and program after the offer letter, where retention is decided.</p>
       </article>
-
       <article class="who-card">
         <p class="who-card-type">REENTRY PROGRAMS · PAROLE OFFICES · SECOND CHANCE INITIATIVES</p>
         <p class="who-card-moment">"The release date is the start of the work, not the end."</p>
-        <p class="who-card-body">National data shows 39% return-to-prison within three years, climbing to roughly half by year five (BJS). The American Institutes for Research has documented how reentry programs measure success by failure rates. NASEM names hope and self-efficacy as foundational to reentry outcomes. FirstStep is built for the moments those rates are actually decided.</p>
+        <p class="who-card-body">National data shows 39% return-to-prison within three years, climbing to roughly half by year five (BJS). NASEM names hope and self-efficacy as foundational to reentry outcomes. FirstStep is built for the moments those rates are actually decided.</p>
       </article>
-
       <article class="who-card">
         <p class="who-card-type">COMMUNITY COLLEGES · ADULT EDUCATION · CONTINUING ED</p>
         <p class="who-card-moment">"Completion isn't the outcome. What happens with the credential is."</p>
-        <p class="who-card-body">RAND's meta-analysis of correctional education shows recidivism drops as education levels rise — from 70-80% at no education down to 13.7% with associate's degree completion, and 5.6% with bachelor's. The credential alone isn't the lever. The transition out of the program is. FirstStep operates on that transition.</p>
+        <p class="who-card-body">RAND's meta-analysis of correctional education shows recidivism drops as education levels rise — from 70–80% at no education down to 5.6% with bachelor's completion. The credential alone isn't the lever. The transition out of the program is. FirstStep operates on that transition.</p>
       </article>
-
       <article class="who-card">
         <p class="who-card-type">FAMILY SERVICES · HOUSING · LEGAL AID · COMMUNITY HEALTH WORKERS</p>
         <p class="who-card-moment">"The caseload says twenty-eight. The day has eight hours."</p>
-        <p class="who-card-body">Massachusetts State Auditor public record: 28 of 93 DYS caseworkers exceeded the 15-case maximum threshold. CT CPS reports 28-case loads; Utah CPS reports 163. CWLA standard is 12-15. Binti, FAMCare, and frontline blogs document that 50% of caseworker time goes to administration. FirstStep is built for the work itself — not the work about the work.</p>
+        <p class="who-card-body">CWLA standard is 12–15 cases. State-level data consistently shows workers carrying two to ten times that. Binti and FAMCare document that 50% of caseworker time goes to administration. FirstStep is built for the work itself — not the work about the work.</p>
       </article>
-
     </div>
   </div>
 </section>
 
-<!-- ============================================ -->
-<!-- §5 WHAT A FIRSTSTEP PARTNERSHIP INCLUDES     -->
-<!-- ============================================ -->
+<!-- INCLUDES -->
 <section class="section-includes">
   <div class="container">
     <div class="section-header">
@@ -804,7 +301,6 @@ a { color: inherit; text-decoration: none; }
       <p class="section-subhead">Four deliverables. Built around your sector, your participants, your team.</p>
     </div>
     <div class="includes-grid">
-
       <article class="includes-block">
         <p class="includes-num">01 · CUSTOM SITUATIONS</p>
         <h3 class="includes-title">Built on your real moments. Not generic case studies.</h3>
@@ -812,36 +308,30 @@ a { color: inherit; text-decoration: none; }
         <p class="includes-body">Deliverable: a sector-specific situation library, drafted with your team, reviewed for accuracy, locked for facilitator use.</p>
         <p class="includes-body"><a href="/guide.html" class="inline-link">See the live FirstStep guide for an example →</a></p>
       </article>
-
       <article class="includes-block">
         <p class="includes-num">02 · BRANDED SURFACE</p>
         <h3 class="includes-title">Your name on the front. Our methodology underneath.</h3>
         <p class="includes-body">FirstStep is the methodology. Your organization is the relationship. The deployed surface — workbook, intake companion, digital reference — carries your branding, your tone, your context. Your participants don't meet "FirstStep." They meet your program, with the moment built for.</p>
         <p class="includes-body">Deliverable: a co-branded participant-facing surface, designed for the channel your team already operates in (printed, digital, intake-room display, or hybrid).</p>
       </article>
-
       <article class="includes-block">
         <p class="includes-num">03 · FACILITATOR-READY CURRICULUM</p>
         <h3 class="includes-title">Built so your team can run it. Not so they need us in the room.</h3>
-        <p class="includes-body">The facilitator package is built for the staff you already have. Not a new credential. Not a multi-day train-the-trainer that takes them off the floor. The curriculum is structured so a frontline supervisor can run a session inside a standard team meeting cadence and a new hire can ramp without losing the methodology integrity.</p>
+        <p class="includes-body">The facilitator package is built for the staff you already have. Not a new credential. Not a multi-day train-the-trainer that takes them off the floor. The curriculum is structured so a frontline supervisor can run a session inside a standard team meeting cadence.</p>
         <p class="includes-body">Deliverable: facilitator guide, session-by-session scripts, fidelity checklist, and a 90-minute onboarding for your lead facilitator.</p>
       </article>
-
       <article class="includes-block">
         <p class="includes-num">04 · DOCUMENTATION ALIGNED TO WIOA + SECTION 169</p>
         <h3 class="includes-title">Built for the reporting conversation that comes next.</h3>
-        <p class="includes-body">WIOA Section 169 authorizes evaluations and research with rigorous methods — control groups where feasible, customer feedback capture, outcome and process measures. 20 CFR 682.220 operationalizes those requirements at the state level. FirstStep partnerships are documented so the outputs map cleanly to that evaluation surface: structured outcome data, participant feedback capture, fidelity tracking, and a methodology description fit for state and federal reporting.</p>
+        <p class="includes-body">WIOA Section 169 authorizes evaluations and research with rigorous methods — control groups where feasible, customer feedback capture, outcome and process measures. FirstStep partnerships are documented so the outputs map cleanly to that evaluation surface: structured outcome data, participant feedback capture, fidelity tracking, and a methodology description fit for state and federal reporting.</p>
         <p class="includes-body">FirstStep does not certify your program's eligibility under any specific WIOA funding stream — that determination lives with your state plan and grant officer. What FirstStep delivers is the documentation infrastructure that makes the evaluation conversation faster on your side.</p>
         <p class="includes-footnote">Reference: WIOA Sec. 169 (Evaluations and Research); 20 CFR 682.220; 20 CFR 683.105(e). U.S. Department of Labor, Employment and Training Administration, WIOA Research Portfolio (Mathematica / SPR / NAWB, 2020–2024).</p>
       </article>
-
     </div>
   </div>
 </section>
 
-<!-- ============================================ -->
-<!-- §6 BRIDGE TO RUDOLPH CX                      -->
-<!-- ============================================ -->
+<!-- BRIDGE -->
 <section class="section-bridge">
   <div class="container">
     <div class="bridge-header">
@@ -849,7 +339,6 @@ a { color: inherit; text-decoration: none; }
       <h2 class="section-headline">Same person. Different uniform.</h2>
     </div>
     <p class="bridge-paragraph">The caseworker at intake and the agent on the call line are the same person — someone who came to work hoping to actually help, working inside a system the moment was never built for. FirstStep is what we built for the community surface. Rudolph CX is what we built for the enterprise surface. Same methodology. Same architecture. Same person, finally getting what they came for.</p>
-
     <div class="rudolph-card">
       <p class="rudolph-eyebrow">RUDOLPH CX</p>
       <h3 class="rudolph-headline">Built for the moment the call is live.</h3>
@@ -859,32 +348,26 @@ a { color: inherit; text-decoration: none; }
   </div>
 </section>
 
-<!-- ============================================ -->
-<!-- §7 TRUTH QUOTE                               -->
-<!-- ============================================ -->
+<!-- TRUTH QUOTE -->
 <section class="section-truth">
   <div class="container">
     <blockquote class="truth-quote">
       "This is the moment. You're in the moment. You can't miss the moment because you can never relive that moment. And that moment is like a crossroad. If you in it, you cross the road. If not, you may get stuck at the crossroad."
-      <span class="truth-attribution">— Jamal Rudolph, May 23, 2026</span>
+      <span class="truth-attribution">— Jamal Rudolph · Founder, FirstStep</span>
     </blockquote>
   </div>
 </section>
 
-<!-- ============================================ -->
-<!-- §8 DIRECT CONTACT                            -->
-<!-- ============================================ -->
+<!-- CONTACT -->
 <section class="section-contact" id="contact">
   <div class="container">
     <div class="contact-grid">
-
       <div class="contact-left">
         <p class="section-eyebrow">DIRECT CONTACT</p>
         <h2 class="contact-headline">Tell us about your team. We'll tell you what a partnership looks like.</h2>
         <p class="contact-intro">No form. No drip sequence. The conversation starts with a real one — either by email or by phone, whichever you prefer.</p>
         <p class="contact-intro">Tell us the sector, the population you serve, the moment that keeps coming up. We'll come back with what a FirstStep partnership would actually look like for your organization.</p>
       </div>
-
       <div class="contact-right">
         <div class="contact-block">
           <div class="contact-row">
@@ -901,14 +384,10 @@ a { color: inherit; text-decoration: none; }
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ============================================ -->
-<!-- FOOTER                                       -->
-<!-- ============================================ -->
 <footer class="site-footer">
   FirstStep is a <a href="https://rudolphcx.com">Rudolph CX LLC</a> initiative
   <span class="footer-sep">·</span>
