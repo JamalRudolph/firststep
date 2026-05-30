@@ -3,919 +3,243 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FirstStep — You're in a moment. Pick what you need.</title>
+<title>FirstStep — You Know What To Do</title>
 <meta name="description" content="FirstStep is a free guide for people in hard moments. Pick what's happening right now — get the exact steps and words to handle it.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --dawn:   #1a1035;
-  --dusk:   #2d1b69;
-  --amber:  #f59e3f;
-  --amber2: #fbbf6a;
-  --cream:  #fdf8f0;
-  --cream2: #f5ede0;
-  --warm:   #e8d5bc;
-  --brown:  #8b6f47;
-  --text:   #2c1810;
-  --text2:  #5c3d2e;
-  --muted:  #9a7c6a;
-  --green:  #2d6a4f;
-  --green2: #40916c;
-  --blue:   #1d4e89;
-  --rose:   #8b2635;
-  --serif:  'Lora', Georgia, serif;
-  --sans:   'Plus Jakarta Sans', system-ui, sans-serif;
-}
-html { scroll-behavior: smooth; }
-body { font-family: var(--sans); background: var(--cream); color: var(--text); overflow-x: hidden; line-height: 1.6; }
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--cream2); }
-::-webkit-scrollbar-thumb { background: var(--amber); border-radius: 2px; }
-
-/* QUICK EXIT BAR */
-.quick-exit {
-  position: fixed;
-  top: 0; right: 0;
-  background: var(--rose);
-  color: white;
-  padding: 8px 16px;
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  border-bottom-left-radius: 8px;
-  cursor: pointer;
-  z-index: 200;
-  text-decoration: none;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  transition: background 0.15s;
-}
-.quick-exit:hover { background: #6b1d29; }
-
-/* HERO — THE THRESHOLD */
-.hero {
-  min-height: 78vh;
-  background: linear-gradient(165deg, var(--dawn) 0%, var(--dusk) 45%, #4a2080 70%, #c17f3a 100%);
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 80px 24px 60px;
-}
-.hero::before {
-  content: '';
-  position: absolute;
-  bottom: -120px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 900px;
-  height: 400px;
-  background: radial-gradient(ellipse, rgba(245,158,63,0.35) 0%, rgba(245,158,63,0.08) 45%, transparent 75%);
-  pointer-events: none;
-}
-.hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(1px 1px at 18% 14%, rgba(255,255,255,0.5) 0%, transparent 100%),
-    radial-gradient(1px 1px at 62% 9%, rgba(255,255,255,0.4) 0%, transparent 100%),
-    radial-gradient(1px 1px at 82% 22%, rgba(255,255,255,0.45) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 35% 28%, rgba(255,255,255,0.3) 0%, transparent 100%),
-    radial-gradient(1px 1px at 75% 12%, rgba(255,255,255,0.35) 0%, transparent 100%),
-    radial-gradient(1px 1px at 48% 6%, rgba(255,255,255,0.4) 0%, transparent 100%);
-  pointer-events: none;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  max-width: 720px;
-  width: 100%;
-}
-
-.hero-brand {
-  font-family: var(--serif);
-  font-size: 20px;
-  font-weight: 700;
-  color: white;
-  letter-spacing: -0.01em;
-  margin-bottom: 40px;
-  opacity: 0.85;
-}
-.hero-brand span { color: var(--amber); font-style: italic; }
-
-.hero-acknowledge {
-  font-family: var(--serif);
-  font-size: clamp(28px, 5vw, 44px);
-  font-weight: 700;
-  color: white;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  margin-bottom: 14px;
-  animation: fadeUp 0.8s ease 0.1s both;
-}
-.hero-acknowledge em { font-style: italic; color: var(--amber); }
-
-.hero-permission {
-  font-family: var(--serif);
-  font-size: clamp(15px, 2.2vw, 18px);
-  color: rgba(255,255,255,0.72);
-  font-style: italic;
-  font-weight: 400;
-  margin-bottom: 38px;
-  line-height: 1.6;
-  animation: fadeUp 0.8s ease 0.2s both;
-}
-
-/* Search input */
-.search-wrap {
-  position: relative;
-  max-width: 560px;
-  margin: 0 auto 28px;
-  animation: fadeUp 0.8s ease 0.3s both;
-}
-.search-input {
-  width: 100%;
-  padding: 20px 60px 20px 28px;
-  background: rgba(255,255,255,0.14);
-  backdrop-filter: blur(20px);
-  border: 1.5px solid rgba(255,255,255,0.22);
-  border-radius: 100px;
-  font-family: var(--sans);
-  font-size: 16px;
-  font-weight: 400;
-  color: white;
-  outline: none;
-  transition: all 0.2s;
-}
-.search-input::placeholder { color: rgba(255,255,255,0.55); }
-.search-input:focus {
-  background: rgba(255,255,255,0.2);
-  border-color: var(--amber);
-  box-shadow: 0 0 0 4px rgba(245,158,63,0.15);
-}
-.search-btn {
-  position: absolute;
-  right: 6px; top: 50%;
-  transform: translateY(-50%);
-  width: 48px; height: 48px;
-  background: var(--amber);
-  border: none;
-  border-radius: 100px;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 20px;
-  color: var(--dawn);
-  font-weight: 700;
-  transition: all 0.2s;
-}
-.search-btn:hover { background: var(--amber2); transform: translateY(-50%) scale(1.05); }
-
-.hero-secondary {
-  font-family: var(--sans);
-  font-size: 13px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.5);
-  margin-top: 8px;
-  animation: fadeUp 0.8s ease 0.4s both;
-}
-.hero-secondary a {
-  color: var(--amber2);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-color: rgba(251,191,106,0.4);
-}
-.hero-secondary a:hover { text-decoration-color: var(--amber); }
-
-/* NEW — Hero org-aware line (subtle, below secondary) */
-.hero-org-aware {
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.42);
-  margin-top: 14px;
-  animation: fadeUp 0.8s ease 0.5s both;
-  letter-spacing: 0.01em;
-}
-.hero-org-aware a {
-  color: var(--amber2);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-color: rgba(251,191,106,0.4);
-  font-weight: 600;
-}
-.hero-org-aware a:hover { text-decoration-color: var(--amber); color: var(--amber); }
-
-/* SITUATIONS */
-.situations {
-  padding: 80px 24px 60px;
-  max-width: 1180px;
-  margin: 0 auto;
-}
-
-.sit-eyebrow {
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--brown);
-  margin-bottom: 14px;
-  display: flex; align-items: center; gap: 12px;
-}
-.sit-eyebrow::before {
-  content: '';
-  width: 22px; height: 2px;
-  background: var(--amber);
-}
-
-.sit-h {
-  font-family: var(--serif);
-  font-size: clamp(26px, 4vw, 38px);
-  font-weight: 700;
-  color: var(--text);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  margin-bottom: 12px;
-}
-.sit-h em { font-style: italic; color: var(--brown); }
-
-.sit-sub {
-  font-size: 15px;
-  color: var(--muted);
-  line-height: 1.7;
-  margin-bottom: 44px;
-  max-width: 600px;
-  font-weight: 400;
-}
-
-.sit-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 14px;
-}
-
-.sit-card {
-  background: white;
-  border: 1.5px solid var(--cream2);
-  border-radius: 16px;
-  padding: 22px 20px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border-left: 4px solid transparent;
-  text-align: left;
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-.sit-card:hover {
-  box-shadow: 0 8px 28px rgba(44,24,16,0.1);
-  transform: translateY(-2px);
-  border-color: transparent;
-}
-.sit-card.c-green { border-left-color: var(--green); }
-.sit-card.c-blue  { border-left-color: var(--blue); }
-.sit-card.c-amber { border-left-color: var(--amber); }
-.sit-card.c-rose  { border-left-color: var(--rose); }
-.sit-card.c-brown { border-left-color: var(--brown); }
-.sit-card.c-dusk  { border-left-color: var(--dusk); }
-.sit-card.c-teal  { border-left-color: #0d9488; }
-.sit-card.c-purple{ border-left-color: #7c3aed; }
-.sit-card.c-coral { border-left-color: #ea580c; }
-
-.sc-icon { font-size: 24px; margin-bottom: 8px; display: block; }
-.sc-tag {
-  font-family: var(--sans);
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 6px;
-  display: block;
-}
-.sc-title {
-  font-family: var(--serif);
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 6px;
-  line-height: 1.25;
-}
-.sc-desc {
-  font-size: 12px;
-  color: var(--muted);
-  line-height: 1.55;
-  font-weight: 400;
-}
-
-.sit-more {
-  text-align: center;
-  margin-top: 36px;
-}
-.sit-more-link {
-  font-family: var(--sans);
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--brown);
-  text-decoration: none;
-  border-bottom: 1.5px solid rgba(139,111,71,0.3);
-  padding-bottom: 2px;
-  transition: all 0.15s;
-}
-.sit-more-link:hover {
-  color: var(--text);
-  border-color: var(--amber);
-}
-
-/* NEW — FOR ORGANIZATIONS STRIP */
-.for-orgs {
-  padding: 80px 24px;
-  background: linear-gradient(180deg, var(--cream) 0%, var(--cream2) 100%);
-  border-top: 1.5px solid var(--cream2);
-  border-bottom: 1.5px solid var(--warm);
-}
-.for-orgs-inner {
-  max-width: 1080px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 56px;
-  align-items: center;
-}
-.fo-eyebrow {
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--rose);
-  margin-bottom: 14px;
-  display: flex; align-items: center; gap: 12px;
-}
-.fo-eyebrow::before {
-  content: '';
-  width: 22px; height: 2px;
-  background: var(--rose);
-}
-.fo-h {
-  font-family: var(--serif);
-  font-size: clamp(24px, 3.5vw, 34px);
-  font-weight: 700;
-  color: var(--text);
-  line-height: 1.2;
-  letter-spacing: -0.015em;
-  margin-bottom: 18px;
-}
-.fo-h em { font-style: italic; color: var(--rose); }
-.fo-body {
-  font-size: 15px;
-  color: var(--text2);
-  line-height: 1.75;
-  margin-bottom: 18px;
-  font-weight: 400;
-}
-.fo-body:last-of-type { margin-bottom: 28px; }
-.fo-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--sans);
-  font-size: 14px;
-  font-weight: 700;
-  color: white;
-  background: var(--dawn);
-  padding: 14px 28px;
-  border-radius: 100px;
-  text-decoration: none;
-  transition: all 0.2s;
-  letter-spacing: 0.01em;
-}
-.fo-cta:hover {
-  background: var(--rose);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(139,38,53,0.3);
-}
-.fo-audiences {
-  background: white;
-  border-radius: 16px;
-  padding: 32px 28px;
-  border: 1.5px solid var(--cream2);
-  border-left: 4px solid var(--amber);
-}
-.fo-audiences-label {
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 18px;
-}
-.fo-audiences-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.fo-audiences-list li {
-  font-family: var(--serif);
-  font-size: 15px;
-  color: var(--text);
-  font-weight: 500;
-  line-height: 1.45;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--cream2);
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-}
-.fo-audiences-list li:last-child { border-bottom: none; }
-.fo-audiences-list li::before {
-  content: '→';
-  color: var(--amber);
-  font-weight: 700;
-  flex-shrink: 0;
-}
-
-/* VOICE NOT SCRIPT */
-.voice {
-  background: white;
-  padding: 70px 24px;
-  border-top: 1.5px solid var(--cream2);
-  border-bottom: 1.5px solid var(--cream2);
-}
-.voice-inner {
-  max-width: 920px;
-  margin: 0 auto;
-  text-align: center;
-}
-.voice-eyebrow {
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--rose);
-  margin-bottom: 14px;
-}
-.voice-h {
-  font-family: var(--serif);
-  font-size: clamp(24px, 3.5vw, 32px);
-  font-weight: 700;
-  color: var(--text);
-  line-height: 1.2;
-  margin-bottom: 14px;
-  letter-spacing: -0.01em;
-}
-.voice-h em { font-style: italic; color: var(--rose); }
-.voice-sub {
-  font-size: 15px;
-  color: var(--muted);
-  line-height: 1.7;
-  max-width: 620px;
-  margin: 0 auto 36px;
-  font-weight: 400;
-}
-
-.voice-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 12px;
-  max-width: 800px;
-  margin: 0 auto;
-}
-.voice-card {
-  background: #fff8f8;
-  border: 1px solid #fecdd3;
-  border-radius: 14px;
-  padding: 18px 16px;
-  text-align: left;
-  text-decoration: none;
-  color: inherit;
-  transition: all 0.2s;
-}
-.voice-card:hover {
-  border-color: var(--rose);
-  background: #fff1f2;
-  transform: translateY(-2px);
-}
-.vc-name {
-  font-family: var(--sans);
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 4px;
-}
-.vc-line {
-  font-size: 11px;
-  color: var(--muted);
-  line-height: 1.4;
-  margin-bottom: 8px;
-}
-.vc-action {
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--rose);
-  letter-spacing: 0.04em;
-}
-
-/* TRUTH */
-.truth {
-  padding: 90px 24px;
-  background: var(--cream2);
-}
-.truth-inner {
-  max-width: 760px;
-  margin: 0 auto;
-  text-align: center;
-  position: relative;
-}
-.truth-mark {
-  font-family: var(--serif);
-  font-size: 120px;
-  color: rgba(139,111,71,0.15);
-  line-height: 0.8;
-  display: block;
-  margin-bottom: -30px;
-}
-.truth-quote {
-  font-family: var(--serif);
-  font-size: clamp(20px, 3vw, 28px);
-  font-weight: 500;
-  color: var(--text);
-  line-height: 1.45;
-  font-style: italic;
-  letter-spacing: -0.01em;
-  margin-bottom: 22px;
-  position: relative;
-  z-index: 1;
-}
-.truth-quote strong { font-weight: 700; font-style: normal; color: var(--brown); }
-.truth-attr {
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--muted);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-.truth-attr span { color: var(--brown); }
-
-/* HOW */
-.how {
-  padding: 80px 24px;
-  background: var(--cream);
-  max-width: 1100px;
-  margin: 0 auto;
-}
-.how-h {
-  font-family: var(--serif);
-  font-size: clamp(24px, 3.5vw, 32px);
-  font-weight: 700;
-  color: var(--text);
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  margin-bottom: 14px;
-}
-.how-h em { font-style: italic; color: var(--brown); }
-.how-sub {
-  font-size: 15px;
-  color: var(--muted);
-  line-height: 1.7;
-  margin-bottom: 44px;
-  max-width: 540px;
-  font-weight: 400;
-}
-.how-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 8px;
-}
-.how-card {
-  background: white;
-  border-radius: 16px;
-  padding: 28px 24px;
-  border: 1px solid var(--cream2);
-}
-.how-num {
-  font-family: var(--serif);
-  font-size: 36px;
-  font-weight: 700;
-  color: var(--amber);
-  line-height: 1;
-  margin-bottom: 12px;
-}
-.how-title {
-  font-family: var(--serif);
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 8px;
-  line-height: 1.3;
-}
-.how-desc {
-  font-size: 13px;
-  color: var(--muted);
-  line-height: 1.6;
-  font-weight: 400;
-}
-
-/* CTA */
-.cta {
-  background: linear-gradient(135deg, var(--dawn) 0%, var(--dusk) 50%, #3d1a6e 100%);
-  padding: 90px 24px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-.cta::before {
-  content: '';
-  position: absolute;
-  bottom: -150px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 700px;
-  height: 350px;
-  background: radial-gradient(ellipse, rgba(245,158,63,0.22) 0%, transparent 70%);
-  pointer-events: none;
-}
-.cta-inner {
-  position: relative;
-  z-index: 1;
-  max-width: 620px;
-  margin: 0 auto;
-}
-.cta-h {
-  font-family: var(--serif);
-  font-size: clamp(28px, 4.5vw, 44px);
-  font-weight: 700;
-  color: white;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  margin-bottom: 18px;
-}
-.cta-h em { font-style: italic; color: var(--amber); }
-.cta-sub {
-  font-size: 15px;
-  color: rgba(255,255,255,0.6);
-  line-height: 1.7;
-  margin-bottom: 40px;
-  font-weight: 400;
-}
-.cta-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--amber);
-  color: var(--dawn);
-  font-family: var(--sans);
-  font-size: 15px;
-  font-weight: 700;
-  padding: 18px 40px;
-  border-radius: 100px;
-  text-decoration: none;
-  transition: all 0.2s;
-}
-.cta-btn:hover {
-  background: var(--amber2);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(245,158,63,0.4);
-}
-.cta-trust {
-  margin-top: 24px;
-  font-family: var(--sans);
-  font-size: 12px;
-  color: rgba(255,255,255,0.4);
-  font-weight: 500;
-  letter-spacing: 0.04em;
-}
-
-/* FOOTER */
-footer {
-  background: var(--text);
-  padding: 36px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-.f-brand {
-  font-family: var(--serif);
-  font-size: 18px;
-  font-weight: 700;
-  color: white;
-}
-.f-brand span { color: var(--amber); font-style: italic; }
-.f-links {
-  display: flex;
-  gap: 22px;
-  list-style: none;
-}
-.f-links a {
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.45);
-  text-decoration: none;
-  letter-spacing: 0.06em;
-  transition: color 0.15s;
-}
-.f-links a:hover { color: var(--amber); }
-.f-copy {
-  width: 100%;
-  font-family: var(--sans);
-  font-size: 11px;
-  color: rgba(255,255,255,0.28);
-  margin-top: 4px;
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@media (max-width: 768px) {
-  .hero { min-height: 70vh; padding: 60px 20px 50px; }
-  .situations { padding: 56px 20px 40px; }
-  .for-orgs { padding: 60px 20px; }
-  .for-orgs-inner { grid-template-columns: 1fr; gap: 36px; }
-  .voice { padding: 50px 20px; }
-  .truth { padding: 64px 20px; }
-  .how { padding: 56px 20px; }
-  .cta { padding: 64px 20px; }
-  .sit-grid { grid-template-columns: 1fr; }
-  .voice-grid { grid-template-columns: repeat(2, 1fr); }
-  footer { flex-direction: column; align-items: flex-start; }
-  .f-links { flex-wrap: wrap; gap: 14px; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --dawn:#1a1035;--dusk:#2d1b69;--amber:#f59e3f;--amber2:#fbbf6a;
+  --cream:#fdf8f0;--cream2:#f5ede0;--warm:#e8d5bc;--brown:#8b6f47;
+  --text:#2c1810;--text2:#5c3d2e;--muted:#9a7c6a;
+  --green:#2d6a4f;--blue:#1d4e89;--rose:#8b2635;
+  --serif:'Lora',Georgia,serif;--sans:'Plus Jakarta Sans',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--cream);color:var(--text);overflow-x:hidden;line-height:1.6;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--cream2);}::-webkit-scrollbar-thumb{background:var(--amber);border-radius:2px;}
+.quick-exit{position:fixed;top:0;right:0;background:var(--rose);color:white;padding:8px 16px;font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border-bottom-left-radius:8px;cursor:pointer;z-index:300;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:background 0.15s;}
+.quick-exit:hover{background:#6b1d29;}
+.hero{min-height:78vh;background:linear-gradient(165deg,var(--dawn) 0%,var(--dusk) 45%,#4a2080 70%,#c17f3a 100%);position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 24px 60px;}
+.hero::before{content:'';position:absolute;bottom:-120px;left:50%;transform:translateX(-50%);width:900px;height:400px;background:radial-gradient(ellipse,rgba(245,158,63,0.35) 0%,rgba(245,158,63,0.08) 45%,transparent 75%);pointer-events:none;}
+.hero::after{content:'';position:absolute;inset:0;background-image:radial-gradient(1px 1px at 18% 14%,rgba(255,255,255,0.5) 0%,transparent 100%),radial-gradient(1px 1px at 62% 9%,rgba(255,255,255,0.4) 0%,transparent 100%),radial-gradient(1px 1px at 82% 22%,rgba(255,255,255,0.45) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 35% 28%,rgba(255,255,255,0.3) 0%,transparent 100%),radial-gradient(1px 1px at 75% 12%,rgba(255,255,255,0.35) 0%,transparent 100%),radial-gradient(1px 1px at 48% 6%,rgba(255,255,255,0.4) 0%,transparent 100%);pointer-events:none;}
+.hero-content{position:relative;z-index:2;text-align:center;max-width:720px;width:100%;}
+.hero-brand{font-family:var(--serif);font-size:20px;font-weight:700;color:white;letter-spacing:-0.01em;margin-bottom:40px;opacity:0.85;}
+.hero-brand span{color:var(--amber);font-style:italic;}
+.hero-acknowledge{font-family:var(--serif);font-size:clamp(30px,5.5vw,52px);font-weight:700;color:white;line-height:1.12;letter-spacing:-0.02em;margin-bottom:18px;animation:fadeUp 0.8s ease 0.1s both;}
+.hero-acknowledge em{font-style:italic;color:var(--amber);}
+.hero-permission{font-family:var(--sans);font-size:clamp(14px,2vw,17px);color:rgba(255,255,255,0.68);font-weight:300;margin-bottom:38px;line-height:1.75;max-width:580px;margin-left:auto;margin-right:auto;animation:fadeUp 0.8s ease 0.2s both;}
+.search-wrap{position:relative;max-width:560px;margin:0 auto 28px;animation:fadeUp 0.8s ease 0.3s both;}
+.search-input{width:100%;padding:20px 60px 20px 28px;background:rgba(255,255,255,0.14);backdrop-filter:blur(20px);border:1.5px solid rgba(255,255,255,0.22);border-radius:100px;font-family:var(--sans);font-size:16px;font-weight:400;color:white;outline:none;transition:all 0.2s;}
+.search-input::placeholder{color:rgba(255,255,255,0.55);}
+.search-input:focus{background:rgba(255,255,255,0.2);border-color:var(--amber);box-shadow:0 0 0 4px rgba(245,158,63,0.15);}
+.search-btn{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:48px;height:48px;background:var(--amber);border:none;border-radius:100px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--dawn);font-weight:700;transition:all 0.2s;}
+.search-btn:hover{background:var(--amber2);transform:translateY(-50%) scale(1.05);}
+.hero-secondary{font-family:var(--sans);font-size:13px;font-weight:500;color:rgba(255,255,255,0.5);margin-top:8px;animation:fadeUp 0.8s ease 0.4s both;}
+.hero-secondary a{color:var(--amber2);text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(251,191,106,0.4);}
+.hero-secondary a:hover{text-decoration-color:var(--amber);}
+.hero-org-aware{font-family:var(--sans);font-size:12px;font-weight:500;color:rgba(255,255,255,0.42);margin-top:14px;animation:fadeUp 0.8s ease 0.5s both;}
+.hero-org-aware a{color:var(--amber2);text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(251,191,106,0.4);font-weight:600;}
+.hero-org-aware a:hover{color:var(--amber);}
+.situations{padding:80px 24px 60px;max-width:1180px;margin:0 auto;}
+.sit-eyebrow{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--brown);margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.sit-eyebrow::before{content:'';width:22px;height:2px;background:var(--amber);}
+.sit-h{font-family:var(--serif);font-size:clamp(26px,4vw,38px);font-weight:700;color:var(--text);line-height:1.15;letter-spacing:-0.02em;margin-bottom:12px;}
+.sit-h em{font-style:italic;color:var(--brown);}
+.sit-sub{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:44px;max-width:600px;font-weight:400;}
+.sit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;}
+.sit-card{background:white;border:1.5px solid var(--cream2);border-radius:16px;padding:24px 44px 22px 20px;cursor:pointer;transition:all 0.22s ease;border-left:4px solid transparent;text-align:left;color:inherit;display:block;position:relative;font-family:var(--sans);}
+.sit-card::after{content:'→';position:absolute;right:16px;top:22px;font-size:15px;color:var(--cream2);transition:all 0.2s;}
+.sit-card:hover{box-shadow:0 10px 36px rgba(44,24,16,0.12);transform:translateY(-3px);}
+.sit-card:hover::after{right:12px;color:var(--amber);}
+.sit-card.c-green{border-left-color:var(--green);}.sit-card.c-green:hover{border-color:var(--green);}
+.sit-card.c-blue{border-left-color:var(--blue);}.sit-card.c-blue:hover{border-color:var(--blue);}
+.sit-card.c-amber{border-left-color:var(--amber);}.sit-card.c-amber:hover{border-color:var(--amber);}
+.sit-card.c-rose{border-left-color:var(--rose);}.sit-card.c-rose:hover{border-color:var(--rose);}
+.sit-card.c-brown{border-left-color:var(--brown);}.sit-card.c-brown:hover{border-color:var(--brown);}
+.sit-card.c-dusk{border-left-color:var(--dusk);}.sit-card.c-dusk:hover{border-color:var(--dusk);}
+.sit-card.c-teal{border-left-color:#0d9488;}.sit-card.c-teal:hover{border-color:#0d9488;}
+.sit-card.c-purple{border-left-color:#7c3aed;}.sit-card.c-purple:hover{border-color:#7c3aed;}
+.sit-card.c-coral{border-left-color:#ea580c;}.sit-card.c-coral:hover{border-color:#ea580c;}
+.sc-icon{font-size:26px;margin-bottom:10px;display:block;}
+.sc-tag{font-family:var(--sans);font-size:8px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);margin-bottom:7px;display:block;}
+.sc-title{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--text);margin-bottom:6px;line-height:1.25;}
+.sc-desc{font-size:12px;color:var(--muted);line-height:1.6;font-weight:400;}
+.sit-more{text-align:center;margin-top:36px;}
+.sit-more-link{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--brown);text-decoration:none;border-bottom:1.5px solid rgba(139,111,71,0.3);padding-bottom:2px;transition:all 0.15s;}
+.sit-more-link:hover{color:var(--text);border-color:var(--amber);}
+.for-orgs{padding:80px 24px;background:linear-gradient(180deg,var(--cream) 0%,var(--cream2) 100%);border-top:1.5px solid var(--cream2);border-bottom:1.5px solid var(--warm);}
+.for-orgs-inner{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+.fo-eyebrow{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--rose);margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.fo-eyebrow::before{content:'';width:22px;height:2px;background:var(--rose);}
+.fo-h{font-family:var(--serif);font-size:clamp(24px,3.5vw,34px);font-weight:700;color:var(--text);line-height:1.2;letter-spacing:-0.015em;margin-bottom:18px;}
+.fo-h em{font-style:italic;color:var(--rose);}
+.fo-body{font-size:15px;color:var(--text2);line-height:1.75;margin-bottom:18px;font-weight:400;}
+.fo-body:last-of-type{margin-bottom:28px;}
+.fo-cta{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-size:14px;font-weight:700;color:white;background:var(--dawn);padding:14px 28px;border-radius:100px;text-decoration:none;transition:all 0.2s;}
+.fo-cta:hover{background:var(--rose);transform:translateY(-2px);box-shadow:0 8px 24px rgba(139,38,53,0.3);}
+.fo-audiences{background:white;border-radius:16px;padding:32px 28px;border:1.5px solid var(--cream2);border-left:4px solid var(--amber);}
+.fo-audiences-label{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;}
+.fo-audiences-list{list-style:none;padding:0;margin:0;}
+.fo-audiences-list li{font-family:var(--serif);font-size:15px;color:var(--text);font-weight:500;line-height:1.45;padding:12px 0;border-bottom:1px solid var(--cream2);display:flex;align-items:flex-start;gap:12px;}
+.fo-audiences-list li:last-child{border-bottom:none;}
+.fo-audiences-list li::before{content:'→';color:var(--amber);font-weight:700;flex-shrink:0;}
+.voice{background:white;padding:70px 24px;border-top:1.5px solid var(--cream2);border-bottom:1.5px solid var(--cream2);}
+.voice-inner{max-width:920px;margin:0 auto;text-align:center;}
+.voice-eyebrow{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--rose);margin-bottom:14px;}
+.voice-h{font-family:var(--serif);font-size:clamp(24px,3.5vw,32px);font-weight:700;color:var(--text);line-height:1.2;margin-bottom:14px;letter-spacing:-0.01em;}
+.voice-h em{font-style:italic;color:var(--rose);}
+.voice-sub{font-size:15px;color:var(--muted);line-height:1.7;max-width:620px;margin:0 auto 36px;font-weight:400;}
+.voice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;max-width:800px;margin:0 auto;}
+.voice-card{background:#fff8f8;border:1px solid #fecdd3;border-radius:14px;padding:18px 16px;text-align:left;text-decoration:none;color:inherit;transition:all 0.2s;}
+.voice-card:hover{border-color:var(--rose);background:#fff1f2;transform:translateY(-2px);}
+.vc-name{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.vc-line{font-size:11px;color:var(--muted);line-height:1.4;margin-bottom:8px;}
+.vc-action{font-family:var(--sans);font-size:12px;font-weight:700;color:var(--rose);letter-spacing:0.04em;}
+.truth{padding:90px 24px;background:var(--cream2);}
+.truth-inner{max-width:760px;margin:0 auto;text-align:center;position:relative;}
+.truth-mark{font-family:var(--serif);font-size:120px;color:rgba(139,111,71,0.15);line-height:0.8;display:block;margin-bottom:-30px;}
+.truth-quote{font-family:var(--serif);font-size:clamp(20px,3vw,28px);font-weight:500;color:var(--text);line-height:1.45;font-style:italic;letter-spacing:-0.01em;margin-bottom:22px;position:relative;z-index:1;}
+.truth-quote strong{font-weight:700;font-style:normal;color:var(--brown);}
+.truth-attr{font-family:var(--sans);font-size:12px;font-weight:600;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;}
+.truth-attr span{color:var(--brown);}
+.how{padding:80px 24px;background:var(--cream);max-width:1100px;margin:0 auto;}
+.how-h{font-family:var(--serif);font-size:clamp(24px,3.5vw,32px);font-weight:700;color:var(--text);line-height:1.2;letter-spacing:-0.01em;margin-bottom:14px;}
+.how-h em{font-style:italic;color:var(--brown);}
+.how-sub{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:44px;max-width:540px;font-weight:400;}
+.how-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px;}
+.how-card{background:white;border-radius:16px;padding:28px 24px;border:1px solid var(--cream2);}
+.how-num{font-family:var(--serif);font-size:36px;font-weight:700;color:var(--amber);line-height:1;margin-bottom:12px;}
+.how-title{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--text);margin-bottom:8px;line-height:1.3;}
+.how-desc{font-size:13px;color:var(--muted);line-height:1.6;font-weight:400;}
+.cta{background:linear-gradient(135deg,var(--dawn) 0%,var(--dusk) 50%,#3d1a6e 100%);padding:90px 24px;text-align:center;position:relative;overflow:hidden;}
+.cta::before{content:'';position:absolute;bottom:-150px;left:50%;transform:translateX(-50%);width:700px;height:350px;background:radial-gradient(ellipse,rgba(245,158,63,0.22) 0%,transparent 70%);pointer-events:none;}
+.cta-inner{position:relative;z-index:1;max-width:620px;margin:0 auto;}
+.cta-h{font-family:var(--serif);font-size:clamp(28px,4.5vw,44px);font-weight:700;color:white;line-height:1.15;letter-spacing:-0.02em;margin-bottom:18px;}
+.cta-h em{font-style:italic;color:var(--amber);}
+.cta-sub{font-size:15px;color:rgba(255,255,255,0.6);line-height:1.7;margin-bottom:40px;font-weight:400;}
+.cta-btn{display:inline-flex;align-items:center;gap:10px;background:var(--amber);color:var(--dawn);font-family:var(--sans);font-size:15px;font-weight:700;padding:18px 40px;border-radius:100px;text-decoration:none;transition:all 0.2s;}
+.cta-btn:hover{background:var(--amber2);transform:translateY(-2px);box-shadow:0 8px 28px rgba(245,158,63,0.4);}
+.cta-trust{margin-top:24px;font-family:var(--sans);font-size:12px;color:rgba(255,255,255,0.4);font-weight:500;letter-spacing:0.04em;}
+footer{background:var(--text);padding:36px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.f-brand{font-family:var(--serif);font-size:18px;font-weight:700;color:white;}
+.f-brand span{color:var(--amber);font-style:italic;}
+.f-links{display:flex;gap:22px;list-style:none;}
+.f-links a{font-family:var(--sans);font-size:12px;font-weight:500;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.06em;transition:color 0.15s;}
+.f-links a:hover{color:var(--amber);}
+.f-copy{width:100%;font-family:var(--sans);font-size:11px;color:rgba(255,255,255,0.28);margin-top:4px;}
+/* GUIDE OVERLAY */
+.guide-overlay{display:none;position:fixed;inset:0;z-index:500;background:#faf7f2;overflow-y:auto;}
+.guide-overlay.open{display:block;}
+.guide-top{background:#3d2b1f;padding:18px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;}
+.back-btn{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:rgba(255,255,255,0.6);cursor:pointer;border:none;background:none;transition:color 0.15s;padding:0;font-family:var(--sans);}
+.back-btn:hover{color:#e8a44a;}
+.guide-brand{font-family:'Lora',Georgia,serif;font-size:18px;color:rgba(255,255,255,0.35);}
+.guide-wrap{max-width:900px;margin:0 auto;padding:48px 32px 80px;}
+.g-cat{font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#7a6e64;margin-bottom:10px;display:block;font-family:var(--sans);}
+.g-title{font-family:'Lora',Georgia,serif;font-size:clamp(28px,5vw,48px);color:#0f0f0f;line-height:1.08;letter-spacing:-0.02em;margin-bottom:14px;}
+.g-title em{font-style:italic;color:#3d2b1f;}
+.g-intro{font-size:16px;color:#7a6e64;line-height:1.75;max-width:580px;font-weight:300;font-family:var(--sans);}
+.g-remember{background:#3d2b1f;border-radius:16px;padding:22px 28px;margin:28px 0;display:flex;gap:20px;flex-wrap:wrap;}
+.g-rem-item{flex:1;min-width:160px;}
+.g-rem-label{font-size:8px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:5px;font-family:var(--sans);}
+.g-rem-value{font-size:13px;font-weight:500;color:#e8a44a;line-height:1.4;font-family:var(--sans);}
+.g-steps{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:32px;}
+@media(max-width:640px){.g-steps{grid-template-columns:1fr;}}
+.g-col-label{font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding-bottom:12px;border-bottom:2px solid;margin-bottom:20px;font-family:var(--sans);}
+.g-col-label.you{color:#3d2b1f;border-color:#3d2b1f;}
+.g-col-label.say{color:#2a5c45;border-color:#2a5c45;}
+.g-step{display:flex;gap:14px;margin-bottom:22px;align-items:flex-start;}
+.g-step-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;font-family:var(--sans);}
+.g-you .g-step-num{background:#dde8e2;color:#3d2b1f;}
+.g-say .g-step-num{background:#d8f0e0;color:#2a5c45;}
+.g-step-label{font-size:14px;font-weight:600;color:#0f0f0f;margin-bottom:4px;line-height:1.3;font-family:var(--sans);}
+.g-step-detail{font-size:12px;color:#7a6e64;line-height:1.65;font-family:var(--sans);}
+.g-step-script{background:#eef6f0;border-left:2.5px solid #3a7a5c;padding:10px 14px;border-radius:0 10px 10px 0;font-family:'Lora',Georgia,serif;font-size:13px;color:#2a5c45;font-style:italic;margin-top:8px;line-height:1.55;}
+.g-step-warning{background:#fff8ed;border-left:2.5px solid #c97d2e;padding:8px 12px;border-radius:0 8px 8px 0;font-size:11px;color:#8a5a00;margin-top:7px;line-height:1.5;font-family:var(--sans);}
+.g-step-stop{background:#fdf0f1;border-left:2.5px solid #8b2635;padding:8px 12px;border-radius:0 8px 8px 0;font-size:11px;color:#8b2635;font-weight:600;margin-top:7px;line-height:1.5;font-family:var(--sans);}
+.g-escalate{background:#fdf0f1;border:1.5px solid #f4c0c6;border-radius:14px;padding:22px 26px;margin-top:32px;}
+.g-esc-title{font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#8b2635;margin-bottom:10px;font-family:var(--sans);}
+.g-esc-item{font-size:13px;color:#2a2a2a;margin-bottom:7px;padding-left:14px;position:relative;line-height:1.5;font-family:var(--sans);}
+.g-esc-item::before{content:'→';position:absolute;left:0;color:#8b2635;font-size:11px;}
+.g-resources{background:#fdf3e3;border:1.5px solid #e8c880;border-radius:14px;padding:22px 26px;margin-top:28px;}
+.g-res-title{font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#c97d2e;margin-bottom:8px;font-family:var(--sans);}
+.g-res-disclaimer{font-size:11px;color:#8a5a00;background:rgba(201,125,46,0.1);border-radius:6px;padding:8px 12px;margin-bottom:14px;line-height:1.5;font-weight:500;font-family:var(--sans);}
+.g-res-item{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start;}
+.g-res-name{font-size:13px;font-weight:600;color:#3d2b1f;min-width:140px;font-family:var(--sans);}
+.g-res-detail{font-size:12px;color:#7a6e64;line-height:1.5;font-family:var(--sans);}
+.g-res-211{background:#3d2b1f;border-radius:10px;padding:14px 16px;margin-top:14px;display:flex;align-items:center;gap:14px;}
+.g-res-211-text{flex:1;}
+.g-res-211-title{font-size:14px;font-weight:600;color:#fff;margin-bottom:2px;font-family:var(--sans);}
+.g-res-211-sub{font-size:11px;color:rgba(255,255,255,0.55);font-family:var(--sans);}
+.g-res-211-badge{background:#c97d2e;border-radius:8px;padding:8px 14px;font-size:18px;font-weight:700;color:#fff;flex-shrink:0;}
+.g-confidence{background:linear-gradient(135deg,#eef6f0,#c6e8d4);border:1.5px solid #b0d9be;border-radius:18px;padding:30px;margin-top:32px;}
+.g-conf-title{font-family:'Lora',Georgia,serif;font-size:22px;font-style:italic;color:#2a5c45;margin-bottom:8px;}
+.g-conf-body{font-size:14px;color:#2a5c45;line-height:1.75;font-family:var(--sans);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+@media(max-width:768px){
+  .hero{min-height:70vh;padding:60px 20px 50px;}
+  .situations{padding:56px 20px 40px;}
+  .for-orgs{padding:60px 20px;}
+  .for-orgs-inner{grid-template-columns:1fr;gap:36px;}
+  .voice{padding:50px 20px;}
+  .truth{padding:64px 20px;}
+  .how{padding:56px 20px;}
+  .cta{padding:64px 20px;}
+  .sit-grid{grid-template-columns:1fr;}
+  .voice-grid{grid-template-columns:repeat(2,1fr);}
+  footer{flex-direction:column;align-items:flex-start;}
+  .f-links{flex-wrap:wrap;gap:14px;}
+  .guide-top{padding:14px 20px;}
+  .guide-wrap{padding:32px 20px 60px;}
+  .g-remember{flex-direction:column;gap:14px;}
 }
 </style>
 </head>
 <body>
 
-<!-- QUICK EXIT (privacy-protective per research pattern) -->
 <a href="https://www.google.com" class="quick-exit" onclick="window.open('https://www.google.com','_blank');window.location.replace('https://weather.com');return false;">Quick Exit ✕</a>
 
-<!-- HERO — THE THRESHOLD -->
 <section class="hero">
   <div class="hero-content">
     <div class="hero-brand">First<span>Step</span></div>
-
-    <h1 class="hero-acknowledge">You're in a moment.<br><em>Pick what you need.</em></h1>
-
-    <p class="hero-permission">You don't have to know what to call this. You don't have to be in crisis. You just have to be here.</p>
-
+    <h1 class="hero-acknowledge">Something is happening<br>right now. <em>You are<br>not alone in it.</em></h1>
+    <p class="hero-permission">Whether you just got an eviction notice, your lights got cut off, you need to call out sick, your boss said something wrong, or you are walking out of a place and don't know what's next — there is a right move. This is where you find it.</p>
     <div class="search-wrap">
       <input type="text" class="search-input" id="searchInput" placeholder="What is happening right now?" onkeydown="if(event.key==='Enter'){goToGuide()}">
       <button class="search-btn" onclick="goToGuide()" aria-label="Open guide">→</button>
     </div>
-
-    <div class="hero-secondary">
-      Free · No login · No app · <a href="guide.html">Or just open the guide →</a>
-    </div>
-
-    <div class="hero-org-aware">
-      Running an organization? <a href="partners.html">FirstStep partners with the orgs holding the door open →</a>
-    </div>
+    <div class="hero-secondary">Free · No login · No app · <a href="guide.html">Or just open the guide →</a></div>
+    <div class="hero-org-aware">Running an organization? <a href="partners.html">FirstStep partners with the orgs holding the door open →</a></div>
   </div>
 </section>
 
-<!-- SITUATIONS — action first, marketing later -->
 <section class="situations" id="situations">
   <div class="sit-eyebrow">What are you dealing with?</div>
   <h2 class="sit-h">Pick the one closest to <em>what's happening right now.</em></h2>
   <p class="sit-sub">Every situation comes with step-by-step guidance and the exact words to say. Plain. Specific. No filler. We are starting with these 16. More are being written.</p>
-
   <div class="sit-grid">
-
-    <a href="guide.html#panel-doctorlisten" class="sit-card c-green">
-      <span class="sc-icon">🩺</span>
-      <span class="sc-tag">Healthcare · Self-advocacy</span>
-      <div class="sc-title">The Doctor Isn't Listening</div>
-      <div class="sc-desc">They cut you off, dismissed it, or moved on. Here is how to be heard.</div>
-    </a>
-
-    <a href="guide.html#panel-medcost" class="sit-card c-green">
-      <span class="sc-icon">💊</span>
-      <span class="sc-tag">Healthcare · Affording care</span>
-      <div class="sc-title">Can't Afford the Medication</div>
-      <div class="sc-desc">The price at the pharmacy is more than you can pay. There are real paths to bring it down.</div>
-    </a>
-
-    <a href="guide.html#panel-debtcollector" class="sit-card c-amber">
-      <span class="sc-icon">📞</span>
-      <span class="sc-tag">Financial · Consumer rights</span>
-      <div class="sc-title">A Debt Collector Is Calling</div>
-      <div class="sc-desc">Federal law gives you specific rights. Most collectors count on you not knowing them.</div>
-    </a>
-
-    <a href="guide.html#panel-applybenefits" class="sit-card c-amber">
-      <span class="sc-icon">📋</span>
-      <span class="sc-tag">Financial · System navigation</span>
-      <div class="sc-title">Applying for SNAP, Medicaid, or Assistance</div>
-      <div class="sc-desc">Forms are long and questions feel like traps. Knowing how to move through carefully protects you.</div>
-    </a>
-
-    <a href="guide.html#panel-ssacall" class="sit-card c-blue">
-      <span class="sc-icon">🏛️</span>
-      <span class="sc-tag">Government · Social Security</span>
-      <div class="sc-title">First Call to SSA, SSI, or SSDI</div>
-      <div class="sc-desc">Long phone tree. Hours of hold time. Going in prepared changes everything.</div>
-    </a>
-
-    <a href="guide.html#panel-idoffice" class="sit-card c-blue">
-      <span class="sc-icon">🪪</span>
-      <span class="sc-tag">Government · Identification</span>
-      <div class="sc-title">DMV / ID When Documents Are a Mess</div>
-      <div class="sc-desc">The loop where you need ID to get ID. Here is how to break it open.</div>
-    </a>
-
-    <a href="guide.html#panel-kidhardtalk" class="sit-card c-dusk">
-      <span class="sc-icon">👨‍👧</span>
-      <span class="sc-tag">Family · Parenting</span>
-      <div class="sc-title">Talking to Your Kid About Something Hard</div>
-      <div class="sc-desc">A divorce. A diagnosis. A death. You won't do it perfectly. Here is how to do it lovingly.</div>
-    </a>
-
-    <a href="guide.html#panel-tellparent" class="sit-card c-dusk">
-      <span class="sc-icon">👨‍👩‍👦</span>
-      <span class="sc-tag">Family · Telling your parent</span>
-      <div class="sc-title">Telling a Parent Something Hard</div>
-      <div class="sc-desc">You are an adult. You decide what to share. Here is how to say it without it costing more.</div>
-    </a>
-
-    <a href="guide.html#panel-boundary" class="sit-card c-coral">
-      <span class="sc-icon">🤝</span>
-      <span class="sc-tag">Relationships · Boundaries</span>
-      <div class="sc-title">Setting a Boundary with Someone Who Won't Accept It</div>
-      <div class="sc-desc">Parent, friend, partner, coworker — the skill is the same. Holding the limit without exploding it.</div>
-    </a>
-
-    <a href="guide.html#panel-askhelp" class="sit-card c-coral">
-      <span class="sc-icon">💬</span>
-      <span class="sc-tag">Relationships · Asking and answering</span>
-      <div class="sc-title">Someone You Love Asks for Help You Can't Give</div>
-      <div class="sc-desc">A real ask, real love, and a real no. Saying it without losing the relationship.</div>
-    </a>
-
-    <a href="guide.html#panel-firedlaidoff" class="sit-card c-brown">
-      <span class="sc-icon">💼</span>
-      <span class="sc-tag">Workplace · Job loss</span>
-      <div class="sc-title">You Just Got Fired or Laid Off</div>
-      <div class="sc-desc">Don't make a decision you can't take back. The work can wait one day.</div>
-    </a>
-
-    <a href="guide.html#panel-interviewgap" class="sit-card c-brown">
-      <span class="sc-icon">🎤</span>
-      <span class="sc-tag">Workplace · Returning to work</span>
-      <div class="sc-title">Job Interview After a Long Gap</div>
-      <div class="sc-desc">They will ask about the gap. Here is how to handle it without shame or overexplaining.</div>
-    </a>
-
-    <a href="guide.html#panel-telehealth" class="sit-card c-teal">
-      <span class="sc-icon">📡</span>
-      <span class="sc-tag">Technology · Healthcare access</span>
-      <div class="sc-title">Telehealth When Your Setup Isn't Reliable</div>
-      <div class="sc-desc">Internet drops. The link might not load. Knowing the backup plan protects your care.</div>
-    </a>
-
-    <a href="guide.html#panel-bgcheck" class="sit-card c-teal">
-      <span class="sc-icon">📄</span>
-      <span class="sc-tag">Technology · Background reports</span>
-      <div class="sc-title">Background Check Returned Wrong Information</div>
-      <div class="sc-desc">Federal law gives you specific rights to dispute. Most errors are fixable.</div>
-    </a>
-
-    <a href="guide.html#panel-eviction" class="sit-card c-rose">
-      <span class="sc-icon">🏠</span>
-      <span class="sc-tag">Crisis · Housing</span>
-      <div class="sc-title">An Eviction Notice Just Arrived</div>
-      <div class="sc-desc">A notice is not the same as being evicted. There is process, time, and protections.</div>
-    </a>
-
-    <a href="guide.html#panel-exhaustion" class="sit-card c-purple">
-      <span class="sc-icon">🌙</span>
-      <span class="sc-tag">Inside · Depletion</span>
-      <div class="sc-title">Exhaustion That Feels Like Wanting to Quit Everything</div>
-      <div class="sc-desc">This is not a normal tired. You don't have to fix it today. You only have to not be alone with it.</div>
-    </a>
-
+    <button class="sit-card c-green" onclick="openGuide('doctorlisten')"><span class="sc-icon">🩺</span><span class="sc-tag">Healthcare · Self-advocacy</span><div class="sc-title">The Doctor Isn't Listening</div><div class="sc-desc">They cut you off, dismissed it, or moved on. Here is how to be heard.</div></button>
+    <button class="sit-card c-green" onclick="openGuide('medcost')"><span class="sc-icon">💊</span><span class="sc-tag">Healthcare · Affording care</span><div class="sc-title">Can't Afford the Medication</div><div class="sc-desc">The price at the pharmacy is more than you can pay. There are real paths to bring it down.</div></button>
+    <button class="sit-card c-amber" onclick="openGuide('debtcollector')"><span class="sc-icon">📞</span><span class="sc-tag">Financial · Consumer rights</span><div class="sc-title">A Debt Collector Is Calling</div><div class="sc-desc">Federal law gives you specific rights. Most collectors count on you not knowing them.</div></button>
+    <button class="sit-card c-amber" onclick="openGuide('applybenefits')"><span class="sc-icon">📋</span><span class="sc-tag">Financial · System navigation</span><div class="sc-title">Applying for SNAP, Medicaid, or Assistance</div><div class="sc-desc">Forms are long and questions feel like traps. Knowing how to move through carefully protects you.</div></button>
+    <button class="sit-card c-blue" onclick="openGuide('ssacall')"><span class="sc-icon">🏛️</span><span class="sc-tag">Government · Social Security</span><div class="sc-title">First Call to SSA, SSI, or SSDI</div><div class="sc-desc">Long phone tree. Hours of hold time. Going in prepared changes everything.</div></button>
+    <button class="sit-card c-blue" onclick="openGuide('idoffice')"><span class="sc-icon">🪪</span><span class="sc-tag">Government · Identification</span><div class="sc-title">DMV / ID When Documents Are a Mess</div><div class="sc-desc">The loop where you need ID to get ID. Here is how to break it open.</div></button>
+    <button class="sit-card c-dusk" onclick="openGuide('kidhardtalk')"><span class="sc-icon">👨‍👧</span><span class="sc-tag">Family · Parenting</span><div class="sc-title">Talking to Your Kid About Something Hard</div><div class="sc-desc">A divorce. A diagnosis. A death. You won't do it perfectly. Here is how to do it lovingly.</div></button>
+    <button class="sit-card c-dusk" onclick="openGuide('tellparent')"><span class="sc-icon">👨‍👩‍👦</span><span class="sc-tag">Family · Telling your parent</span><div class="sc-title">Telling a Parent Something Hard</div><div class="sc-desc">You are an adult. You decide what to share. Here is how to say it without it costing more.</div></button>
+    <button class="sit-card c-coral" onclick="openGuide('boundary')"><span class="sc-icon">🤝</span><span class="sc-tag">Relationships · Boundaries</span><div class="sc-title">Setting a Boundary with Someone Who Won't Accept It</div><div class="sc-desc">Parent, friend, partner, coworker — the skill is the same. Holding the limit without exploding it.</div></button>
+    <button class="sit-card c-coral" onclick="openGuide('askhelp')"><span class="sc-icon">💬</span><span class="sc-tag">Relationships · Asking and answering</span><div class="sc-title">Someone You Love Asks for Help You Can't Give</div><div class="sc-desc">A real ask, real love, and a real no. Saying it without losing the relationship.</div></button>
+    <button class="sit-card c-brown" onclick="openGuide('firedlaidoff')"><span class="sc-icon">💼</span><span class="sc-tag">Workplace · Job loss</span><div class="sc-title">You Just Got Fired or Laid Off</div><div class="sc-desc">Don't make a decision you can't take back. The work can wait one day.</div></button>
+    <button class="sit-card c-brown" onclick="openGuide('interviewgap')"><span class="sc-icon">🎤</span><span class="sc-tag">Workplace · Returning to work</span><div class="sc-title">Job Interview After a Long Gap</div><div class="sc-desc">They will ask about the gap. Here is how to handle it without shame or overexplaining.</div></button>
+    <button class="sit-card c-teal" onclick="openGuide('telehealth')"><span class="sc-icon">📡</span><span class="sc-tag">Technology · Healthcare access</span><div class="sc-title">Telehealth When Your Setup Isn't Reliable</div><div class="sc-desc">Internet drops. The link might not load. Knowing the backup plan protects your care.</div></button>
+    <button class="sit-card c-teal" onclick="openGuide('bgcheck')"><span class="sc-icon">📄</span><span class="sc-tag">Technology · Background reports</span><div class="sc-title">Background Check Returned Wrong Information</div><div class="sc-desc">Federal law gives you specific rights to dispute. Most errors are fixable.</div></button>
+    <button class="sit-card c-rose" onclick="openGuide('eviction')"><span class="sc-icon">🏠</span><span class="sc-tag">Crisis · Housing</span><div class="sc-title">An Eviction Notice Just Arrived</div><div class="sc-desc">A notice is not the same as being evicted. There is process, time, and protections.</div></button>
+    <button class="sit-card c-purple" onclick="openGuide('exhaustion')"><span class="sc-icon">🌙</span><span class="sc-tag">Inside · Depletion</span><div class="sc-title">Exhaustion That Feels Like Wanting to Quit Everything</div><div class="sc-desc">This is not a normal tired. You don't have to fix it today. You only have to not be alone with it.</div></button>
   </div>
-
-  <div class="sit-more">
-    <a href="guide.html" class="sit-more-link">See all situations in the guide →</a>
-  </div>
+  <div class="sit-more"><a href="guide.html" class="sit-more-link">See all situations in the guide →</a></div>
 </section>
 
-<!-- NEW — FOR ORGANIZATIONS STRIP -->
 <section class="for-orgs" id="for-orgs">
   <div class="for-orgs-inner">
     <div class="fo-left">
@@ -939,39 +263,20 @@ footer {
   </div>
 </section>
 
-<!-- VOICE NOT SCRIPT — crisis lines as peers -->
 <section class="voice">
   <div class="voice-inner">
     <div class="voice-eyebrow">When you need a voice, not a script</div>
     <h2 class="voice-h">Some moments need <em>a person on the other end.</em></h2>
     <p class="voice-sub">FirstStep gives you the steps and the words. Sometimes that's not what you need. When you need to talk to a real person — these helplines are free, confidential, and answer 24/7. You do not have to be in crisis to call.</p>
-
     <div class="voice-grid">
-      <a href="tel:988" class="voice-card">
-        <div class="vc-name">988</div>
-        <div class="vc-line">Suicide & Crisis Lifeline. Mental health, emotional distress, substance use.</div>
-        <div class="vc-action">Call or text 988</div>
-      </a>
-      <a href="sms:741741" class="voice-card">
-        <div class="vc-name">Crisis Text Line</div>
-        <div class="vc-line">Any moment of distress. Text-based, anonymous.</div>
-        <div class="vc-action">Text HOME to 741741</div>
-      </a>
-      <a href="tel:18007997233" class="voice-card">
-        <div class="vc-name">Domestic Violence Hotline</div>
-        <div class="vc-line">Abuse, control, unsafe partner or family member.</div>
-        <div class="vc-action">Call 1-800-799-7233</div>
-      </a>
-      <a href="tel:18006564673" class="voice-card">
-        <div class="vc-name">RAINN</div>
-        <div class="vc-line">Sexual assault survivor support. Free, confidential.</div>
-        <div class="vc-action">Call 1-800-656-4673</div>
-      </a>
+      <a href="tel:988" class="voice-card"><div class="vc-name">988</div><div class="vc-line">Suicide &amp; Crisis Lifeline. Mental health, emotional distress, substance use.</div><div class="vc-action">Call or text 988</div></a>
+      <a href="sms:741741" class="voice-card"><div class="vc-name">Crisis Text Line</div><div class="vc-line">Any moment of distress. Text-based, anonymous.</div><div class="vc-action">Text HOME to 741741</div></a>
+      <a href="tel:18007997233" class="voice-card"><div class="vc-name">Domestic Violence Hotline</div><div class="vc-line">Abuse, control, unsafe partner or family member.</div><div class="vc-action">Call 1-800-799-7233</div></a>
+      <a href="tel:18006564673" class="voice-card"><div class="vc-name">RAINN</div><div class="vc-line">Sexual assault survivor support. Free, confidential.</div><div class="vc-action">Call 1-800-656-4673</div></a>
     </div>
   </div>
 </section>
 
-<!-- TRUTH — founder Moment/Crossroad utterance -->
 <section class="truth">
   <div class="truth-inner">
     <span class="truth-mark">"</span>
@@ -980,46 +285,30 @@ footer {
   </div>
 </section>
 
-<!-- HOW — three steps -->
 <section class="how">
   <div class="sit-eyebrow">Simple by design</div>
   <h2 class="how-h">Three steps. <em>That is it.</em></h2>
   <p class="how-sub">No training. No login. No app to download. If you can read it, you can use it.</p>
-
   <div class="how-grid">
-    <div class="how-card">
-      <div class="how-num">01</div>
-      <div class="how-title">Pick your moment</div>
-      <div class="how-desc">Type what is happening or pick from the situations. We meet you where you are.</div>
-    </div>
-    <div class="how-card">
-      <div class="how-num">02</div>
-      <div class="how-title">Follow the steps</div>
-      <div class="how-desc">Every situation has clear numbered steps — what you do, and the exact words to say. In plain language.</div>
-    </div>
-    <div class="how-card">
-      <div class="how-num">03</div>
-      <div class="how-title">Handle it. Move forward.</div>
-      <div class="how-desc">You know what to do. You know what to say. The moment passes — and you got through it.</div>
-    </div>
+    <div class="how-card"><div class="how-num">01</div><div class="how-title">Pick your moment</div><div class="how-desc">Type what is happening or pick from the situations. We meet you where you are.</div></div>
+    <div class="how-card"><div class="how-num">02</div><div class="how-title">Follow the steps</div><div class="how-desc">Every situation has clear numbered steps — what you do, and the exact words to say. In plain language.</div></div>
+    <div class="how-card"><div class="how-num">03</div><div class="how-title">Handle it. Move forward.</div><div class="how-desc">You know what to do. You know what to say. The moment passes — and you got through it.</div></div>
   </div>
 </section>
 
-<!-- CTA -->
 <section class="cta">
   <div class="cta-inner">
     <h2 class="cta-h">When the moment comes,<br><em>you'll know where to go.</em></h2>
     <p class="cta-sub">Open it now. Bookmark it on your phone. Share it with someone who needs it. It is yours — free, no signup, always here.</p>
-    <a href="guide.html" class="cta-btn">Open FirstStep →</a>
+    <a href="index.html" class="cta-btn">Open FirstStep →</a>
     <div class="cta-trust">Free · No login · No app · Works on any device</div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="f-brand">First<span>Step</span></div>
   <ul class="f-links">
-    <li><a href="guide.html">Open the guide</a></li>
+    <li><a href="index.html">Open the guide</a></li>
     <li><a href="partners.html">For Organizations</a></li>
     <li><a href="mailto:info@getfirststep.org">Contact</a></li>
     <li><a href="https://rudolphcx.com">Rudolph CX</a></li>
@@ -1027,15 +316,61 @@ footer {
   <div class="f-copy">© 2026 Rudolph CX LLC · getfirststep.org · Built in Durham, NC · If you are in a life-threatening emergency, call 911.</div>
 </footer>
 
+<!-- GUIDE OVERLAY -->
+<div class="guide-overlay" id="guideOverlay">
+  <div class="guide-top">
+    <button class="back-btn" onclick="closeGuide()">← All situations</button>
+    <div class="guide-brand">FirstStep</div>
+  </div>
+  <div class="guide-wrap" id="guideWrap"></div>
+</div>
+
 <script>
-function goToGuide() {
-  var q = document.getElementById('searchInput').value.trim();
-  if (q) {
-    window.location.href = 'guide.html?q=' + encodeURIComponent(q);
-  } else {
-    window.location.href = 'guide.html';
-  }
+const S={
+eviction:{cat:'Crisis · Housing · Time-Sensitive',title:'An Eviction Notice <em>Just Arrived</em>',intro:'You received a notice. Your mind is racing. Take a breath — this is not the end yet. You likely have more time and more options than the notice makes you feel.',remember:[{l:'First truth',v:'An eviction notice is not an eviction. The legal process has not started yet.'},{l:'Time you have',v:'Most states give 3–30 days to pay or respond. Check your notice for the exact deadline.'},{l:'Critical fact',v:'If you pay what you owe before the deadline, the process stops in most states.'}],you:[{l:'Do not leave the property',d:'Do not move out until a court orders it. Leaving voluntarily can waive rights you have.',w:'⚠ Many people lose housing they could have kept because they left when they did not have to.'},{l:'Read the notice carefully',d:'What exact amount does it say you owe? What is the deadline date?'},{l:'Call 211 and ask for housing legal aid',d:'Dial 2-1-1. Free. All 50 states. Ask for free housing legal help and emergency rental assistance.',w:'⚠ Call today. Many programs cannot help once a court date is set.'},{l:'Find emergency rental assistance',d:'Ask 211 for emergency rental assistance in your county. If one is closed, ask what else exists.'},{l:'If there is a court date — show up',d:'Tenants who show up have options. Tenants who do not show up lose automatically.',stop:'🛑 Never skip a court date. Losing by default is harder to fix than losing in person.'}],say:[{l:'To your landlord — immediately',s:'"I received the notice. I want to resolve this. Can you tell me exactly what amount brings me current, and can we discuss a payment arrangement while I find assistance?"'},{l:'To legal aid on the phone',s:'"I received an eviction notice. I am still in the property. I need to know what my rights are and whether any assistance programs can help me before a court date is filed."'},{l:'When you call 211',s:'"I have an eviction notice with a deadline of [date]. I am looking for emergency rental assistance and free housing legal help. What programs are available in my area right now?"'}],esc:['Court date is fewer than 5 days away','You have already missed a court date','Landlord is threatening to change locks without a court order — this is illegal in most states','You have children and are at risk of being unsheltered'],res:[{n:'211 — Find Help Now',d:'Dial 2-1-1 · Free · 24/7 · Nationwide. Ask for emergency rental assistance and housing legal aid.'},{n:'Legal Aid (your area)',d:'Search "legal aid [your city or county]" for free housing legal help.'},{n:'HUD Housing Counseling Hotline',d:'1-800-569-4287 · Free · Nationwide.'},{n:'Emergency Rental Assistance',d:'consumerfinance.gov/renthelp · Find ERAP programs in your state.'}],conf:'You received a notice. That is terrifying. But you did not lose your home today. You have a window — and now you know what to do with it. Make the calls.'},
+doctorlisten:{cat:'Healthcare · Self-Advocacy',title:'The Doctor <em>Isn\'t Listening</em>',intro:'They cut you off, dismissed what you said, or moved on before you were done. You have the right to be heard in a medical appointment.',remember:[{l:'You have the right',v:'To ask questions, take notes, and request a concern be addressed before the visit ends.'},{l:'Write it down first',v:'Before the appointment, list your three most important concerns. Lead with the most important.'},{l:'Truth',v:'Doctors are under time pressure. Structure helps both of you.'}],you:[{l:'Lead with your most important concern immediately',d:'When the doctor asks what brings you in — lead with what matters most, not the easiest thing.'},{l:'State it specifically',d:'Not "I feel bad." Give specifics: what, where, how long, how often, how severe.'},{l:'If they move on, stop them',d:'You are allowed to say: "I want to make sure we address [concern] before we finish today."',w:'⚠ Do not leave without feeling heard on your most important concern.'},{l:'Ask for documentation',d:'Ask them to note in your chart that you raised the concern. This creates a record.'}],say:[{l:'Leading with your concern',s:'"Before we start, the most important thing I need to address today is [your concern]. I want to make sure we get to that."'},{l:'If they move on too quickly',s:'"I want to make sure I understand — are you saying this is not something to investigate further? I have been experiencing this for [timeframe] and it is affecting my daily life."'},{l:'If you feel dismissed',s:'"I hear that you are not concerned, and I want to respect your expertise. Can you help me understand what would need to change before this warrants further investigation?"'}],esc:['You leave with an unaddressed concern significantly affecting your health — request a follow-up appointment specifically for that issue'],res:[{n:'Patient Advocate Foundation',d:'patientadvocate.org · 1-800-532-5274 · Free help navigating medical care.'},{n:'211 — Healthcare Navigation',d:'Dial 2-1-1 · Can connect you to patient advocates and community health workers in your area.'}],conf:'You showed up. You advocated for yourself. Every time you do it, it gets a little less terrifying — and a little more effective.'},
+medcost:{cat:'Healthcare · Affording Care',title:'Can\'t Afford <em>the Medication</em>',intro:'The price at the pharmacy is more than you can pay. Before you leave without it — there are real paths to bring the cost down.',remember:[{l:'Do not leave without asking',v:'Pharmacists can often help find alternatives or programs on the spot.'},{l:'Generic equivalents',v:'Ask specifically if a generic version exists. Often dramatically cheaper.'},{l:'Manufacturer programs',v:'Most major drug companies have patient assistance programs.'}],you:[{l:'Ask the pharmacist first — right now',d:'Tell them: "I cannot afford this at this price. Is there a generic? Is there a discount program here?"'},{l:'Search GoodRx before you pay',d:'GoodRx.com is free. Type in your medication and zip code. Can reduce costs by 80% or more.'},{l:'Apply for the manufacturer patient assistance program',d:'Search "[medication name] patient assistance program." Most manufacturers have one.'},{l:'Ask your doctor about alternatives',d:'Your doctor can often prescribe a different medication in the same class that costs less.'}],say:[{l:'At the pharmacy counter',s:'"I cannot afford this at this price. Is there a generic available? And are there any discount programs or coupons I can use here?"'},{l:'Calling your doctor',s:'"The medication prescribed is not affordable for me. Is there a generic alternative, or a different medication that would work that costs less?"'}],esc:['This is a medication you cannot safely skip — insulin, blood pressure, psychiatric medication. Tell your doctor today, not after you run out.'],res:[{n:'GoodRx',d:'goodrx.com · Free · Search your medication for coupons at nearby pharmacies.'},{n:'NeedyMeds',d:'needymeds.org · 1-800-503-6897 · Database of patient assistance programs.'},{n:'211 — Medication Assistance',d:'Dial 2-1-1 · Can connect you to local programs that help cover medication costs.'}],conf:'The system makes this harder than it needs to be. There is almost always a path. Find the one that works for you.'},
+debtcollector:{cat:'Financial · Consumer Rights',title:'A Debt Collector <em>Is Calling</em>',intro:'Federal law gives you specific rights in every interaction with a debt collector. Most collectors count on you not knowing them. You know them now.',remember:[{l:'FDCPA',v:'The Fair Debt Collection Practices Act protects you. It applies to third-party collectors.'},{l:'You can stop the calls',v:'A written cease communication request legally requires them to stop calling.'},{l:'Do not confirm the debt',v:'Saying "yes, I owe that" can restart the statute of limitations in some states.'}],you:[{l:'Do not confirm or deny the debt on the first call',d:'Request debt validation in writing before you acknowledge anything.',w:'⚠ Do not give payment information on the first call. Get the validation letter first.'},{l:'Request debt validation in writing',d:'Send a written request within 30 days of first contact. They must stop collection activity until they verify the debt.'},{l:'Know what they cannot do',d:'Under FDCPA, collectors cannot call before 8am or after 9pm, use abusive language, or threaten actions they cannot take.'},{l:'Document every call',d:'Date, time, name of caller, what was said. This is your evidence if they violate the law.'}],say:[{l:'On the call',s:'"I am not confirming or denying this debt. Please send me written verification including the original creditor, the amount, and any fees. My address is [your address]."'},{l:'Cease communication request',s:'"I am requesting that you cease all communication with me regarding this debt, as is my right under 15 U.S.C. § 1692c(c)."'}],esc:['Collector has violated the FDCPA — contact the Consumer Financial Protection Bureau at consumerfinance.gov/complaint or call 1-855-411-2372','You are being sued — seek legal aid immediately. Do not ignore a lawsuit.'],res:[{n:'Consumer Financial Protection Bureau',d:'consumerfinance.gov/complaint · File complaints against collectors who violate your rights.'},{n:'211 — Financial Guidance',d:'Dial 2-1-1 · Free · 24/7 · Can connect you to financial counseling and legal aid.'}],conf:'Knowing your rights changes the conversation. You are not powerless in this. The law is on your side — you just have to use it.'},
+applybenefits:{cat:'Financial · System Navigation',title:'Applying for SNAP, Medicaid, <em>or Assistance</em>',intro:'Forms are long. Questions feel like traps. The system is not designed for the people who need it most. Knowing how to move through it carefully protects you.',remember:[{l:'Apply first',v:'You can sort out documentation issues after you apply. An application in process is better than one not started.'},{l:'Answer only what is asked',v:'Do not volunteer information beyond the exact question asked.'},{l:'Keep copies of everything',v:'Every form you submit, every document you provide. Get a confirmation number.'}],you:[{l:'Apply online if possible',d:'Search "[your state] SNAP application" or "[your state] Medicaid application." Online applications are faster and give you a record.'},{l:'Call 211 first if you are not sure what you qualify for',d:'Dial 211. Tell them your household size, income, and situation. They will tell you which programs to apply for.'},{l:'Gather documents before you start',d:'Typically needed: photo ID, proof of address, proof of income, Social Security numbers for household members.'},{l:'If you are denied, appeal immediately',d:'A denial is not the end. Ask for the denial in writing and the reason.',w:'⚠ Appeal deadlines are short — often 10–30 days. Do not wait.'}],say:[{l:'To 211 before you apply',s:'"I need to find out what assistance programs I qualify for. My household is [number] people, my monthly income is approximately [amount]. What should I apply for and what do I need?"'},{l:'If denied',s:'"I received a denial for [program]. I want to understand the specific reason and I want to appeal. What is the deadline to appeal and what is the process?"'}],esc:['You have been denied and the appeal deadline is approaching — contact legal aid immediately'],res:[{n:'Benefits.gov',d:'benefits.gov · Find programs you may qualify for based on your situation.'},{n:'211 — Benefits Navigation',d:'Dial 2-1-1 · Free · 24/7 · Can connect you to benefits enrollment help.'},{n:'Legal Aid (benefits appeals)',d:'Search "legal aid [your state] benefits appeal."'}],conf:'The system is hard by design. Apply. Appeal if denied. Keep going.'},
+ssacall:{cat:'Government · Social Security',title:'First Call to SSA, SSI, <em>or SSDI</em>',intro:'Long phone tree. Hours of hold time. Going in prepared changes everything. Here is how to make the most of the time you finally get with someone.',remember:[{l:'Call early',v:'The SSA phone line (1-800-772-1213) is least busy Tuesday–Friday, 8am–10am.'},{l:'Have everything ready',v:'Social Security number, date of birth, address, and the specific question you need answered.'},{l:'Take notes',v:'Write down the name of the person you spoke with, the date, and exactly what they told you.'}],you:[{l:'Write down your question before you call',d:'Know specifically what you are calling about. One issue per call is better than trying to cover everything.'},{l:'Get the representative name at the start',d:'"Can I get your name and employee ID in case I need to follow up?"'},{l:'Ask for confirmation in writing',d:'If they tell you something important, ask where you can find it in writing.'},{l:'If disconnected, call back immediately',d:'You have the right to have your issue resolved. Call back and explain you were disconnected.'}],say:[{l:'Opening the call',s:'"Hi, my name is [name] and my Social Security number is [number]. I am calling because [one specific issue]. I have my information ready — can you help me with this?"'},{l:'Getting their name',s:'"Before we get started, can I get your name and employee ID number? I want to make sure I can follow up if needed."'}],esc:['You have called multiple times and received conflicting information — request a supervisor','You believe a decision about your benefits was made incorrectly — you have the right to appeal any SSA decision'],res:[{n:'Social Security Administration',d:'ssa.gov · 1-800-772-1213 · Tue–Fri 8am–10am is least busy.'},{n:'211 — Benefits Assistance',d:'Dial 2-1-1 · Can connect you to benefits counselors and legal aid.'}],conf:'The hold time is real and the frustration is legitimate. The call is still worth making. You are one conversation away from information that could change your situation.'},
+idoffice:{cat:'Government · Identification',title:'DMV / ID When <em>Documents Are a Mess</em>',intro:'The loop where you need ID to get ID. Here is how to break it open — step by step, starting from wherever you are.',remember:[{l:'You are not alone',v:'This is one of the most common barriers people face coming out of housing instability, incarceration, or crisis.'},{l:'Start with a birth certificate',v:'A birth certificate is usually the foundational document. Everything else builds from there.'},{l:'Help exists',v:'Many cities and counties have programs to help people obtain identification at no cost. 211 knows what is in your area.'}],you:[{l:'Call 211 first',d:'Dial 211 and ask: "Are there any programs in my area that help people obtain identification documents?"'},{l:'Get your birth certificate if you do not have it',d:'VitalChek.com is the national service for ordering birth certificates. Many states have fee waiver processes.'},{l:'Go to your state DMV website and look for exceptions',d:'Every state has a process for people in difficult situations. Search "[your state] DMV ID no documentation."'},{l:'Bring everything you have',d:'Even partial documents — old mail, medical records, court documents — may help establish your identity.'}],say:[{l:'To 211',s:'"I need help obtaining identification documents. I do not have [list what is missing]. Are there programs in my area that can help me get ID at no cost or reduced cost?"'},{l:'At the DMV',s:'"I am experiencing difficulty obtaining my documents. I understand there may be an exception process for people in my situation — can you tell me what documentation I would need?"'}],esc:['You are experiencing homelessness and cannot get ID — contact a local homeless services organization. Many have staff specifically to help with ID issues.'],res:[{n:'211 — ID Assistance Programs',d:'Dial 2-1-1 · Ask specifically for ID recovery or document assistance programs in your area.'},{n:'VitalChek',d:'vitalchek.com · Order birth certificates from any U.S. state online.'},{n:'National Homeless Law Center',d:'homelesslaw.org · Resources on ID rights for people experiencing homelessness.'}],conf:'The loop is real and it is infuriating. But there is a door in. It usually starts with a birth certificate and a phone call to 211. Start there.'},
+kidhardtalk:{cat:'Family · Parenting',title:'Talking to Your Kid About <em>Something Hard</em>',intro:'A divorce. A diagnosis. A death. A move. You won\'t say it perfectly. Nobody does. But showing up and trying — with honesty, with love, with your full presence — is what they will carry.',remember:[{l:'Truth',v:'Children handle hard things better when told the truth in language they can understand.'},{l:'Truth',v:'Your child does not need you to have all the answers. They need to know you are there.'},{l:'Permission',v:'It is okay to say "I don\'t know" and "I\'m sad about this too."'}],you:[{l:'Choose a calm, private moment',d:'Not in the car on the way somewhere. Not right before bed. A time when neither of you is rushed.'},{l:'Get at their level — literally',d:'Sit down. Make eye contact. Close physical distance. This is not a standing conversation.'},{l:'Use honest, age-appropriate language',d:'For young children: simple and concrete. For older children: more detail, more room for questions.'},{l:'Let them respond — or not',d:'Some children go quiet. Tell them it is okay to feel whatever they feel.'},{l:'Follow up',d:'This is not a one-time conversation. Check in the next day, the next week.'}],say:[{l:'Opening the conversation',s:'"I need to tell you something important. It\'s hard news, but I want you to hear it from me and I want you to know I\'m here with you."'},{l:'Delivering hard news simply',s:'"[Name/thing] has happened. That means [simple explanation]. I want you to know it is not your fault, and I love you, and we are going to get through this together."'},{l:'When they shut down',s:'"It\'s okay if you don\'t want to talk right now. I just want you to know I\'m here whenever you\'re ready."'}],esc:['Your child shows significant behavioral changes or withdrawal persisting more than two weeks — speak with their pediatrician or school counselor'],res:[{n:'Child Mind Institute',d:'childmind.org · Free guides on talking to children about loss, divorce, and illness.'},{n:'211 — Family Support',d:'Dial 2-1-1 · Can connect you to family counseling and grief support in your area.'}],conf:'The fact that you are thinking about how to do this right means you are already doing it right. You showed up for this conversation. That is everything.'},
+tellparent:{cat:'Family · Hard Conversation',title:'Telling a Parent <em>Something Hard</em>',intro:'You are an adult. You decide what to share, when to share it, and how much. Here is how to say the hard thing without it costing more than it has to.',remember:[{l:'You are not asking permission',v:'You are sharing information. The difference in how you hold that changes everything.'},{l:'Prepare for their first reaction',v:'Their first reaction may not be their final position. Give them time.'},{l:'You get to set the terms',v:'You can share the headline without sharing every detail.'}],you:[{l:'Decide what you are sharing and what you are not',d:'Know exactly what the headline is and what is not up for discussion. Stick to it.'},{l:'Choose the right moment',d:'Not during another conflict. Not at a family event. A private, calm moment.'},{l:'Say it directly — do not build up to it slowly',d:'Long preambles create more anxiety. Say the important thing first, then provide context.'},{l:'Give them time to respond before you explain more',d:'Let the first wave of their reaction pass.'}],say:[{l:'Opening directly',s:'"I have something I want to tell you. I\'ve been thinking about how to say this and I want you to hear it from me."'},{l:'After you share — if they react strongly',s:'"I understand this is a lot to take in. I\'m not asking you to have a reaction right now. I just wanted you to know."'},{l:'If they push for more',s:'"I\'ve told you what I\'m comfortable sharing right now. If I have more to share later, I will."'}],esc:['The conversation becomes unsafe or abusive — you are allowed to end it: "I need to stop this conversation. We can try again when things are calmer."'],conf:'You told the truth. You did it on your terms. Whatever their reaction — you showed up honestly. That is what you could control, and you did it.'},
+boundary:{cat:'Relationships · Boundaries',title:'Setting a Boundary with Someone <em>Who Won\'t Accept It</em>',intro:'Parent, friend, partner, coworker — the skill is the same. A boundary is not a request. It is information about what you will and will not do. Here is how to hold it.',remember:[{l:'A boundary is not a demand',v:'You cannot control their behavior. You can only control what you will do in response to it.'},{l:'You do not need their agreement',v:'A boundary does not require the other person to agree with it, like it, or understand it.'},{l:'Expect pushback',v:'People who have not experienced your boundaries before will test them. Hold anyway.'}],you:[{l:'State the boundary once, clearly',d:'Not as a question. Not as a hope. A statement. "I am not going to [x]." Once is enough.'},{l:'Do not over-explain or justify',d:'The more you explain, the more there is to argue with. State it, then stop talking.'},{l:'Follow through — every time',d:'A boundary you do not enforce is not a boundary.',w:'⚠ The first time you do not follow through, you teach them the boundary is negotiable.'},{l:'Manage your expectations',d:'They may not respect it immediately. That does not mean the boundary is wrong.'}],say:[{l:'Stating the boundary',s:'"I am not going to [specific thing]. If [specific thing] happens, I will [what you will do — leave, end the call, not attend]."'},{l:'When they push back',s:'"I understand you see this differently. This is still where I am."'},{l:'Following through',s:'"I said that if [x] happened, I would [y]. That\'s what I\'m doing now."'}],esc:['The person\'s response to your boundary becomes threatening or unsafe — prioritize your safety.'],conf:'Holding a boundary that is being pushed against is one of the hardest things a person does. The discomfort you feel is not a sign you are doing it wrong. It is a sign you are doing something that matters.'},
+askhelp:{cat:'Relationships · Hard Ask',title:'Someone You Love Asks for Help <em>You Can\'t Give</em>',intro:'A real ask, real love, and a real no. This is one of the hardest conversations to have — because you want to help and you cannot.',remember:[{l:'No is a complete sentence',v:'But how you say it determines whether the relationship survives it.'},{l:'You cannot give what you do not have',v:'Saying yes when you cannot truly give it causes more harm than a clear, loving no.'},{l:'You can say no to the ask and yes to the person',v:'These are two different things. Make sure they hear the second one.'}],you:[{l:'Be honest about what you cannot do',d:'Not "I\'ll try" when you cannot. Not "maybe later" when you mean no. A clear answer is a gift.'},{l:'Say what you can do, if anything',d:'Even if you cannot give them what they asked for, you may be able to offer something real.'},{l:'Acknowledge how hard it was for them to ask',d:'The ask took courage. That deserves recognition even when the answer is no.'},{l:'Do not over-explain or defend yourself',d:'A long explanation sounds like you are seeking their forgiveness. You do not need it.'}],say:[{l:'The loving no',s:'"I love you and I want to be honest with you — I can\'t do [what they asked]. I know that\'s hard to hear and I\'m sorry I can\'t give you that."'},{l:'Offering what you can',s:'"What I can do is [something real]. It\'s not what you asked for, but I wanted you to know that\'s available."'},{l:'If they are hurt by the no',s:'"I understand you\'re hurt. I don\'t need you to be okay with this right now. I just needed to be honest with you."'}],esc:['The person is in crisis and you are the only one who knows — help connect them to someone else. 211 or 988 can be that bridge.'],conf:'You said no with love. That is harder than saying yes and resenting it later. The relationship can survive an honest no.'},
+firedlaidoff:{cat:'Workplace · Job Loss',title:'You Just Got <em>Fired or Laid Off</em>',intro:'Don\'t make a decision you can\'t take back. The first 24 hours are the highest-risk window — for things you say, things you sign, things you do. The work can wait one day.',remember:[{l:'Do not sign anything today',v:'You have the right to take documentation home and review it. An employer cannot legally force you to sign immediately.'},{l:'Do not make permanent decisions right now',v:'The urge to respond, confront, or post on social media is real. Wait 24 hours.'},{l:'File for unemployment today or tomorrow',v:'Most states require filing quickly. The clock starts when you stop working.'}],you:[{l:'Get everything in writing',d:'Ask for written documentation of the reason for termination, your final paycheck date, and benefits information.'},{l:'Do not sign a severance agreement today',d:'If they offer severance with an agreement, you typically have 21 days to review it.',w:'⚠ Once signed, severance agreements often waive significant legal rights. Have someone review it first.'},{l:'File for unemployment as soon as possible',d:'Visit your state unemployment website or call your state unemployment office. File within the week you stop working.'},{l:'Preserve everything',d:'Before you lose access to your work accounts, document anything relevant to your employment.'}],say:[{l:'In the moment',s:'"I understand. I\'d like to get everything in writing before I leave, including the reason for termination and information about my final pay and benefits."'},{l:'If they pressure you to sign immediately',s:'"I\'d like to take this home and review it before signing. That\'s my right and I intend to exercise it."'}],esc:['You believe the termination was discriminatory — contact the EEOC (eeoc.gov) within 180 days','You are asked to sign something waiving your right to sue — consult an employment attorney first'],res:[{n:'Your state unemployment office',d:'Search "[your state] unemployment benefits" — file online as soon as possible.'},{n:'EEOC',d:'eeoc.gov · 1-800-669-4000 · If you believe the termination was discriminatory.'},{n:'211 — Workforce Support',d:'Dial 2-1-1 · Can connect you to job placement and financial assistance in your area.'}],conf:'You did not lose your future today. You lost a job. Those are not the same thing. Take 24 hours before you make any decision, and start with the one that has a deadline: filing for unemployment.'},
+interviewgap:{cat:'Workplace · Returning to Work',title:'Job Interview <em>After a Long Gap</em>',intro:'They will ask about the gap. Here is how to handle it without shame, without overexplaining, and without giving them a reason to doubt you.',remember:[{l:'You do not owe a detailed personal history',v:'You owe an honest, professional answer. Those are not the same thing.'},{l:'Prepare the answer before the interview',v:'The worst time to figure out what to say is when they ask.'},{l:'Brief and forward is always better than long and backward',v:'One to two sentences about what happened. Pivot immediately to what you bring now.'}],you:[{l:'Decide what you are comfortable sharing and what you are not',d:'Know the outline of your answer before the interview. Do not decide in the moment.'},{l:'Keep the explanation to one or two sentences',d:'Say what happened at a high level, then immediately pivot to what you bring now.'},{l:'Emphasize what you bring — not what you were missing',d:'The employer cares about the future, not the past. Get there quickly.'},{l:'Practice out loud',d:'The answer that sounds fine in your head may come out differently when spoken.'}],say:[{l:'Straightforward gap explanation',s:'"I took time away from the workforce to [brief honest reason — caregiving, health, family situation]. During that time I [anything you did — volunteered, freelanced, learned something]. I\'m ready to bring my full focus back now."'},{l:'If they push for more detail',s:'"I\'d rather keep that part private, but what I\'m happy to speak to is what I bring to this role — which is [pivot to your strengths]."'},{l:'If you were incarcerated',s:'"I was incarcerated for [timeframe]. Since then, I\'ve [what you\'ve done]. I want to be honest with you, and I also want the opportunity to show you what I bring."'}],esc:['You believe you are being discriminated against based on your gap reason — contact the EEOC at eeoc.gov'],conf:'The gap is real. The explanation is enough. What happens next in this interview is about what you bring. Get to that part as fast as you can.'},
+telehealth:{cat:'Technology · Healthcare Access',title:'Telehealth When Your Setup <em>Isn\'t Reliable</em>',intro:'Internet drops. The link might not load. The video freezes right when you need it most. Knowing the backup plan before you need it is what protects your care.',remember:[{l:'Every telehealth visit has a phone option',v:'If video fails, you can almost always switch to a phone call. Ask for the direct phone number before your appointment.'},{l:'Test your setup 10 minutes before',v:'Do not wait until the scheduled time to find out something is not working.'},{l:'Your provider has to reschedule if technology fails you',v:'A failed telehealth visit due to technology problems is not a missed appointment.'}],you:[{l:'Get the backup phone number before your appointment',d:'Call your provider\'s office and ask: "If my video fails during the appointment, what phone number should I call to continue as a phone visit?"'},{l:'Test your link or app before the appointment',d:'Open the link or app at least 10 minutes early. If there is a test function, use it.'},{l:'Know your internet backup options',d:'Phone hotspot. A library. A community center. Know your backup before you need it.'},{l:'If the visit fails, call immediately and document',d:'Call the office right away if the connection drops. Note the time and what happened.'}],say:[{l:'Before the appointment',s:'"If my video connection fails during our appointment, what\'s the backup phone number I should call to continue the visit by phone?"'},{l:'If the connection drops',s:'"I\'m calling because my video connection dropped during my appointment. I want to continue the visit by phone if that\'s possible."'},{l:'If they try to charge you for a missed visit',s:'"The visit was not missed — the video technology failed. I called immediately to continue the appointment. I\'d like this documented as a technology failure, not a no-show."'}],esc:['Recurring technology failures are preventing you from accessing care — ask your provider about switching to phone-only visits'],res:[{n:'Your provider patient portal',d:'Send a message before and after any technology failure to create a written record.'},{n:'Affordable Connectivity Program',d:'affordableconnectivity.gov · May help reduce the cost of internet service if you qualify.'}],conf:'Technology failures are not your fault. Knowing the backup plan before the appointment turns a frustrating situation into a manageable one.'},
+bgcheck:{cat:'Technology · Background Reports',title:'Background Check Returned <em>Wrong Information</em>',intro:'Federal law gives you specific rights to dispute inaccurate background check results. Most errors are fixable. Here is how.',remember:[{l:'The FCRA protects you',v:'The Fair Credit Reporting Act gives you the right to dispute inaccurate information in consumer reports.'},{l:'You have the right to a free copy',v:'If a company takes adverse action based on a background check, they must give you a copy of the report.'},{l:'Time matters',v:'Dispute the error as soon as possible.'}],you:[{l:'Get a copy of the report',d:'If you were denied something based on a background check, the company must give you a copy. Ask for it in writing.'},{l:'Identify the specific error',d:'Be precise: incorrect conviction, wrong date, someone else\'s record, expunged record appearing.'},{l:'Dispute directly with the background check company',d:'Send a written dispute with documentation. They have 30 days to investigate.'},{l:'Keep copies of everything',d:'Every letter, every response, every piece of documentation you send.'}],say:[{l:'Requesting the report',s:'"I was notified that a background check was used in a decision about me. Under the FCRA, I have the right to a copy of that report. Please provide it."'},{l:'Disputing with the background check company',s:'"I am disputing the following information as inaccurate: [specific error]. I have enclosed documentation showing the correct information. Please investigate and correct this within the time required by the FCRA."'},{l:'Following up with the employer',s:'"I have filed a dispute with [background check company] regarding an inaccuracy in my report. I would like to remain under consideration while the error is corrected."'}],esc:['The background check company refuses to correct a documented error — file a complaint with the CFPB at consumerfinance.gov/complaint'],res:[{n:'Consumer Financial Protection Bureau',d:'consumerfinance.gov · File complaints and find guides on background check disputes.'},{n:'Legal Aid (your area)',d:'Search "legal aid [your city or county]" — many handle FCRA disputes for free.'}],conf:'An error in a background check is not your fault and it is not the end. The law is on your side. The dispute process takes time, but it works.'},
+exhaustion:{cat:'Inside · Depletion',title:'Exhaustion That Feels Like <em>Wanting to Quit Everything</em>',intro:'This is not a normal tired. This is the kind of exhausted that sits in your bones and makes everything feel pointless. You don\'t have to fix it today. You only have to not be alone with it.',remember:[{l:'This feeling is information, not instruction',v:'It is telling you something real about your situation. It is not telling you what to do about it.'},{l:'You do not have to feel better today',v:'The only job today is to get through today. That is enough.'},{l:'You are allowed to need help',v:'Needing support is not weakness. It is accurate self-assessment.'}],you:[{l:'Do one small, concrete thing for your body right now',d:'Water. Food if you haven\'t eaten. Lying down. Something physical and immediate.'},{l:'Do not make permanent decisions today',d:'If you are thinking about quitting, ending a relationship, or making a major change — wait. Just not today.',w:'⚠ Major decisions made in states of depletion almost never account for what tomorrow might feel like.'},{l:'Tell one person',d:'Not to get fixed. Not for advice. Just so someone knows.'},{l:'If this has been going on more than two weeks, it deserves professional attention',d:'What you are describing may be depression, burnout, or another condition that responds to treatment.'}],say:[{l:'To yourself, right now',s:'"I do not have to solve everything today. I just have to get through today."'},{l:'To someone you trust',s:'"I\'m not doing okay. I don\'t need you to fix it. I just needed to say it to someone."'},{l:'To a doctor or counselor',s:'"I\'ve been feeling a kind of exhaustion that goes beyond being tired. It\'s been going on for [timeframe] and it\'s affecting my ability to function. I want to talk about what might be happening."'}],esc:['You are having thoughts of harming yourself or not wanting to be here — please call or text 988 right now. You do not have to be in immediate danger to call.'],res:[{n:'988 Suicide & Crisis Lifeline',d:'Call or text 988 · Free · 24/7 · For anyone struggling, not just crisis.'},{n:'Crisis Text Line',d:'Text HOME to 741741 · Free · Anonymous · 24/7.'},{n:'211 — Mental Health Support',d:'Dial 2-1-1 · Can connect you to counseling and mental health resources in your area.'}],conf:'You are still here. That is not nothing. The exhaustion you are feeling is real — and it is survivable. You do not have to feel better today. You just have to stay.'}
+};
+
+function build(id){
+  const s=S[id];
+  if(!s)return'<div style="padding:48px 24px;text-align:center;color:#7a6e64;font-family:sans-serif;">Full guide available at <a href="index.html" style="color:#3d2b1f;">guide.html</a>.</div>';
+  const rem=s.remember&&s.remember.length?`<div class="g-remember">${s.remember.map(r=>`<div class="g-rem-item"><div class="g-rem-label">${r.l}</div><div class="g-rem-value">${r.v}</div></div>`).join('')}</div>`:'';
+  const you=(s.you||[]).map((t,i)=>`<div class="g-step"><div class="g-step-num">${i+1}</div><div><div class="g-step-label">${t.l}</div><div class="g-step-detail">${t.d}</div>${t.w?`<div class="g-step-warning">${t.w}</div>`:''}${t.stop?`<div class="g-step-stop">${t.stop}</div>`:''}</div></div>`).join('');
+  const say=(s.say||[]).map((t,i)=>`<div class="g-step"><div class="g-step-num">${i+1}</div><div><div class="g-step-label">${t.l}</div>${t.s?`<div class="g-step-script">${t.s}</div>`:''}</div></div>`).join('');
+  const esc=s.esc&&s.esc.length?`<div class="g-escalate"><div class="g-esc-title">When to escalate</div>${s.esc.map(e=>`<div class="g-esc-item">${e}</div>`).join('')}</div>`:'';
+  const res=s.res&&s.res.length?`<div class="g-resources"><div class="g-res-title">Resources — right now</div><div class="g-res-disclaimer">⚠ Programs and phone numbers change. Verify before you go. When in doubt, dial 211.</div>${s.res.map(r=>`<div class="g-res-item"><div class="g-res-name">${r.n}</div><div class="g-res-detail">${r.d}</div></div>`).join('')}<div class="g-res-211"><div class="g-res-211-text"><div class="g-res-211-title">Find local help anywhere in the U.S.</div><div class="g-res-211-sub">Free · 24/7 · All 50 states + D.C.</div></div><div class="g-res-211-badge">2-1-1</div></div></div>`:'';
+  return`<span class="g-cat">${s.cat}</span><h1 class="g-title">${s.title}</h1><p class="g-intro">${s.intro}</p>${rem}<div class="g-steps"><div class="g-you"><div class="g-col-label you">What YOU do</div>${you}</div><div class="g-say"><div class="g-col-label say">What to SAY</div>${say}</div></div>${esc}${res}<div class="g-confidence"><div class="g-conf-title">You can do this.</div><div class="g-conf-body">${s.conf}</div></div>`;
 }
+
+function openGuide(id){
+  document.getElementById('guideWrap').innerHTML=build(id);
+  document.getElementById('guideOverlay').classList.add('open');
+  document.getElementById('guideOverlay').scrollTop=0;
+  document.body.style.overflow='hidden';
+}
+function closeGuide(){
+  document.getElementById('guideOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+function goToGuide(){
+  var q=document.getElementById('searchInput').value.trim();
+  window.location.href='index.html';
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeGuide();});
 </script>
 </body>
 </html>
