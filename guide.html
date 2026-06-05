@@ -135,8 +135,19 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 }
 </style>
 <script defer data-domain="getfirststep.org" src="https://plausible.io/js/script.js"></script>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://getfirststep.org/guide.html">
+<meta property="og:title" content="FirstStep Guide — Step-by-Step Help for Hard Moments">
+<meta property="og:description" content="Step-by-step guidance for eviction notices, job loss, debt collectors, healthcare, benefits, and more. Free. No login. No app.">
+<meta property="og:image" content="https://getfirststep.org/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FirstStep Guide — Step-by-Step Help for Hard Moments">
+<meta name="twitter:description" content="Step-by-step guidance for hard moments. Free. No login. No app.">
+<meta name="twitter:image" content="https://getfirststep.org/og-image.png">
+<link rel="canonical" href="https://getfirststep.org/guide.html">
 </head>
 <body>
+<a href="https://www.google.com" class="quick-exit" id="quickExit">Quick Exit ✕</a>
 
 <div class="topbar">
   <div class="tb-brand">First<span>Step</span></div>
@@ -353,7 +364,7 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
     <!-- SITUATION PANELS -->
 <!-- PANEL 7: HC-01 — The Doctor Isn't Listening to You -->
 <!-- Room: Default | Populations: Seniors / Recently disabled / Working poor / Mental health / Immigrants -->
-<!-- v2.0 draft, pending verification pass -->
+
 <div class="sit-panel" id="panel-doctorlisten">
   <button class="panel-back" onclick="showHome()">← All Situations</button>
   <div class="panel-header">
@@ -484,7 +495,7 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 
 <!-- PANEL 1: HC-02 — You Can't Afford the Medication They Prescribed -->
 <!-- Room: Default | Populations: Working poor / Seniors / Recently disabled -->
-<!-- v2.0 draft, pending verification pass -->
+
 <div class="sit-panel" id="panel-medcost">
   <button class="panel-back" onclick="showHome()">← All Situations</button>
   <div class="panel-header">
@@ -615,7 +626,7 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 
 <!-- PANEL 8: FN-02 — A Debt Collector Is Calling -->
 <!-- Room: Default | Populations: Working poor / Re-entering society / Recently disabled -->
-<!-- v2.0 draft, pending verification pass -->
+
 <div class="sit-panel" id="panel-debtcollector">
   <button class="panel-back" onclick="showHome()">← All Situations</button>
   <div class="panel-header">
@@ -747,7 +758,7 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 
 <!-- PANEL 2: FN-04 — Applying for SNAP, Medicaid, or Other Assistance -->
 <!-- Room: Default | Populations: Working poor / Re-entering society / Single parents / Recently disabled / Immigrants -->
-<!-- v2.0 draft, pending verification pass -->
+
 <div class="sit-panel" id="panel-applybenefits">
   <button class="panel-back" onclick="showHome()">← All Situations</button>
   <div class="panel-header">
@@ -878,7 +889,7 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 
 <!-- PANEL 9: GV-01 — Your First Call to SSA, SSI, or SSDI -->
 <!-- Room: Default | Populations: Recently disabled / Seniors / New to systems -->
-<!-- v2.0 draft, pending verification pass -->
+
 <div class="sit-panel" id="panel-ssacall">
   <button class="panel-back" onclick="showHome()">← All Situations</button>
   <div class="panel-header">
@@ -1018,7 +1029,7 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 
 <!-- PANEL 3: GV-10 — DMV / ID office when your documents are a mess -->
 <!-- Room: Default | Populations: Re-entering society / Immigrants / New to systems -->
-<!-- v2.0 draft, pending verification pass -->
+
 <div class="sit-panel" id="panel-idoffice">
   <button class="panel-back" onclick="showHome()">← All Situations</button>
   <div class="panel-header">
@@ -1157,7 +1168,7 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 
 <!-- PANEL 11: FM-04 — Talking to Your Kid About Something Hard -->
 <!-- Room: Buffer | Populations: Single parents / Caregivers / Recently disabled / Veterans -->
-<!-- v2.0 draft, pending verification pass -->
+
 <div class="sit-panel" id="panel-kidhardtalk">
   <button class="panel-back" onclick="showHome()">← All Situations</button>
   <div class="panel-header">
@@ -1795,7 +1806,7 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 
 <!-- PANEL 4: WK-23 — Getting Fired or Laid Off -->
 <!-- Room: Buffer | Populations: All working populations -->
-<!-- v2.0 draft, pending verification pass -->
+
 <div class="sit-panel" id="panel-firedlaidoff">
   <button class="panel-back" onclick="showHome()">← All Situations</button>
   <div class="panel-header">
@@ -1944,7 +1955,7 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 
 <!-- PANEL 12: WK-16 — Job Interview After a Long Gap -->
 <!-- Room: Default | Populations: Re-entering society / Recently disabled / Veterans / Caregivers -->
-<!-- v2.0 draft, pending verification pass -->
+
 <div class="sit-panel" id="panel-interviewgap">
   <button class="panel-back" onclick="showHome()">← All Situations</button>
   <div class="panel-header">
@@ -2095,7 +2106,7 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 
 <!-- PANEL 13: TC-09 — Telehealth Visit When Internet/Setup Isn't Reliable -->
 <!-- Room: Default | Populations: Rural / Working poor / Seniors / Recently disabled -->
-<!-- v2.0 draft, pending verification pass -->
+
 <div class="sit-panel" id="panel-telehealth">
   <button class="panel-back" onclick="showHome()">← All Situations</button>
   <div class="panel-header">
@@ -2245,7 +2256,7 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 
 <!-- PANEL 14: TC-05 — Background Check Returned Wrong Information -->
 <!-- Room: Default | Populations: Re-entering society / Immigrants / Working poor -->
-<!-- v2.0 draft, pending verification pass -->
+
 <div class="sit-panel" id="panel-bgcheck">
   <button class="panel-back" onclick="showHome()">← All Situations</button>
   <div class="panel-header">
@@ -2385,7 +2396,7 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 
 <!-- PANEL 5: CR-01 — Eviction Notice Arrived -->
 <!-- Room: High-Stakes | Populations: Working poor / Single parents / Recently disabled / Mental health -->
-<!-- v2.0 draft, pending verification pass -->
+
 <!-- Note: High-Stakes Room — time-critical, legal stakes; methodology adapted per session 51 architecture -->
 <div class="sit-panel" id="panel-eviction">
   <button class="panel-back" onclick="showHome()">← All Situations</button>
@@ -2528,7 +2539,7 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 
 <!-- PANEL 6: ID-05 — Exhaustion That Feels Like Wanting to Quit Everything -->
 <!-- Room: High-Stakes | Populations: Caregivers / Single parents / Recently disabled / Mental health -->
-<!-- v2.0 draft, pending verification pass -->
+
 <!-- Note: High-Stakes Room — Bree session 64 boundary: no "5 steps to fix it" framing; methodology surfaces recognition, permission, professional redirect -->
 <div class="sit-panel" id="panel-exhaustion">
   <button class="panel-back" onclick="showHome()">← All Situations</button>
@@ -2702,5 +2713,10 @@ function filterSituations(query) {
   document.querySelectorAll('.sit-panel').forEach(function(p) { p.classList.remove('active'); });
 }
 </script>
+<footer style="background:#1a1035;color:rgba(253,248,240,0.5);text-align:center;padding:20px;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;">
+<a href="index.html" style="color:rgba(253,248,240,0.5);text-decoration:none;margin:0 12px;">FirstStep</a>
+<a href="terms.html" style="color:rgba(253,248,240,0.5);text-decoration:none;margin:0 12px;">Terms</a>
+<span style="margin:0 12px;">© 2026 Rudolph CX LLC</span>
+</footer>
 </body>
 </html>
