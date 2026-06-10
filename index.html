@@ -82,11 +82,25 @@ body{background:var(--cream);color:var(--ink);font-family:var(--sans);min-height
 
 .arrival-hook{font-family:var(--sans);font-size:clamp(13px,1.7vw,15px);color:var(--ink3);line-height:1.75;max-width:500px;margin:0 auto 28px;text-align:center;}
 .arrival-find{font-family:var(--serif);font-size:clamp(16px,2.2vw,20px);font-weight:600;font-style:italic;color:var(--ink2);margin:0 auto 24px;text-align:center;}
-@media(max-width:768px){.arrival-wrap{grid-template-columns:1fr;}.arrival-left{padding:36px 24px 28px;min-height:auto;}.arrival-right{padding:24px 18px 36px;}.cat-grid{grid-template-columns:repeat(3,1fr);}}.arrival-hook{display:none;}.arrival-find{display:none;}</style>
+@media(max-width:768px){.arrival-wrap{grid-template-columns:1fr;}.arrival-left{padding:36px 24px 28px;min-height:auto;}.arrival-right{padding:24px 18px 36px;}.cat-grid{grid-template-columns:repeat(3,1fr);}}.arrival-hook{display:none;}.arrival-find{display:none;}
+.org-banner{background:#0F0E0C;border-bottom:1px solid #2C2A26;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:14px;position:relative;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.06em;}
+.org-banner-text{color:rgba(255,255,255,0.55);}
+.org-banner-text strong{color:rgba(255,255,255,0.85);font-weight:500;}
+.org-banner-link{color:#C49A3C;text-decoration:none;border-bottom:1px solid rgba(196,154,60,0.35);padding-bottom:1px;transition:border-color 0.15s;white-space:nowrap;}
+.org-banner-link:hover{border-color:#C49A3C;}
+.org-banner-close{position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,0.3);font-size:16px;cursor:pointer;line-height:1;padding:4px 6px;transition:color 0.15s;}
+.org-banner-close:hover{color:rgba(255,255,255,0.7);}
+</style>
 </head>
 <body>
 <section id="s-arrival" class="screen active">
-  <div class="arrival-wrap">
+  
+<div class="org-banner" id="orgBanner">
+  <span class="org-banner-text"><strong>Representing an organization?</strong> Workforce programs &middot; Reentry &middot; Community colleges &middot; Employer partners</span>
+  <a href="/partners.html" class="org-banner-link">See partnerships &rarr;</a>
+  <button class="org-banner-close" id="orgClose" aria-label="Close">&times;</button>
+</div>
+<div class="arrival-wrap">
     <div class="arrival-left fade-up">
       <div class="wordmark">FirstStep</div>
       <h1 class="arrival-headline">Something happened.<br><em>You&#8217;re in the right place.</em></h1>
@@ -335,6 +349,14 @@ function openGuide(k,i){
 document.getElementById('sitBack').onclick=()=>show('s-arrival');
 document.getElementById('guideBack').onclick=()=>openCat(cur);
 document.getElementById('guideRestart').onclick=()=>show('s-arrival');
+
+// Org banner dismiss
+(function(){
+  var b=document.getElementById('orgBanner');
+  var c=document.getElementById('orgClose');
+  if(c&&b){c.addEventListener('click',function(){b.style.display='none';try{sessionStorage.setItem('orgDismissed','1');}catch(e){}});
+  try{if(sessionStorage.getItem('orgDismissed')){b.style.display='none';}}catch(e){}}
+})();
 </script>
 
 <footer style="background:#0F0E0C;color:#9C9589;font-family:'DM Sans',system-ui,sans-serif;font-size:12px;text-align:center;padding:18px 20px;line-height:1.6;border-top:1px solid #2C2A26;">
