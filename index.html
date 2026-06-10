@@ -14,21 +14,21 @@ html{scroll-behavior:smooth;}
 body{background:var(--cream);color:var(--ink);font-family:var(--sans);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 .screen{display:none;min-height:100vh;}
 .screen.active{display:flex;flex-direction:column;}
-#s-arrival{align-items:center;justify-content:center;padding:52px 20px 72px;}
-.arrival-wrap{width:100%;max-width:820px;text-align:center;}
-.wordmark{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:40px;}
+#s-arrival{padding:0;min-height:100vh;align-items:stretch;justify-content:stretch;}
+.arrival-wrap{width:100%;display:grid;grid-template-columns:1fr 1fr;min-height:100vh;}.arrival-left{background:linear-gradient(160deg,#1a0a0a 0%,#2d0f0f 40%,#8B1a1a 100%);padding:52px 48px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;}.arrival-left::before{content:'';position:absolute;top:-120px;right:-80px;width:360px;height:360px;background:radial-gradient(circle,rgba(196,154,60,0.18) 0%,transparent 70%);pointer-events:none;}.arrival-left::after{content:'';position:absolute;bottom:-60px;left:-40px;width:260px;height:260px;background:radial-gradient(circle,rgba(184,50,36,0.25) 0%,transparent 70%);pointer-events:none;}.arrival-right{background:var(--cream);padding:40px 36px;display:flex;flex-direction:column;justify-content:center;}.arrival-right-label{font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink4);margin-bottom:16px;}.arrival-trust{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:9.5px;letter-spacing:0.08em;color:rgba(255,255,255,0.35);flex-wrap:wrap;}.arrival-trust-dot{width:2px;height:2px;background:var(--gold);border-radius:50%;flex-shrink:0;opacity:0.6;}
+.wordmark{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:36px;}
 .wordmark::before,.wordmark::after{content:'';display:block;width:36px;height:1px;background:var(--gold);}
-.arrival-headline{font-family:var(--serif);font-size:clamp(44px,8.5vw,92px);font-weight:700;line-height:0.95;letter-spacing:-0.025em;color:var(--ink);margin-bottom:18px;}
-.arrival-headline em{font-style:italic;color:var(--red);}
-.arrival-sub{font-size:clamp(14px,2vw,16px);color:var(--ink3);line-height:1.7;max-width:440px;margin:0 auto 36px;}
-.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:28px;}
-.cat-tile{background:#fff;border:1.5px solid var(--cream3);border-radius:6px;padding:14px 10px 12px;cursor:pointer;transition:border-color 0.15s,transform 0.15s,box-shadow 0.15s;display:flex;flex-direction:column;align-items:center;gap:5px;text-align:center;-webkit-tap-highlight-color:transparent;}
-.cat-tile:hover{border-color:var(--red);transform:translateY(-2px);box-shadow:0 5px 18px rgba(184,50,36,0.10);}
+.arrival-headline{font-family:var(--serif);font-size:clamp(32px,4.2vw,60px);font-weight:700;line-height:1.0;letter-spacing:-0.025em;color:#fff;margin-bottom:20px;}
+.arrival-headline em{font-style:italic;color:var(--gold);}
+.arrival-sub{font-size:clamp(13px,1.3vw,14px);color:rgba(255,255,255,0.6);line-height:1.75;margin-bottom:28px;max-width:380px;}
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:14px;}
+.cat-tile{background:#fff;border:1.5px solid var(--cream3);border-radius:8px;padding:13px 8px 11px;cursor:pointer;transition:border-color 0.15s,transform 0.15s,box-shadow 0.15s;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;-webkit-tap-highlight-color:transparent;}
+.cat-tile:hover{border-color:var(--red);transform:translateY(-2px);box-shadow:0 6px 20px rgba(184,50,36,0.14);background:#fff9f9;}
 .cat-tile:active{transform:translateY(0);}
 .cat-icon{font-size:22px;line-height:1;}
 .cat-label{font-size:11.5px;font-weight:600;color:var(--ink2);line-height:1.2;}
 .cat-sub{font-size:9.5px;color:var(--ink4);line-height:1.3;}
-.arrival-note{display:flex;align-items:center;justify-content:center;gap:12px;font-family:var(--mono);font-size:10px;letter-spacing:0.06em;color:var(--ink4);}
+.arrival-note{font-family:var(--mono);font-size:9px;letter-spacing:0.06em;color:var(--ink4);text-align:center;}
 .arrival-note-dot{width:3px;height:3px;background:var(--gold);border-radius:50%;flex-shrink:0;}
 #s-situations{padding:0;flex-direction:column;}
 .sit-header{background:var(--ink);padding:26px 22px 22px;flex-shrink:0;}
@@ -81,18 +81,23 @@ body{background:var(--cream);color:var(--ink);font-family:var(--sans);min-height
 @media(prefers-reduced-motion:reduce){.fade-up{animation:none;}.cat-tile,.sit-card{transition:none;}}
 
 .arrival-hook{font-family:var(--sans);font-size:clamp(13px,1.7vw,15px);color:var(--ink3);line-height:1.75;max-width:500px;margin:0 auto 28px;text-align:center;}
-.arrival-find{font-family:var(--serif);font-size:clamp(16px,2.2vw,20px);font-weight:600;font-style:italic;color:var(--ink2);margin:0 auto 24px;text-align:center;}</style>
+.arrival-find{font-family:var(--serif);font-size:clamp(16px,2.2vw,20px);font-weight:600;font-style:italic;color:var(--ink2);margin:0 auto 24px;text-align:center;}
+@media(max-width:768px){.arrival-wrap{grid-template-columns:1fr;}.arrival-left{padding:36px 24px 28px;min-height:auto;}.arrival-right{padding:24px 18px 36px;}.cat-grid{grid-template-columns:repeat(3,1fr);}}.arrival-hook{display:none;}.arrival-find{display:none;}</style>
 </head>
 <body>
 <section id="s-arrival" class="screen active">
-  <div class="arrival-wrap fade-up">
-    <div class="wordmark">FirstStep</div>
-    <p class="arrival-hook">Every day, at any moment, something happens.<br>Work. Money. Kids. Something you didn&#8217;t see coming.<br>And you&#8217;re standing there not knowing what to do next.<br>That&#8217;s exactly what FirstStep is for.</p>
-    <h1 class="arrival-headline"><em>You&#8217;re in the right place.</em></h1>
-    <p class="arrival-sub">Something is happening &#8212; or just happened &#8212; and you need to know what to do, how to do it, and when.<br><br>Not advice. Not articles. Not a hotline.<br><br>The actual steps. Plain language. For the situation you&#8217;re actually in. Right now.<br><br>Free. No signup. No strings. Built for this moment.</p>
-    <p class="arrival-find">Find your situation below.</p>
-    <div class="cat-grid" id="catGrid"></div>
-    <div class="arrival-note"><span>Free forever</span><span class="arrival-note-dot"></span><span>No sign-up</span><span class="arrival-note-dot"></span><span>No judgment</span><span class="arrival-note-dot"></span><span>No catch</span></div>
+  <div class="arrival-wrap">
+    <div class="arrival-left fade-up">
+      <div class="wordmark">FirstStep</div>
+      <h1 class="arrival-headline">Something happened.<br><em>You&#8217;re in the right place.</em></h1>
+      <p class="arrival-sub">The actual steps. Plain language. For the situation you&#8217;re actually in &#8212; right now.<br><br>Not advice. Not a hotline. Not an article.<br><br>Free. No signup. No strings.</p>
+      <div class="arrival-trust"><span>Free forever</span><span class="arrival-trust-dot"></span><span>No sign-up</span><span class="arrival-trust-dot"></span><span>No judgment</span><span class="arrival-trust-dot"></span><span>No catch</span></div>
+    </div>
+    <div class="arrival-right fade-up">
+      <div class="arrival-right-label">What&#8217;s happening?</div>
+      <div class="cat-grid" id="catGrid"></div>
+      <div class="arrival-note">Tap the area that fits your situation</div>
+    </div>
   </div>
 </section>
 <section id="s-situations" class="screen">
