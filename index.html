@@ -96,6 +96,11 @@ body{background:var(--cream);color:var(--ink);font-family:var(--sans);min-height
 .dl-btn:hover{background:#2C2A26;}
 .dl-btn svg{flex-shrink:0;}
 .dl-note{color:var(--ink4);font-size:9.5px;}
+
+.site-disclaimer{background:#1A1915;border-top:1px solid #2C2A26;padding:12px 20px;text-align:center;font-family:'DM Sans',system-ui,sans-serif;font-size:11px;color:#6B6560;line-height:1.6;}
+.site-disclaimer a{color:#9C9589;text-decoration:underline;}
+.guide-disclaimer{background:#1E1C18;border:1px solid #2C2A26;border-radius:4px;padding:10px 14px;margin:0 0 18px 0;font-size:11px;color:#7A7570;line-height:1.6;font-family:'DM Sans',system-ui,sans-serif;}
+
 </style>
 </head>
 <body>
@@ -349,7 +354,7 @@ function openGuide(k,i){
   document.getElementById('guideTitle').textContent=g.title;
   document.getElementById('guideSub').textContent=g.sub||'';
   document.getElementById('guideSteps').innerHTML=g.steps.map((s,n)=>`<div class="g-step"><div class="g-num">${String(n+1).padStart(2,'0')}</div><div class="g-body"><div class="g-label">${s.label}</div><div class="g-detail">${s.detail}</div>${s.note?`<div class="g-note">${s.note}</div>`:''}${s.warn?`<div class="g-warn">${s.warn}</div>`:''}</div></div>`).join('');
-  document.getElementById('guideResources').innerHTML=`<div class="guide-res-title">Where to get help</div>${g.resources.map(r=>`<div class="res-item"><div class="res-dot"></div><div><div class="res-label">${r.label}</div><div class="res-desc">${r.desc}</div></div></div>`).join('')}`;
+  document.getElementById('guideResources').innerHTML=`<div class="guide-disclaimer">This guide provides general information only &mdash; not legal, medical, or financial advice. For your specific situation, get help from a qualified professional or contact 211.</div><div class="guide-res-title">Where to get help</div>${g.resources.map(r=>`<div class="res-item"><div class="res-dot"></div><div><div class="res-label">${r.label}</div><div class="res-desc">${r.desc}</div></div></div>`).join('')}`;
   show('s-guide');
 }
 document.getElementById('sitBack').onclick=()=>show('s-arrival');
@@ -365,6 +370,9 @@ document.getElementById('guideRestart').onclick=()=>show('s-arrival');
 })();
 </script>
 
+<div class="site-disclaimer">
+  FirstStep provides general guidance only &mdash; not legal, medical, or financial advice. For your specific situation, consult a qualified professional or contact <strong>211</strong>. &nbsp;<a href="/terms.html">Terms &amp; Disclaimer</a>
+</div>
 <footer style="background:#0F0E0C;color:#9C9589;font-family:'DM Sans',system-ui,sans-serif;font-size:12px;text-align:center;padding:18px 20px;line-height:1.6;border-top:1px solid #2C2A26;">
   <strong style="color:#C49A3C;">Need more help?</strong> Call or text <strong style="color:#fff;">211</strong> — free, local resources for housing, food, money, employment, and more. Available 24/7.
 
