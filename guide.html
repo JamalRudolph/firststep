@@ -133,8 +133,16 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
   .steps-layout { grid-template-columns: 1fr; }
   .remember-box { flex-direction: column; }
 }
+.submission-section{background:#E8E1D6;border-top:1px solid #C8BFB2;padding:32px 20px;margin-top:0;}
+.submission-inner{max-width:600px;margin:0 auto;}
+.submission-title{font-size:18px;font-weight:700;color:#0F0E0C;margin-bottom:8px;}
+.submission-sub{font-size:14px;color:#4A453E;margin-bottom:12px;line-height:1.5;}
+.submission-disclaimer{font-size:11px;color:#3C3830;margin-bottom:16px;line-height:1.5;padding:10px;background:#F7F4EE;border-radius:6px;border-left:3px solid #C49A3C;}
+.submission-field{width:100%;padding:12px;border-radius:8px;border:1px solid #B8B0A4;background:#F7F4EE;color:#0F0E0C;font-family:inherit;font-size:14px;box-sizing:border-box;margin-bottom:12px;}
+.submission-btn{width:100%;padding:14px;background:#C49A3C;color:#0F0E0C;font-weight:700;font-size:15px;border:none;border-radius:8px;cursor:pointer;font-family:inherit;}
+.submission-btn:hover{background:#D4AA4C;}
+.submission-success{display:none;margin-top:12px;padding:12px;border-radius:8px;background:#1C3A1C;color:#7BC47B;font-size:14px;text-align:center;}
 </style>
-<script defer src="https://cloud.umami.is/script.js" data-website-id="86bc350f-6122-4366-9d80-2b5af0b05bca"></script>
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://getfirststep.org/guide.html">
 <meta property="og:title" content="FirstStep Guide — Step-by-Step Help for Hard Moments">
@@ -2711,6 +2719,21 @@ function filterSituations(query) {
   });
   document.getElementById('homeScreen').style.display = 'block';
   document.querySelectorAll('.sit-panel').forEach(function(p) { p.classList.remove('active'); });
+}
+
+function handleSubmit(){
+  var desc=document.getElementById('sitDesc').value.trim();
+  var cat=document.getElementById('sitCat').value;
+  var contact=document.getElementById('sitContact').value.trim();
+  var msg=document.getElementById('submissionMsg');
+  if(!desc){alert('Please describe your situation before submitting.');return;}
+  var subject=encodeURIComponent('FirstStep — Missing Situation Submission');
+  var body=encodeURIComponent('SITUATION:\n'+desc+'\n\nCATEGORY: '+(cat||'Not specified')+'\n\nCONTACT: '+(contact||'Not provided'));
+  window.location.href='mailto:info@getfirststep.org?subject='+subject+'&body='+body;
+  msg.style.display='block';
+  document.getElementById('sitDesc').value='';
+  document.getElementById('sitCat').value='';
+  document.getElementById('sitContact').value='';
 }
 </script>
 <footer style="background:#1a1035;color:rgba(253,248,240,0.5);text-align:center;padding:20px;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;">
