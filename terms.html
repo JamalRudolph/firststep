@@ -50,6 +50,15 @@ footer{background:var(--dawn);padding:28px 48px;display:flex;align-items:center;
   .container{padding:40px 20px 80px;}
   footer{padding:24px 20px;}
 }
+.submission-section{background:#E8E1D6;border-top:1px solid #C8BFB2;padding:32px 20px;margin-top:0;}
+.submission-inner{max-width:600px;margin:0 auto;}
+.submission-title{font-size:18px;font-weight:700;color:#0F0E0C;margin-bottom:8px;}
+.submission-sub{font-size:14px;color:#4A453E;margin-bottom:12px;line-height:1.5;}
+.submission-disclaimer{font-size:11px;color:#3C3830;margin-bottom:16px;line-height:1.5;padding:10px;background:#F7F4EE;border-radius:6px;border-left:3px solid #C49A3C;}
+.submission-field{width:100%;padding:12px;border-radius:8px;border:1px solid #B8B0A4;background:#F7F4EE;color:#0F0E0C;font-family:inherit;font-size:14px;box-sizing:border-box;margin-bottom:12px;}
+.submission-btn{width:100%;padding:14px;background:#C49A3C;color:#0F0E0C;font-weight:700;font-size:15px;border:none;border-radius:8px;cursor:pointer;font-family:inherit;}
+.submission-btn:hover{background:#D4AA4C;}
+.submission-success{display:none;margin-top:12px;padding:12px;border-radius:8px;background:#1C3A1C;color:#7BC47B;font-size:14px;text-align:center;}
 </style>
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://getfirststep.org/terms.html">
@@ -142,5 +151,22 @@ footer{background:var(--dawn);padding:28px 48px;display:flex;align-items:center;
   <div class="f-copy">© 2026 Rudolph CX LLC · getfirststep.org · Built in Durham, NC</div>
 </footer>
 
+<script>
+
+function handleSubmit(){
+  var desc=document.getElementById('sitDesc').value.trim();
+  var cat=document.getElementById('sitCat').value;
+  var contact=document.getElementById('sitContact').value.trim();
+  var msg=document.getElementById('submissionMsg');
+  if(!desc){alert('Please describe your situation before submitting.');return;}
+  var subject=encodeURIComponent('FirstStep — Missing Situation Submission');
+  var body=encodeURIComponent('SITUATION:\n'+desc+'\n\nCATEGORY: '+(cat||'Not specified')+'\n\nCONTACT: '+(contact||'Not provided'));
+  window.location.href='mailto:info@getfirststep.org?subject='+subject+'&body='+body;
+  msg.style.display='block';
+  document.getElementById('sitDesc').value='';
+  document.getElementById('sitCat').value='';
+  document.getElementById('sitContact').value='';
+}
+</script>
 </body>
 </html>
